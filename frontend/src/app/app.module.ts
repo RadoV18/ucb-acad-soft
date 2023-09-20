@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {MatToolbarModule} from "@angular/material/toolbar";
-import {MatButtonModule} from '@angular/material/button'; 
+import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +12,13 @@ import { StudentScheduleComponent } from './pages/student-schedule/student-sched
 import { ProfessorScheduleComponent } from './pages/professor-schedule/professor-schedule.component';
 import { StudentListComponent } from './pages/student-list/student-list.component';
 import { StudentKardexComponent } from './pages/student-kardex/student-kardex.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatSelectModule} from "@angular/material/select";
+import {MatInputModule} from "@angular/material/input";
+import {HttpClientModule} from "@angular/common/http";
+import {CommonModule} from "@angular/common";
+import { StudentListTableComponent } from './components/student-list-table/student-list-table.component';
 
 @NgModule({
   declarations: [
@@ -20,15 +27,23 @@ import { StudentKardexComponent } from './pages/student-kardex/student-kardex.co
     StudentScheduleComponent,
     ProfessorScheduleComponent,
     StudentListComponent,
-    StudentKardexComponent
+    StudentKardexComponent,
+    StudentListTableComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    CommonModule,
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule,
+    MatTabsModule,
+    MatInputModule,
+    MatSelectModule,
+    HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
