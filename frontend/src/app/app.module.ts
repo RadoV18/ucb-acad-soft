@@ -37,7 +37,8 @@ import { ClassItemComponent } from './components/schedule/class-item/class-item.
     StudentListTableComponent,
     ScheduleComponent,
     ScheduleDayComponent,
-    ClassItemComponent
+    ClassItemComponent,
+    StudentListTableComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +49,11 @@ import { ClassItemComponent } from './components/schedule/class-item/class-item.
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTableModule,
+    HttpClientModule,
     MatCardModule,
     MatTabsModule,
     MatInputModule,

@@ -15,6 +15,12 @@
 
 <mat-tab-group *ngIf="selectedSemesterId > 0">
   <mat-tab *ngFor="let subject of subjects" [label]="subject.description">
+<<<<<<< HEAD
     <app-student-list-table [subjectId]="subject.subjectId" [semesterId]="selectedSemesterId" [professorId]="professorId"></app-student-list-table>
   </mat-tab>
 </mat-tab-group>
+=======
+    <app-student-list-table [subjectId]="subject.subjectId" [semesterId]="selectedSemesterId"></app-student-list-table>
+  </mat-tab>
+</mat-tab-group>
+>>>>>>> fd027f7 (TDS-15 added card for searching subjects by professor and semester)
