@@ -1,10 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { StudentListService } from '../../services/student-list.service';
 import { SubjectDetailDto } from '../../dto/subject-detail.dto';
 import {StudentInfoDto} from "../../dto/student-info.dto";
-=======
->>>>>>> fd027f7 (TDS-15 added card for searching subjects by professor and semester)
 
 @Component({
   selector: 'app-student-list-table',
@@ -12,7 +9,6 @@ import {StudentInfoDto} from "../../dto/student-info.dto";
   styleUrls: ['./student-list-table.component.sass']
 })
 export class StudentListTableComponent implements OnInit {
-<<<<<<< HEAD
 
   @Input() professorId: number = 0;
   @Input() subjectId: number = 0;
@@ -58,15 +54,4 @@ export class StudentListTableComponent implements OnInit {
       }
     });
   }
-=======
-  
-  @Input() subjectId: number = 0;
-  @Input() semesterId: number = 0;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
->>>>>>> fd027f7 (TDS-15 added card for searching subjects by professor and semester)
 }

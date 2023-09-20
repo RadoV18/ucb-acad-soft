@@ -5,11 +5,15 @@ import {SemesterDto} from "../dto/semester.dto";
 import {ResponseDto} from "../dto/response.dto";
 import { SubjectDto } from '../dto/subject.dto';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { SubjectDetailDto } from '../dto/subject-detail.dto';
 import {StudentInfoDto} from "../dto/student-info.dto";
 import {FileDto} from "../dto/file.dto";
 =======
 >>>>>>> fd027f7 (TDS-15 added card for searching subjects by professor and semester)
+=======
+import { SubjectDetailDto } from '../dto/subject-detail.dto';
+>>>>>>> 920818a (TDS-15 added card for the subject detail info)
 
 @Injectable({
   providedIn: 'root'
@@ -50,5 +54,11 @@ export class StudentListService {
     return this.http.get<ResponseDto<SubjectDto[]>>(`${this.baseUrl}/professors/${professorId}/subjects?semesterId=${semesterId}`);
   }
   
+<<<<<<< HEAD
 >>>>>>> fd027f7 (TDS-15 added card for searching subjects by professor and semester)
+=======
+  public getSubjectDetailsBySubjectId(subjectId: number): Observable<ResponseDto<SubjectDetailDto>> {
+    return this.http.get<ResponseDto<SubjectDetailDto>>(`${this.baseUrl}/subjects/${subjectId}`);
+  }
+>>>>>>> 920818a (TDS-15 added card for the subject detail info)
 }
