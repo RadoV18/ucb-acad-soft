@@ -16,6 +16,7 @@ export class StudentListComponent implements OnInit{
   subjects: SubjectDto[] = [];
 
   constructor(private studentListService: StudentListService) { }
+  
   ngOnInit(): void {
     this.studentListService.getSemestersByProfessorId(this.professorId).subscribe({
       next: (response) => {

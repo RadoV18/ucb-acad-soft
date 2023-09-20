@@ -1,1 +1,69 @@
-<p>student-list-table works!</p>
+<mat-card class="custom-card" *ngIf="subjectDetail">
+    <mat-card-header>
+        <mat-card-title>DETALLE DE LA ASIGNATURA</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="custom-card-content">
+        <mat-grid-list cols="2" rows="4" rowHeight="30px" gutterSize="10px">
+            <mat-grid-tile>
+                <h3>ASIGNATURA: {{ subjectDetail!.subjectCode | uppercase}} {{ subjectDetail!.subjectName | uppercase}}
+                    [PAR. {{ subjectDetail!.parallel }}]
+                </h3>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <h3>SEMESTRE: {{ subjectDetail!.semesterName | uppercase}}</h3>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <h3>NÚMERO DE CRÉDITOS: {{ subjectDetail!.credits }}</h3>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <h3>FECHA DE INICIO: {{ subjectDetail!.startDate | date: 'dd-MM-yyyy'}}</h3>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <h3>DOCENTE: {{ subjectDetail!.professor | uppercase}}</h3>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <h3>FECHA DE FIN: {{ subjectDetail!.endDate | date: 'dd-MM-yyyy' }}</h3>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-card-content>
+</mat-card>
+
+<mat-card class="custom-card" *ngIf="subjectDetail">
+    <mat-card-header>
+        <mat-card-title>ESTUDIANTES INSCRITOS</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="custom-card-content">
+        <!-- <mat-table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> NOMBRE </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="lastName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> APELLIDO </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.lastName}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> CORREO </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef> ACCIONES </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <button mat-icon-button color="primary" (click)="openDialog(element)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table> -->
+    </mat-card-content>

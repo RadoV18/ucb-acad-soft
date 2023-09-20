@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {SemesterDto} from "../dto/semester.dto";
 import {ResponseDto} from "../dto/response.dto";
 import { SubjectDto } from '../dto/subject.dto';
+import { SubjectDetailDto } from '../dto/subject-detail.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -20,4 +21,7 @@ export class StudentListService {
     return this.http.get<ResponseDto<SubjectDto[]>>(`${this.baseUrl}/professors/${professorId}/subjects?semesterId=${semesterId}`);
   }
   
+  public getSubjectDetailsBySubjectId(subjectId: number): Observable<ResponseDto<SubjectDetailDto>> {
+    return this.http.get<ResponseDto<SubjectDetailDto>>(`${this.baseUrl}/subjects/${subjectId}`);
+  }
 }

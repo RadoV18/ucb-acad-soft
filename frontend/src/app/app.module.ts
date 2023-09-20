@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatGridListModule} from '@angular/material/grid-list'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,6 +36,7 @@ import { StudentListTableComponent } from './components/student-list-table/stude
     AppRoutingModule,
     BrowserAnimationsModule,
     CommonModule,
+    HttpClientModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
@@ -42,8 +44,7 @@ import { StudentListTableComponent } from './components/student-list-table/stude
     MatTabsModule,
     MatInputModule,
     MatSelectModule,
-    HttpClientModule
-
+    MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
