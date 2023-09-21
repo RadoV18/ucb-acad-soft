@@ -1,7 +1,9 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, inject, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
+import {KardexService} from "../../services/kardex-sevice/kardex.service";
+import {SemesterResume} from "../../models/SemesterResume";
 
 @Component({
   selector: 'app-student-kardex',
@@ -9,6 +11,8 @@ import {MatSort} from "@angular/material/sort";
   styleUrls: ['./student-kardex.component.sass']
 })
 export class StudentKardexComponent implements OnInit {
+
+
   displayedColumns: string[] = [
     'site',
     'careerSail',
@@ -22,7 +26,9 @@ export class StudentKardexComponent implements OnInit {
     'finalTestScore',
     'finalScore',
   ];
-  dataSource: MatTableDataSource<any>;
+  // dataSource: MatTableDataSource<any> | any;
+
+  kardex: SemesterResume[] = [];
 
 
   // Your JSON data should be assigned here
@@ -117,13 +123,19 @@ export class StudentKardexComponent implements OnInit {
     },
   ];
 
-  constructor() {
-    console.log(this.jsonData)
-    this.dataSource = new MatTableDataSource(this.jsonData);
+  constructor(private kardexService: KardexService) {
+
 
   }
 
   ngOnInit(): void {
+    this.kardexService.getMyKardex().subscribe(
+      {next: (response) => {
+        console.log(response);
+        this.kardex = response.data;
+        // this.dataSource = new MatTableDataSource<any>(this.kardex);
+      }}
+    );
 
   }
 }

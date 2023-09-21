@@ -13,6 +13,8 @@ import { ProfessorScheduleComponent } from './pages/professor-schedule/professor
 import { StudentListComponent } from './pages/student-list/student-list.component';
 import { StudentKardexComponent } from './pages/student-kardex/student-kardex.component';
 import {MatTableModule} from "@angular/material/table";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import {MatTableModule} from "@angular/material/table";
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    CommonModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
