@@ -31,39 +31,49 @@
 <mat-card class="custom-card" *ngIf="subjectDetail">
     <mat-card-header>
         <mat-card-title>ESTUDIANTES INSCRITOS</mat-card-title>
+        <div class="spacer"></div>
+        <button mat-raised-button color="primary" (click)="downloadCSV()">Descargar como CSV</button>
     </mat-card-header>
     <mat-card-content class="custom-card-content">
-        <!-- <mat-table [dataSource]="dataSource" matSort>
-            <ng-container matColumnDef="id">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+        <mat-table [dataSource]="studentList!">
+
+            <ng-container matColumnDef="index">
+                <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                <mat-cell *matCellDef="let student; let i = index"> {{i + 1}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="ci">
+                <mat-header-cell *matHeaderCellDef> CI </mat-header-cell>
+                <mat-cell *matCellDef="let student"> {{student.ci}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="name">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> NOMBRE </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="lastName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> APELLIDO </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.lastName}} </mat-cell>
+                <mat-header-cell *matHeaderCellDef> APELLIDOS Y NOMBRES </mat-header-cell>
+                <mat-cell *matCellDef="let student"> {{student.lastName}} {{student.firstName}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="email">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> CORREO </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+                <mat-header-cell *matHeaderCellDef> CORREO </mat-header-cell>
+                <mat-cell *matCellDef="let student"> {{student.email}} </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="actions">
-                <mat-header-cell *matHeaderCellDef> ACCIONES </mat-header-cell>
-                <mat-cell *matCellDef="let element">
-                    <button mat-icon-button color="primary" (click)="openDialog(element)">
-                        <mat-icon>edit</mat-icon>
-                    </button>
-                </mat-cell>
+            <ng-container matColumnDef="phone">
+                <mat-header-cell *matHeaderCellDef> TELÉFONO </mat-header-cell>
+                <mat-cell *matCellDef="let student"> {{student.phone}} </mat-cell>
             </ng-container>
 
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table> -->
+            <ng-container matColumnDef="major">
+                <mat-header-cell *matHeaderCellDef> CARRERA </mat-header-cell>
+                <mat-cell *matCellDef="let student"> {{student.major}} </mat-cell>
+            </ng-container>'
+
+            <ng-container matColumnDef="isActive">
+                <mat-header-cell *matHeaderCellDef> ESTADO </mat-header-cell>
+                <mat-cell *matCellDef="let student"> {{student.isActive ? 'ACTIVO' : 'INACTIVO'}} </mat-cell>
+            </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'inactive': !row.isActive}"></mat-row>
+        </mat-table>
     </mat-card-content>
+</mat-card>
