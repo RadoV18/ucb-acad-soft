@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {MatToolbarModule} from "@angular/material/toolbar";
-import {MatButtonModule} from '@angular/material/button'; 
+import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +12,7 @@ import { StudentScheduleComponent } from './pages/student-schedule/student-sched
 import { ProfessorScheduleComponent } from './pages/professor-schedule/professor-schedule.component';
 import { StudentListComponent } from './pages/student-list/student-list.component';
 import { StudentKardexComponent } from './pages/student-kardex/student-kardex.component';
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { StudentKardexComponent } from './pages/student-kardex/student-kardex.co
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
