@@ -43,6 +43,7 @@ public class SubjectController: ControllerBase
     {
         try
         {
+<<<<<<< HEAD
             // Get semester subject
             var subjects = await _subjectAndSemesterGradeService.GetSubjectsByProfessorIdAndSemesterId(professorId, semesterId);
             var subject = subjects.First(subject => subject.SubjectId == subjectId); // Get subject from list
@@ -50,6 +51,13 @@ public class SubjectController: ControllerBase
             var semester = semesters.First(semester => semester.SemesterId == semesterId); // Get semester from list
             var professor = await _studentAndProfessorService.GetProfessorInfoByProfessorId(professorId);
             // Create semester subject
+=======
+            var subjects = await _subjectAndSemesterGradeService.GetSubjectsByProfessorIdAndSemesterId(professorId, semesterId);
+            var subject = subjects.First(subject => subject.SubjectId == subjectId);
+            var semesters = await _subjectAndSemesterGradeService.GetSemestersByProfessorId(professorId);
+            var semester = semesters.First(semester => semester.SemesterId == semesterId);
+            var professor = await _studentAndProfessorService.GetProfessorInfoByProfessorId(professorId);
+>>>>>>> dcec2f6 (TDS-15 Added endpoints for parallel and semester info retrieval)
             var semesterSubject = new SemesterSubjectDto
             {
                 SubjectId = subject.SubjectId,
