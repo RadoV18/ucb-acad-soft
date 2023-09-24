@@ -15,8 +15,10 @@ public class SubjectController: ControllerBase
     {
         try
         {
+            // Get subjects
             var subjects = await _subjectAndSemesterGradeService.GetSubjectsByProfessorIdAndSemesterId(professorId, semesterId);
             var semesters = await _subjectAndSemesterGradeService.GetSemestersByProfessorId(professorId);
+            // Create simple subjects
             var simpleSubjects = subjects.Select(subject => new SimpleSubjectDto
             {
                 SubjectId = subject.SubjectId,
@@ -41,11 +43,13 @@ public class SubjectController: ControllerBase
     {
         try
         {
+            // Get semester subject
             var subjects = await _subjectAndSemesterGradeService.GetSubjectsByProfessorIdAndSemesterId(professorId, semesterId);
-            var subject = subjects.First(subject => subject.SubjectId == subjectId);
+            var subject = subjects.First(subject => subject.SubjectId == subjectId); // Get subject from list
             var semesters = await _subjectAndSemesterGradeService.GetSemestersByProfessorId(professorId);
-            var semester = semesters.First(semester => semester.SemesterId == semesterId);
+            var semester = semesters.First(semester => semester.SemesterId == semesterId); // Get semester from list
             var professor = await _studentAndProfessorService.GetProfessorInfoByProfessorId(professorId);
+            // Create semester subject
             var semesterSubject = new SemesterSubjectDto
             {
                 SubjectId = subject.SubjectId,

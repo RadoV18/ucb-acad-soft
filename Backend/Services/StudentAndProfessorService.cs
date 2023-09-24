@@ -12,12 +12,14 @@ public class StudentAndProfessorService {
     public async Task<ProfessorInfoDto> GetProfessorInfoByProfessorId(int professorId)
     {
         var request = new RestRequest($"professors/{professorId}");
+        // Add headers
         request.AddHeader("Accept", "application/json");
         request.AddHeader("Content-Type", "application/json");
         request.AddUrlSegment("professorId", professorId.ToString());
         
         var response = await _client.GetAsync(request);
-
+        
+        // Check response
         if (response.StatusCode == HttpStatusCode.OK && response.Content != null)
         {
             var responseDto = JsonConvert.DeserializeObject<ResponseDto<ProfessorInfoDto>>(response.Content);
@@ -32,13 +34,15 @@ public class StudentAndProfessorService {
     public async Task<List<StudentInfoDto>> GetStudentsInfoBySubjectIdAndSemesterId(int subjectId, int semesterId)
     {
         var request = new RestRequest($"students/subjects/{subjectId}");
+        // Add headers
         request.AddHeader("Accept", "application/json");
         request.AddHeader("Content-Type", "application/json");
         request.AddUrlSegment("subjectId", subjectId.ToString());
         request.AddQueryParameter("semesterId", semesterId.ToString());
         
         var response = await _client.GetAsync(request);
-
+        
+        // Check response
         if (response.StatusCode == HttpStatusCode.OK && response.Content != null)
         {
             var responseDto = JsonConvert.DeserializeObject<ResponseDto<List<StudentInfoDto>>>(response.Content);

@@ -15,6 +15,7 @@ public class SemesterController: ControllerBase
     {
         try
         {
+            // Get semesters
             var semesters = await _subjectAndSemesterGradeService.GetSemestersByProfessorId(professorId);
             var simpleSemesters = semesters.Select(semester => new SimpleSemesterDto
             {

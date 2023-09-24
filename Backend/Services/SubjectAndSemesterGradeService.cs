@@ -12,12 +12,14 @@ public class SubjectAndSemesterGradeService
     public async Task<List<SemesterDto>> GetSemestersByProfessorId(int professorId)
     {
         var request = new RestRequest($"semesters/professors/{professorId}");
+        // Add headers
         request.AddHeader("Accept", "application/json");
         request.AddHeader("Content-Type", "application/json");
         request.AddUrlSegment("professorId", professorId.ToString());
         
         var response = await _client.GetAsync(request);
 
+        // Check response
         if (response.StatusCode == HttpStatusCode.OK && response.Content != null)
         {
             var responseDto = JsonConvert.DeserializeObject<ResponseDto<List<SemesterDto>>>(response.Content);
