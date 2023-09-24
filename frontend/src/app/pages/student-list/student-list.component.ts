@@ -16,12 +16,22 @@ export class StudentListComponent implements OnInit{
   subjects: SubjectDto[] = [];
 
   constructor(private studentListService: StudentListService) { }
-  
+
   ngOnInit(): void {
     this.studentListService.getSemestersByProfessorId(this.professorId).subscribe({
       next: (response) => {
         // console.log(response.data);
         this.semesters = response.data;
+        // sort semesters by descending order
+        this.semesters.sort((a, b) => {
+          if (a.semesterName > b.semesterName) {
+            return -1;
+          }
+          if (a.semesterName < b.semesterName) {
+            return 1;
+          }
+          return 0;
+        });
       },
       error: (error) => {
         console.log(error);

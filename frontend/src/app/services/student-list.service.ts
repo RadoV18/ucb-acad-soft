@@ -12,26 +12,26 @@ import {FileDto} from "../dto/file.dto";
   providedIn: 'root'
 })
 export class StudentListService {
-  baseUrl = 'http://localhost:8080/api/v1/reports';
+  baseUrl = 'http://localhost:5260/api/v1/reports';
   constructor(private http: HttpClient) { }
 
   public getSemestersByProfessorId(professorId: number): Observable<ResponseDto<SemesterDto[]>> {
-    return this.http.get<ResponseDto<SemesterDto[]>>(`${this.baseUrl}/professors/${professorId}/semester`);
+    return this.http.get<ResponseDto<SemesterDto[]>>(`${this.baseUrl}/semesters/professors/${professorId}`);
   }
 
   public getSubjectsByProfessorIdAndSemesterId(professorId: number, semesterId: number): Observable<ResponseDto<SubjectDto[]>> {
-    return this.http.get<ResponseDto<SubjectDto[]>>(`${this.baseUrl}/professors/${professorId}/subjects?semesterId=${semesterId}`);
+    return this.http.get<ResponseDto<SubjectDto[]>>(`${this.baseUrl}/subjects/professors/${professorId}?semesterId=${semesterId}`);
   }
 
-  public getSubjectDetailsBySubjectId(subjectId: number, semesterId: number): Observable<ResponseDto<SubjectDetailDto>> {
-    return this.http.get<ResponseDto<SubjectDetailDto>>(`${this.baseUrl}/subjects/${subjectId}?semesterId=${semesterId}`);
+  public getSubjectDetailsBySubjectId(subjectId: number,  professorId: number,semesterId: number): Observable<ResponseDto<SubjectDetailDto>> {
+    return this.http.get<ResponseDto<SubjectDetailDto>>(`${this.baseUrl}/subjects/${subjectId}/professors/${professorId}?semesterId=${semesterId}`);
   }
 
   public getStudentListBySubjectIdAndSemesterId(subjectId: number, semesterId: number): Observable<ResponseDto<StudentInfoDto[]>> {
-    return this.http.get<ResponseDto<StudentInfoDto[]>>(`${this.baseUrl}/subjects/${subjectId}/students?semesterId=${semesterId}`);
+    return this.http.get<ResponseDto<StudentInfoDto[]>>(`${this.baseUrl}/students/subjects/${subjectId}?semesterId=${semesterId}`);
   }
 
   public getStudentListCSVBySubjectIdAndSemesterId(subjectId: number, semesterId: number): Observable<ResponseDto<FileDto>> {
-    return this.http.get<ResponseDto<FileDto>>(`${this.baseUrl}/subjects/${subjectId}/students/csv?semesterId=${semesterId}`);
+    return this.http.get<ResponseDto<FileDto>>(`${this.baseUrl}/students/csv/subjects/${subjectId}?semesterId=${semesterId}`);
   }
 }

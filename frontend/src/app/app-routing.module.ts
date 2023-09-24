@@ -6,11 +6,20 @@ import { StudentListComponent } from './pages/student-list/student-list.componen
 import { StudentKardexComponent } from './pages/student-kardex/student-kardex.component';
 
 const routes: Routes = [
-  { path: 'professor/schedule', component: ProfessorScheduleComponent },
-  { path: 'student/schedule', component: StudentScheduleComponent },
-  { path: 'student/list', component: StudentListComponent },
-  { path: 'student/kardex', component: StudentKardexComponent },
-
+  {
+    path: 'professor',
+    children: [
+      { path: 'schedule', component: ProfessorScheduleComponent },
+    ],
+  },
+  {
+    path: 'student',
+    children: [
+      { path: 'schedule', component: StudentScheduleComponent },
+      { path: 'list', component: StudentListComponent },
+      { path: 'kardex', component: StudentKardexComponent },
+    ],
+  },
 ];
 
 @NgModule({

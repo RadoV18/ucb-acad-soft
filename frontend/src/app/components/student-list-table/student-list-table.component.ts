@@ -10,6 +10,7 @@ import {StudentInfoDto} from "../../dto/student-info.dto";
 })
 export class StudentListTableComponent implements OnInit {
 
+  @Input() professorId: number = 0;
   @Input() subjectId: number = 0;
   @Input() semesterId: number = 0;
 
@@ -21,7 +22,7 @@ export class StudentListTableComponent implements OnInit {
 
   ngOnInit(): void {
     // console.log(this.subjectId);
-    this.studentListService.getSubjectDetailsBySubjectId(this.subjectId, this.semesterId).subscribe({
+    this.studentListService.getSubjectDetailsBySubjectId(this.subjectId, this.professorId, this.semesterId).subscribe({
       next: (response) => {
         // console.log(response.data);
         this.subjectDetail = response.data;
@@ -33,17 +34,8 @@ export class StudentListTableComponent implements OnInit {
 
     this.studentListService.getStudentListBySubjectIdAndSemesterId(this.subjectId, this.semesterId).subscribe({
       next: (response) => {
-        console.log(response.data);
+        // console.log(response.data);
         this.studentList = response.data;
-        this.studentList.sort((a, b) => {
-          if (a.lastName > b.lastName) {
-            return 1;
-          }
-          if (a.lastName < b.lastName) {
-            return -1;
-          }
-          return 0;
-        });
       },
       error: (error) => {
         console.log(error);
