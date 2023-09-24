@@ -29,4 +29,24 @@ public class StudentAndProfessorService {
         }
     }
     
+    public async Task<List<StudentInfoDto>> GetStudentsInfoBySubjectIdAndSemesterId(int subjectId, int semesterId)
+    {
+        var request = new RestRequest($"students/subjects/{subjectId}");
+        request.AddHeader("Accept", "application/json");
+        request.AddHeader("Content-Type", "application/json");
+        request.AddUrlSegment("subjectId", subjectId.ToString());
+        request.AddQueryParameter("semesterId", semesterId.ToString());
+        
+        var response = await _client.GetAsync(request);
+
+        if (response.StatusCode == HttpStatusCode.OK && response.Content != null)
+        {
+            var responseDto = JsonConvert.DeserializeObject<ResponseDto<List<StudentInfoDto>>>(response.Content);
+            return responseDto!.Data!;
+        }
+        else
+        {
+            throw new Exception("Error while fetching students");
+        }
+    }
 }
