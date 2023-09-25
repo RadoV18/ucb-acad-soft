@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <div class="logo">
+            <img src="assets/images/logo.png" alt="UCB">
+            <h2>Modulo de Reportes</h2>
+        </div>
+        <div class="spacer"></div>
+        <a routerLink="/professor/schedule" mat-button class="navbar-option">
+            <mat-icon>calendar_month</mat-icon>
+            Horario Profesor
+        </a>
+        <a routerLink="/student/kardex" mat-button class="navbar-option">
+            <mat-icon>table_view</mat-icon>
+            Kardex Estudiante
+        </a>
+        <a routerLink="/student/list" mat-button class="navbar-option">
+            <mat-icon>description</mat-icon>
+            Lista Estudiante
+        </a>
+        <a routerLink="/student/schedule" mat-button class="navbar-option">
+            <mat-icon>calendar_month</mat-icon>
+            Horario Estudiante
+        </a>
+    </mat-toolbar-row>
+</mat-toolbar>
