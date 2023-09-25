@@ -15,6 +15,7 @@ import { StudentKardexComponent } from './pages/student-kardex/student-kardex.co
 import {MatTableModule} from "@angular/material/table";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
+import { BriefKardexComponent } from './pages/student-kardex/brief-kardex/brief-kardex.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {CommonModule} from "@angular/common";
     StudentScheduleComponent,
     ProfessorScheduleComponent,
     StudentListComponent,
-    StudentKardexComponent
+    StudentKardexComponent,
+    BriefKardexComponent
   ],
   imports: [
     BrowserModule,

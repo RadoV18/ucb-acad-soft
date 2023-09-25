@@ -2,7 +2,7 @@
   <div class="mat-elevation-z8" *ngFor="let semester of kardex">
     <div class="info-container">
       <p>Periodo Académico: {{ semester.academicPeriod }}</p>
-      <p>Del: {{ semester.initSemester | date:'dd/MM/yyyy' }} al {{ semester.endSemester | date:'dd/MM/yyyy' }}</p>
+      <p>Del: {{ semester.initSemester }} al {{ semester.endSemester | date:'dd/MM/yyyy' }}</p>
       <p>Carrera: {{ semester.career }}</p>
     </div>
     <table mat-table [dataSource]="semester.subjects" matSort>
