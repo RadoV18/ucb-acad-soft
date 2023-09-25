@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {SemesterResume} from "../../models/SemesterResume";
+import {KardexBrief, SemesterResume} from "../../models/SemesterResume";
 import {Observable} from "rxjs";
 import {ResponseDto} from "../../dto/response.dto";
 
@@ -15,6 +15,10 @@ export class KardexService {
 
   public getMyKardex(): Observable<ResponseDto<SemesterResume[]>> {
     return this.http.get<ResponseDto<SemesterResume[]>>(`${this.baseUrl}/my-kardex`)
+  }
+
+  public getMyKardexBrief(): Observable<ResponseDto<KardexBrief[]>>{
+    return this.http.get<ResponseDto<KardexBrief[]>>(`${this.baseUrl}/brief`)
   }
 
 

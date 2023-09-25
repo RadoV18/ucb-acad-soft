@@ -9,3 +9,8 @@ export interface SemesterResume {
   totalCredits: number;
   average: number;
 }
+
+export interface KardexBrief {
+  concept: string;
+  value: number;
+}
