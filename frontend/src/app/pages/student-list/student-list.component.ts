@@ -22,16 +22,6 @@ export class StudentListComponent implements OnInit{
       next: (response) => {
         // console.log(response.data);
         this.semesters = response.data;
-        // sort semesters by descending order
-        this.semesters.sort((a, b) => {
-          if (a.semesterName > b.semesterName) {
-            return -1;
-          }
-          if (a.semesterName < b.semesterName) {
-            return 1;
-          }
-          return 0;
-        });
       },
       error: (error) => {
         console.log(error);
