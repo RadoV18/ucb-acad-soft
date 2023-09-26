@@ -1,6 +1,6 @@
-namespace Backend.Dto;
+namespace Backend.DTOs;
 
-public class SimpleSubjectDto
+public class SimpleSubjectDTO
 {  
     public int SubjectId { get; set; }
     public string Description { get; set; } = default!;

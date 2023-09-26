@@ -1,6 +1,6 @@
-namespace Backend.Dto;
+namespace Backend.DTOs;
 
-public class ProfessorInfoDto
+public class ProfessorInfoDTO
 {
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;

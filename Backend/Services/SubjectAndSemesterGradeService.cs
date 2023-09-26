@@ -1,5 +1,5 @@
 using System.Net;
-using Backend.Dto;
+using Backend.DTOs;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -9,7 +9,7 @@ public class SubjectAndSemesterGradeService
 {
     private readonly RestClient _client = new RestClient("http://localhost:8080/api/v1");
     
-    public async Task<List<SemesterDto>> GetSemestersByProfessorId(int professorId)
+    public async Task<List<SemesterDTO>> GetSemestersByProfessorId(int professorId)
     {
         var request = new RestRequest($"semesters/professors/{professorId}");
         // Add headers
@@ -22,7 +22,7 @@ public class SubjectAndSemesterGradeService
         // Check response
         if (response.StatusCode == HttpStatusCode.OK && response.Content != null)
         {
-            var responseDto = JsonConvert.DeserializeObject<ResponseDto<List<SemesterDto>>>(response.Content);
+            var responseDto = JsonConvert.DeserializeObject<ResponseDTO<List<SemesterDTO>>>(response.Content);
             return responseDto!.Data!;
         }
         else
@@ -31,7 +31,7 @@ public class SubjectAndSemesterGradeService
         }
     }
     
-    public async Task<List<SubjectDto>> GetSubjectsByProfessorIdAndSemesterId(int professorId, int semesterId)
+    public async Task<List<SubjectPartialDTO>> GetSubjectsByProfessorIdAndSemesterId(int professorId, int semesterId)
     {
         var request = new RestRequest($"subjects/professors/{professorId}");
         request.AddHeader("Accept", "application/json");
@@ -43,7 +43,7 @@ public class SubjectAndSemesterGradeService
 
         if (response.StatusCode == HttpStatusCode.OK && response.Content != null) 
         {
-            var responseDto = JsonConvert.DeserializeObject<ResponseDto<List<SubjectDto>>>(response.Content);
+            var responseDto = JsonConvert.DeserializeObject<ResponseDTO<List<SubjectPartialDTO>>>(response.Content);
             return responseDto!.Data!;
         }
         else

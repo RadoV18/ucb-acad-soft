@@ -1,6 +1,6 @@
-namespace Backend.Dto;
+namespace Backend.DTOs;
 
-public class SemesterDto
+public class SemesterDTO
 {
     public int SemesterId { get; set; }
     public string SemesterName { get; set; } = default!;

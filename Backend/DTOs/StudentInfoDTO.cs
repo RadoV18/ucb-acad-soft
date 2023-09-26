@@ -1,6 +1,6 @@
-namespace Backend.Dto;
+namespace Backend.DTOs;
 
-public class StudentInfoDto
+public class StudentInfoDTO
 {
     public string Ci { get; set; } = null!;
     public string FirstName { get; set; } = null!;

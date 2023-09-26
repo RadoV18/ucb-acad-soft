@@ -1,5 +1,5 @@
 using System.Net;
-using Backend.Dto;
+using Backend.DTOs;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -9,7 +9,7 @@ public class StudentAndProfessorService {
     
     private readonly RestClient _client = new RestClient("http://localhost:8080/api/v1");
     
-    public async Task<ProfessorInfoDto> GetProfessorInfoByProfessorId(int professorId)
+    public async Task<ProfessorInfoDTO> GetProfessorInfoByProfessorId(int professorId)
     {
         var request = new RestRequest($"professors/{professorId}");
         // Add headers
@@ -22,7 +22,7 @@ public class StudentAndProfessorService {
         // Check response
         if (response.StatusCode == HttpStatusCode.OK && response.Content != null)
         {
-            var responseDto = JsonConvert.DeserializeObject<ResponseDto<ProfessorInfoDto>>(response.Content);
+            var responseDto = JsonConvert.DeserializeObject<ResponseDTO<ProfessorInfoDTO>>(response.Content);
             return responseDto!.Data!;
         }
         else
@@ -31,7 +31,7 @@ public class StudentAndProfessorService {
         }
     }
     
-    public async Task<List<StudentInfoDto>> GetStudentsInfoBySubjectIdAndSemesterId(int subjectId, int semesterId)
+    public async Task<List<StudentInfoDTO>> GetStudentsInfoBySubjectIdAndSemesterId(int subjectId, int semesterId)
     {
         var request = new RestRequest($"students/subjects/{subjectId}");
         // Add headers
@@ -45,7 +45,7 @@ public class StudentAndProfessorService {
         // Check response
         if (response.StatusCode == HttpStatusCode.OK && response.Content != null)
         {
-            var responseDto = JsonConvert.DeserializeObject<ResponseDto<List<StudentInfoDto>>>(response.Content);
+            var responseDto = JsonConvert.DeserializeObject<ResponseDTO<List<StudentInfoDTO>>>(response.Content);
             return responseDto!.Data!;
         }
         else

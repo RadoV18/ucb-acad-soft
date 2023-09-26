@@ -1,5 +1,5 @@
 using System.Text;
-using Backend.Dto;
+using Backend.DTOs;
 
 namespace Backend.Controllers;
 
@@ -14,7 +14,7 @@ public class StudentController: ControllerBase
     private readonly Services.MinioService _minioService = new Services.MinioService();
     
     [HttpGet("subjects/{subjectId:int}")]
-    public async Task<ActionResult<ResponseDto<List<StudentInfoDto>>>> GetStudents(int subjectId, [FromQuery] int semesterId)
+    public async Task<ActionResult<ResponseDTO<List<StudentInfoDTO>>>> GetStudents(int subjectId, [FromQuery] int semesterId)
     {
         try
         {
@@ -26,11 +26,12 @@ public class StudentController: ControllerBase
                 if (lastNameComparison != 0) return lastNameComparison;
                 return string.Compare(student1.FirstName, student2.FirstName, StringComparison.Ordinal);
             });
-            return Ok(new ResponseDto<List<StudentInfoDto>>
-            {
-                Successful = true,
-                Data = students
-            });
+            return Ok(new ResponseDTO<List<StudentInfoDTO>> 
+                (
+                    students,
+                    null,
+                    true
+                ));
         }
         catch (Exception e)
         {
@@ -39,7 +40,7 @@ public class StudentController: ControllerBase
     }
     
     [HttpGet("csv/subjects/{subjectId:int}")]
-    public async Task<ActionResult<ResponseDto<NewFileDto>>> GetStudentsCsv(int subjectId, [FromQuery] int semesterId)
+    public async Task<ActionResult<ResponseDTO<NewFileDTO>>> GetStudentsCsv(int subjectId, [FromQuery] int semesterId)
     {
         try
         {
@@ -64,11 +65,12 @@ public class StudentController: ControllerBase
             // Upload CSV to Minio
             var fileName = $"students-{subjectId}-{semesterId}.csv";
             var newFileDto = await _minioService.UploadFile("csv", fileName, Encoding.UTF8.GetBytes(csv.ToString()), "text/csv");
-            return Ok(new ResponseDto<NewFileDto>
-            {
-                Successful = true,
-                Data = newFileDto
-            });
+            return Ok(new ResponseDTO<NewFileDTO> 
+                (
+                    newFileDto,
+                    null,
+                    true
+                ));
         }
         catch (Exception e)
         {

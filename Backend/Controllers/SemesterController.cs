@@ -1,4 +1,4 @@
-using Backend.Dto;
+using Backend.DTOs;
 
 namespace Backend.Controllers;
 
@@ -11,24 +11,25 @@ public class SemesterController: ControllerBase
     private readonly Services.SubjectAndSemesterGradeService _subjectAndSemesterGradeService = new Services.SubjectAndSemesterGradeService();
 
     [HttpGet("professors/{professorId:int}")]
-    public async Task<ActionResult<ResponseDto<List<SimpleSemesterDto>>>> GetSemesters(int professorId)
+    public async Task<ActionResult<ResponseDTO<List<SimpleSemesterDTO>>>> GetSemesters(int professorId)
     {
         try
         {
             // Get semesters
             var semesters = await _subjectAndSemesterGradeService.GetSemestersByProfessorId(professorId);
-            var simpleSemesters = semesters.Select(semester => new SimpleSemesterDto
+            var simpleSemesters = semesters.Select(semester => new SimpleSemesterDTO
             {
                 SemesterId = semester.SemesterId,
                 SemesterName = semester.SemesterName
             }).ToList();
             simpleSemesters.Sort((semester1, semester2) => semester2.SemesterId.CompareTo(semester1.SemesterId));
             
-            return Ok(new ResponseDto<List<SimpleSemesterDto>>
-            {
-                Successful = true,
-                Data = simpleSemesters
-            });
+            return Ok(new ResponseDTO<List<SimpleSemesterDTO>>
+            (
+                simpleSemesters,
+                null,
+                true
+            ));
         }
         catch (Exception e)
         {

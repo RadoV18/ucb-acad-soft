@@ -19,12 +19,13 @@ import {MatCardModule} from "@angular/material/card";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
-import {CommonModule} from "@angular/common";
 import { StudentListTableComponent } from './components/student-list-table/student-list-table.component';
 import {MatSortModule} from "@angular/material/sort";
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { ScheduleDayComponent } from './components/schedule/schedule-day/schedule-day.component';
 import { ClassItemComponent } from './components/schedule/class-item/class-item.component';
+import {HttpClient } from "@angular/common/http";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -41,10 +42,11 @@ import { ClassItemComponent } from './components/schedule/class-item/class-item.
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    CommonModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     CommonModule,
-    HttpClientModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,

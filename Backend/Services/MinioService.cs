@@ -1,4 +1,4 @@
-using Backend.Dto;
+using Backend.DTOs;
 using Minio;
 
 namespace Backend.Services;
@@ -13,7 +13,7 @@ public class MinioService
         .WithSSL()
         .Build();
     
-    public async Task<NewFileDto> UploadFile(string bucketName, string objectName, byte[] fileData, string contentType) {
+    public async Task<NewFileDTO> UploadFile(string bucketName, string objectName, byte[] fileData, string contentType) {
         try
         {
             // Create bucket if it doesn't exist
@@ -38,7 +38,7 @@ public class MinioService
             );
             // Get pre-signed URL
             Console.WriteLine("Successfully uploaded " + objectName );
-            return new NewFileDto {
+            return new NewFileDTO {
                     BucketName = bucketName,
                     ObjectName = objectName,
                     ContentType = contentType,
