@@ -9,12 +9,12 @@ import {ResponseDto} from "../../dto/response.dto";
 })
 export class KardexService {
 
-  baseUrl = 'http://localhost:8080/api/v1/kardex';
+  baseUrl = 'http://localhost:5260/api/reports/kardex';
   constructor(private http : HttpClient) { }
 
 
   public getMyKardex(): Observable<ResponseDto<SemesterResume>> {
-    return this.http.get<ResponseDto<SemesterResume>>(`${this.baseUrl}/my-kardex`)
+    return this.http.get<ResponseDto<SemesterResume>>(`${this.baseUrl}`)
   }
 
 
