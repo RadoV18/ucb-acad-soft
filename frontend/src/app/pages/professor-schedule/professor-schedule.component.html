@@ -4,7 +4,7 @@
         <h2><strong>Docente:</strong> Name </h2>
         <h2><strong>Semestre:</strong> 2-2023 </h2>
     </div>
-    <app-schedule [title]="myTitle" [subjects]="subjects" [style.width.%]="100"></app-schedule>
+    <app-schedule [subjects]="subjects" [style.width.%]="100"></app-schedule>
     <h1><strong>Detalle asignaturas</strong></h1>
 
     <table mat-table [dataSource]="subjects" class="mat-elevation-z8">
@@ -26,6 +26,4 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-      
-      
 </div>
