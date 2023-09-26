@@ -47,26 +47,44 @@ export class ScheduleComponent {
     switch(classInfo.day) {
       case 'Monday':
         this.mondayItems.push(classItem)
+        this.sortClassItems(this.mondayItems)
         break;
       case 'Tuesday':
         this.tuesdayItems.push(classItem)
+        this.sortClassItems(this.tuesdayItems)
         break;
       case 'Wednesday':
         this.wednesdayItems.push(classItem)
+        this.sortClassItems(this.wednesdayItems)
         break;
       case 'Thursday':
         this.thursdayItems.push(classItem)
+        this.sortClassItems(this.thursdayItems)
         break;
       case 'Friday':
         this.fridayItems.push(classItem)
+        this.sortClassItems(this.fridayItems)
         break;
       case 'Saturday':
         this.saturdayItems.push(classItem)
+        this.sortClassItems(this.saturdayItems)
         break;
       default:
         break;
     }
     
+  }
+
+  sortClassItems(classItems: ClassItem[]) {
+    classItems.sort((a, b) => { 
+      if (a.start < b.start) {
+        return -1;
+      }
+      if (a.start > b.start) {
+        return 1;
+      }
+      return 0;
+    })
   }
 
 }
