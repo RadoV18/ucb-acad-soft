@@ -13,7 +13,7 @@ namespace Backend.Controllers
         public ActionResult<List<SubjectsResponseDTO>> Get()
         {
             ClassItemDTO classItem = new ("Monday", "07:15", "08:45", "A-101");
-            ClassItemDTO classItem2 = new ("Wednesday", "17:00", "18:30", "A-104");
+            ClassItemDTO classItem2 = new ("Wednesday", "09:00", "18:30", "A-104");
 
             ClassItemDTO classItem3 = new("Wednesday", "07:00", "09:00", "A-101");
             ClassItemDTO classItem4 = new("Friday", "07:00", "09:00", "A-102");
