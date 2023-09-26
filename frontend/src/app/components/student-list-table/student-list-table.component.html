@@ -68,8 +68,8 @@
             </ng-container>'
 
             <ng-container matColumnDef="isActive">
-                <mat-header-cell *matHeaderCellDef> ESTADO </mat-header-cell>
-                <mat-cell *matCellDef="let student"> {{student.isActive ? 'ACTIVO' : 'INACTIVO'}} </mat-cell>
+                <mat-header-cell *matHeaderCellDef> ABANDONO </mat-header-cell>
+                <mat-cell *matCellDef="let student"> {{student.isActive ? 'NO' : 'SI'}} </mat-cell>
             </ng-container>
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

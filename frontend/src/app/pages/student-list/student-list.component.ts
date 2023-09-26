@@ -16,28 +16,11 @@ export class StudentListComponent implements OnInit{
   subjects: SubjectDto[] = [];
 
   constructor(private studentListService: StudentListService) { }
-<<<<<<< HEAD
-
-=======
->>>>>>> fd027f7 (TDS-15 added card for searching subjects by professor and semester)
   ngOnInit(): void {
     this.studentListService.getSemestersByProfessorId(this.professorId).subscribe({
       next: (response) => {
         // console.log(response.data);
         this.semesters = response.data;
-<<<<<<< HEAD
-        // sort semesters by descending order
-        this.semesters.sort((a, b) => {
-          if (a.semesterName > b.semesterName) {
-            return -1;
-          }
-          if (a.semesterName < b.semesterName) {
-            return 1;
-          }
-          return 0;
-        });
-=======
->>>>>>> fd027f7 (TDS-15 added card for searching subjects by professor and semester)
       },
       error: (error) => {
         console.log(error);

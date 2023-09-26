@@ -58,7 +58,7 @@ public class StudentController: ControllerBase
             csv.AppendLine("No,CI,APELLIDOS Y NOMBRES,EMAIL, TELEFONO, CARRERA, ABANDONO");
             foreach (var student in students)
             { 
-                csv.AppendLine($"{index},{student.Ci},{student.LastName} {student.FirstName},{student.Email},{student.Phone},{student.Major},{(student.IsActive ? "SI" : "NO")}");
+                csv.AppendLine($"{index},{student.Ci},{student.LastName} {student.FirstName},{student.Email},{student.Phone},{student.Major},{(!student.IsActive ? "SI" : "NO")}");
                 index++;
             }
             // Upload CSV to Minio

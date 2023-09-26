@@ -22,7 +22,8 @@ public class SemesterController: ControllerBase
                 SemesterId = semester.SemesterId,
                 SemesterName = semester.SemesterName
             }).ToList();
-            
+            simpleSemesters.Sort((semester1, semester2) => semester2.SemesterId.CompareTo(semester1.SemesterId));
+
             return Ok(new ResponseDto<List<SimpleSemesterDto>>
             {
                 Successful = true,

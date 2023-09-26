@@ -36,17 +36,6 @@ export class StudentListTableComponent implements OnInit {
       next: (response) => {
         // console.log(response.data);
         this.studentList = response.data;
-        console.log(response.data);
-        this.studentList = response.data;
-        this.studentList.sort((a, b) => {
-          if (a.lastName > b.lastName) {
-            return 1;
-          }
-          if (a.lastName < b.lastName) {
-            return -1;
-          }
-          return 0;
-        });
       },
       error: (error) => {
         console.log(error);

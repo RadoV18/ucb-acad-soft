@@ -43,21 +43,12 @@ public class SubjectController: ControllerBase
     {
         try
         {
-<<<<<<< HEAD
             // Get semester subject
             var subjects = await _subjectAndSemesterGradeService.GetSubjectsByProfessorIdAndSemesterId(professorId, semesterId);
             var subject = subjects.First(subject => subject.SubjectId == subjectId); // Get subject from list
             var semesters = await _subjectAndSemesterGradeService.GetSemestersByProfessorId(professorId);
             var semester = semesters.First(semester => semester.SemesterId == semesterId); // Get semester from list
             var professor = await _studentAndProfessorService.GetProfessorInfoByProfessorId(professorId);
-            // Create semester subject
-=======
-            var subjects = await _subjectAndSemesterGradeService.GetSubjectsByProfessorIdAndSemesterId(professorId, semesterId);
-            var subject = subjects.First(subject => subject.SubjectId == subjectId); // Get subject from list
-            var semesters = await _subjectAndSemesterGradeService.GetSemestersByProfessorId(professorId);
-            var semester = semesters.First(semester => semester.SemesterId == semesterId); // Get semester from list
-            var professor = await _studentAndProfessorService.GetProfessorInfoByProfessorId(professorId);
-            // Create semester subject
             var semesterSubject = new SemesterSubjectDto
             {
                 SubjectId = subject.SubjectId,
