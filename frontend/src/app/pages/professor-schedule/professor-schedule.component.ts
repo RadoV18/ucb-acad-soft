@@ -8,7 +8,6 @@ import { SubjectsService } from 'src/app/services/subjects.service';
   styleUrls: ['./professor-schedule.component.sass']
 })
 export class ProfessorScheduleComponent {
-  myTitle = 'Professor Schedule';
   displayedColumns: string[] = ['code', 'parallel', 'name'];
 
   subjects : Subject[] = [
@@ -18,11 +17,9 @@ export class ProfessorScheduleComponent {
 
   }
 
-  async ngOnInit(): Promise<void> {
-    await this.subjectsService.fetchSubjects().subscribe((subjects: Subject[]) => {
+  ngOnInit(): void {
+    this.subjectsService.fetchSubjects().subscribe((subjects: Subject[]) => {
       this.subjects = subjects
-
-      console.log(this.subjects)
     })
   }
 }
