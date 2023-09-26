@@ -1,5 +1,5 @@
 <div *ngIf="kardex">
-  <div class="mat-elevation-z8" *ngFor="let semester of kardex">
+  <div class="mat-elevation-z8" *ngFor="let semester of kardex.semesters">
     <div class="info-container">
       <p>Periodo Académico: {{ semester.academicPeriod }}</p>
       <p>Del: {{ semester.initSemester }} al {{ semester.endSemester | date:'dd/MM/yyyy' }}</p>
@@ -69,5 +69,18 @@
 </div>
 
 
-<app-brief-kardex *ngIf="kardex"></app-brief-kardex>
+<mat-table [dataSource]="kardex.summary" class="mat-elevation-z8">
+  <ng-container matColumnDef="Concepto">
+    <mat-header-cell *matHeaderCellDef>Concepto</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.concept }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Valor">
+    <mat-header-cell *matHeaderCellDef>Valor</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.value }}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumnsBrief"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumnsBrief;"></mat-row>
+</mat-table>
 

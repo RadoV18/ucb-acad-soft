@@ -13,14 +13,9 @@ export class KardexService {
   constructor(private http : HttpClient) { }
 
 
-  public getMyKardex(): Observable<ResponseDto<SemesterResume[]>> {
-    return this.http.get<ResponseDto<SemesterResume[]>>(`${this.baseUrl}/my-kardex`)
+  public getMyKardex(): Observable<ResponseDto<SemesterResume>> {
+    return this.http.get<ResponseDto<SemesterResume>>(`${this.baseUrl}/my-kardex`)
   }
-
-  public getMyKardexBrief(): Observable<ResponseDto<KardexBrief[]>>{
-    return this.http.get<ResponseDto<KardexBrief[]>>(`${this.baseUrl}/brief`)
-  }
-
 
 
 

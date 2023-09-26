@@ -10,10 +10,7 @@ import {KardexBrief} from "../../../models/SemesterResume";
 })
 export class BriefKardexComponent implements OnInit {
 
-  displayedColumns: string[] = [
-    "Concepto",
-    "Valor"
-  ];
+
 
   data: KardexBrief[] = [
     // { concept: 'Subjects without grade:', value: 6 },
@@ -39,20 +36,18 @@ export class BriefKardexComponent implements OnInit {
   ];
 
   constructor(private kartexService: KardexService) {
-
   }
 
   ngOnInit(): void {
     console.log("ngOnInit");
     console.log("Brief")
-    this.kartexService.getMyKardexBrief().subscribe(
-      {next: (response) => {
-        console.log("Response");
-          console.log(response);
-          this.data = response.data;
-        }}
-    );
+    // this.kartexService.getMyKardexBrief().subscribe(
+    //   {next: (response) => {
+    //     console.log("Response");
+    //       console.log(response);
+    //       this.data = response.data;
+    //     }}
+    // );
 
   }
-
 }
