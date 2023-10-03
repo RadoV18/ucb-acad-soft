@@ -4,6 +4,7 @@ import { ProfessorScheduleComponent } from './pages/professor-schedule/professor
 import { StudentScheduleComponent } from './pages/student-schedule/student-schedule.component';
 import { StudentListComponent } from './pages/student-list/student-list.component';
 import { StudentKardexComponent } from './pages/student-kardex/student-kardex.component';
+import {StudentKardexRequestComponent} from "./pages/student-kardex-request/student-kardex-request.component";
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: 'schedule', component: StudentScheduleComponent },
       { path: 'list', component: StudentListComponent },
       { path: 'kardex', component: StudentKardexComponent },
+      { path: 'request/kardex', component: StudentKardexRequestComponent },
     ],
   },
 ];

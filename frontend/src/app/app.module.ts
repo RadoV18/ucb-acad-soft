@@ -26,6 +26,7 @@ import { ScheduleDayComponent } from './components/schedule/schedule-day/schedul
 import { ClassItemComponent } from './components/schedule/class-item/class-item.component';
 import {HttpClient } from "@angular/common/http";
 import {CommonModule} from "@angular/common";
+import { StudentKardexRequestComponent } from './pages/student-kardex-request/student-kardex-request.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {CommonModule} from "@angular/common";
     StudentListTableComponent,
     ScheduleComponent,
     ScheduleDayComponent,
-    ClassItemComponent
+    ClassItemComponent,
+    StudentKardexRequestComponent
   ],
   imports: [
     BrowserModule,
