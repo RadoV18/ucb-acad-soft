@@ -17,7 +17,13 @@
 
   <ng-container matColumnDef="requestDetail">
     <th mat-header-cell *matHeaderCellDef> Detalle de la solicitud </th>
-    <td mat-cell *matCellDef="let element"> {{ element.detail.reason }} </td>
+
+    <td mat-cell *matCellDef="let element">
+      <button mat-fab extended>
+        <mat-icon>file_copy</mat-icon>
+        Ver Detalle
+      </button>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
