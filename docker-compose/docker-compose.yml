@@ -1,0 +1,79 @@
+version: "3.7"
+networks:
+  network-uas:
+    name: network-uas
+    driver: bridge
+
+services:
+  minio:
+    container_name: minio
+    image: minio/minio
+    user: root
+    restart: always
+    ports:
+      - "9000:9000"
+      - "9090:9090"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+    volumes:
+      - ~/Desktop/uas/minio/data:/data
+    command: server /data --console-address ":9090"
+    networks:
+      - network-uas
+
+  pdf-turtle:
+    container_name: pdf-turtle
+    image: lucasgaitzsch/pdf-turtle
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      PORT: ${PDF_TURTLE_DEV_PORT}
+      SERVE_PLAYGROUND: ${PDF_TURTLE_DEV_SERVE_PLAYGROUND}
+    networks:
+      - network-uas
+
+  mockoon:
+    container_name: mockoon
+    image: mockoon/cli:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./UCB_ACAD_SOFT.json:/data
+    command: ["--data", "data"]
+    networks:
+      - network-uas
+
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sql-server
+    restart: always
+    user: root
+    ports:
+      - "1433:1433"
+    volumes:
+      - ~/Desktop/uas/sql-server/data:/var/opt/mssql/
+    environment:
+      SA_PASSWORD: ${SQL_SERVER_SA_PASSWORD}
+      ACCEPT_EULA: Y
+    networks:
+      - network-uas
+
+  # backend:
+  #   container_name: backend
+  #   image: backend:1.0.0
+  #   restart: always
+  #   ports:
+  #     - "5260:80"
+  #   networks:
+  #     - network-uas
+
+  # frontend:
+  #   container_name: frontend
+  #   image: frontend:0.1.1
+  #   restart: always
+  #   ports:
+  #     - "4200:80"
+  #   networks:
+  #     - network-uas

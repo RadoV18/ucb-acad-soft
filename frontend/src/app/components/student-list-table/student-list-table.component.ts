@@ -47,7 +47,21 @@ export class StudentListTableComponent implements OnInit {
     this.studentListService.getStudentListCSVBySubjectIdAndSemesterId(this.subjectId, this.semesterId).subscribe({
       next: (response) => {
         console.log(response.data);
-        window.open(response.data.downloadLink);
+        // window.open(response.data.downloadLink);
+        fetch(response.data.downloadLink).then(res => res.blob()).then(blob => {
+          // Create a new blob object using the response data of the onload object
+          const blobData = new Blob([blob], { type: 'text/csv' });
+          // Create a link element
+          const anchor = document.createElement('a');
+          // Create a reference to the object URL
+          anchor.href = window.URL.createObjectURL(blobData);
+          // Set the filename that will be downloaded
+          anchor.download = `LISTA DE ESTUDIANTES DE ${this.subjectDetail?.subjectName} - ${this.subjectDetail?.semesterName}.csv`;
+          // Trigger the download by simulating click
+          anchor.click();
+          // Revoking the object URL to free up memory
+          window.URL.revokeObjectURL(anchor.href);
+        });
       },
       error: (error) => {
         console.log(error);

@@ -1,0 +1,685 @@
+{
+  "uuid": "7e7ced7b-e70e-4c6d-ab41-7c61c1eda48c",
+  "lastMigration": 28,
+  "name": "UCB ACAD SOFT",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 8080,
+  "hostname": "",
+  "folders": [
+    {
+      "uuid": "256cf49a-44b4-4378-aaf1-74cd970a3287",
+      "name": "Gestión de Materias y Calificaciones por semestre",
+      "collapsed": false,
+      "children": [
+        {
+          "type": "route",
+          "uuid": "0db25a37-a153-4301-b559-fd1c75156390"
+        },
+        {
+          "type": "route",
+          "uuid": "2b913292-51aa-442d-b225-435ba5ba0c39"
+        },
+        {
+          "type": "route",
+          "uuid": "03fe1558-e269-441a-bb51-85af1a4ea063"
+        },
+        {
+          "type": "route",
+          "uuid": "90cfb723-4629-42fe-a014-e7779533e414"
+        }
+      ]
+    },
+    {
+      "uuid": "cdef64de-a784-421a-982e-d30bc3fb8a18",
+      "name": " Gestión de Estudiantes y Docentes",
+      "collapsed": false,
+      "children": [
+        {
+          "type": "route",
+          "uuid": "833bc39a-6b1f-4144-b531-533bfb699ed1"
+        },
+        {
+          "type": "route",
+          "uuid": "4383e96d-fdd8-454c-bf6d-8ba49f913d1b"
+        }
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "uuid": "2b913292-51aa-442d-b225-435ba5ba0c39",
+      "type": "http",
+      "documentation": "Get the list of subjects taught by a professor by it's id, and semester id (Gestión de Materias y Calificaciones por semestre)",
+      "method": "get",
+      "endpoint": "api/v1/subjects/professors/:profesorId",
+      "responses": [
+        {
+          "uuid": "bb6305d4-442a-440e-a155-2ba5055ba06d",
+          "body": "{\n  \"successful\": true,\n  \"message\": null,\n  \"data\": [\n    {\n      \"subjectId\": 1,\n      \"subjectCode\": \"SIS-122\",\n      \"subjectName\": \"BASE DE DATOS I\",\n      \"parallel\": 1,\n      \"credits\": 5\n    },\n    {\n      \"subjectId\": 2,\n      \"subjectCode\": \"SIS-221\",\n      \"subjectName\": \"BASE DE DATOS II\",\n      \"parallel\": 1,\n      \"credits\": 6\n    },     \n  ]\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Semestre I-2022",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "semesterId",
+              "value": "1",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "32569bf3-bbf0-42f1-8089-16b9251e6360",
+          "body": "{\n  \"successful\": true,\n  \"message\": null,\n  \"data\": [\n    {\n      \"subjectId\": 1,\n      \"subjectCode\": \"SIS-122\",\n      \"subjectName\": \"BASE DE DATOS I\",\n      \"parallel\": 1,\n      \"credits\": 5\n    },\n    {\n      \"subjectId\": 2,\n      \"subjectCode\": \"SIS-221\",\n      \"subjectName\": \"BASE DE DATOS II\",\n      \"parallel\": 1,\n      \"credits\": 6\n    }\n  ]\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Semestre II-2022",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "semesterId",
+              "value": "2",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "2d0ea81f-7071-4c69-bfd8-779ba04388b3",
+          "body": "{\n  \"successful\": true,\n  \"message\": null,\n  \"data\": [\n    {\n      \"subjectId\": 1,\n      \"subjectCode\": \"SIS-122\",\n      \"subjectName\": \"BASE DE DATOS I\",\n      \"parallel\": 1,\n      \"credits\": 5\n    },\n    {\n      \"subjectId\": 2,\n      \"subjectCode\": \"SIS-221\",\n      \"subjectName\": \"BASE DE DATOS II\",\n      \"parallel\": 1,\n      \"credits\": 6\n    },\n    {\n      \"subjectId\": 3,\n      \"subjectCode\": \"SIS-352\",\n      \"subjectName\": \"PRÁCTICA PREPROFESIONAL\",\n      \"parallel\": 1,\n      \"credits\": 5\n    }\n  ]\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Semestre I-2023",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "semesterId",
+              "value": "3",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "4d136274-1827-4bb3-b652-828027902f79",
+          "body": "{\n  \"successful\": true,\n  \"message\": null,\n  \"data\": [\n    {\n      \"subjectId\": 1,\n      \"subjectCode\": \"SIS-122\",\n      \"subjectName\": \"BASE DE DATOS I\",\n      \"parallel\": 1,\n      \"credits\": 5\n    },\n    {\n      \"subjectId\": 2,\n      \"subjectCode\": \"SIS-221\",\n      \"subjectName\": \"BASE DE DATOS II\",\n      \"parallel\": 1,\n      \"credits\": 6\n    },\n    {\n      \"subjectId\": 4,\n      \"subjectCode\": \"SIS-353\",\n      \"subjectName\": \"TALLER DE GRADO I \",\n      \"parallel\": 1,\n      \"credits\": 15\n    }\n  ]\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Semestre II-2023",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "semesterId",
+              "value": "4",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "833bc39a-6b1f-4144-b531-533bfb699ed1",
+      "type": "http",
+      "documentation": "Get the list of students by subjectId and semester Id (Gestion de estudiantes y docentes)",
+      "method": "get",
+      "endpoint": "api/v1/students/subjects/:subjectId",
+      "responses": [
+        {
+          "uuid": "ca8a4695-3b1b-416a-8a68-fc2986a84d36",
+          "body": "{\r\n  \"successful\": true,\r\n  \"message\": null,\r\n  \"data\": [\r\n    {\r\n      \"ci\": \"1234567890\",\r\n      \"firstName\": \"Juan\",\r\n      \"lastName\": \"Perez\",\r\n      \"email\": \"juan.perez@example.com\",\r\n      \"phone\": \"+1234567890\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"9876543210\",\r\n      \"firstName\": \"Maria\",\r\n      \"lastName\": \"Gonzalez\",\r\n      \"email\": \"maria.gonzalez@example.com\",\r\n      \"phone\": \"+9876543210\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"4567890123\",\r\n      \"firstName\": \"Carlos\",\r\n      \"lastName\": \"Lopez\",\r\n      \"email\": \"carlos.lopez@example.com\",\r\n      \"phone\": \"+4567890123\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"7890123456\",\r\n      \"firstName\": \"Luis\",\r\n      \"lastName\": \"Martinez\",\r\n      \"email\": \"luis.martinez@example.com\",\r\n      \"phone\": \"+7890123456\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"2345678901\",\r\n      \"firstName\": \"Ana\",\r\n      \"lastName\": \"Rodriguez\",\r\n      \"email\": \"ana.rodriguez@example.com\",\r\n      \"phone\": \"+2345678901\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"5678901234\",\r\n      \"firstName\": \"Pedro\",\r\n      \"lastName\": \"Sanchez\",\r\n      \"email\": \"pedro.sanchez@example.com\",\r\n      \"phone\": \"+5678901234\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"8901234567\",\r\n      \"firstName\": \"Laura\",\r\n      \"lastName\": \"Diaz\",\r\n      \"email\": \"laura.diaz@example.com\",\r\n      \"phone\": \"+8901234567\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"3456789012\",\r\n      \"firstName\": \"Jose\",\r\n      \"lastName\": \"Lopez\",\r\n      \"email\": \"jose.lopez@example.com\",\r\n      \"phone\": \"+3456789012\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"6789012345\",\r\n      \"firstName\": \"Sofia\",\r\n      \"lastName\": \"Gomez\",\r\n      \"email\": \"sofia.gomez@example.com\",\r\n      \"phone\": \"+6789012345\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"9012345678\",\r\n      \"firstName\": \"Daniel\",\r\n      \"lastName\": \"Fernandez\",\r\n      \"email\": \"daniel.fernandez@example.com\",\r\n      \"phone\": \"+9012345678\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"1234509876\",\r\n      \"firstName\": \"Marta\",\r\n      \"lastName\": \"Martinez\",\r\n      \"email\": \"marta.martinez@example.com\",\r\n      \"phone\": \"+1234509876\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"3456789012\",\r\n      \"firstName\": \"Carlos\",\r\n      \"lastName\": \"Gonzalez\",\r\n      \"email\": \"carlos.gonzalez@example.com\",\r\n      \"phone\": \"+3456789012\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"5678901234\",\r\n      \"firstName\": \"Luisa\",\r\n      \"lastName\": \"Rodriguez\",\r\n      \"email\": \"luisa.rodriguez@example.com\",\r\n      \"phone\": \"+5678901234\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"7890123456\",\r\n      \"firstName\": \"Pablo\",\r\n      \"lastName\": \"Sanchez\",\r\n      \"email\": \"pablo.sanchez@example.com\",\r\n      \"phone\": \"+7890123456\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"9876543210\",\r\n      \"firstName\": \"Elena\",\r\n      \"lastName\": \"Diaz\",\r\n      \"email\": \"elena.diaz@example.com\",\r\n      \"phone\": \"+9876543210\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"2345678901\",\r\n      \"firstName\": \"Juan\",\r\n      \"lastName\": \"Lopez\",\r\n      \"email\": \"juan.lopez@example.com\",\r\n      \"phone\": \"+2345678901\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"4567890123\",\r\n      \"firstName\": \"Maria\",\r\n      \"lastName\": \"Gomez\",\r\n      \"email\": \"maria.gomez@example.com\",\r\n      \"phone\": \"+4567890123\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"7890123456\",\r\n      \"firstName\": \"Carlos\",\r\n      \"lastName\": \"Fernandez\",\r\n      \"email\": \"carlos.fernandez@example.com\",\r\n      \"phone\": \"+7890123456\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"1234567890\",\r\n      \"firstName\": \"Luisa\",\r\n      \"lastName\": \"Martinez\",\r\n      \"email\": \"luisa.martinez@example.com\",\r\n      \"phone\": \"+1234567890\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"3456789012\",\r\n      \"firstName\": \"Eduardo\",\r\n      \"lastName\": \"Lopez\",\r\n      \"email\": \"eduardo.lopez@example.com\",\r\n      \"phone\": \"+3456789012\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"5678901234\",\r\n      \"firstName\": \"Sofia\",\r\n      \"lastName\": \"Gonzalez\",\r\n      \"email\": \"sofia.gonzalez@example.com\",\r\n      \"phone\": \"+5678901234\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"8901234567\",\r\n      \"firstName\": \"Manuel\",\r\n      \"lastName\": \"Gomez\",\r\n      \"email\": \"manuel.gomez@example.com\",\r\n      \"phone\": \"+8901234567\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"1234509876\",\r\n      \"firstName\": \"Ana\",\r\n      \"lastName\": \"Fernandez\",\r\n      \"email\": \"ana.fernandez@example.com\",\r\n      \"phone\": \"+1234509876\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"3456789012\",\r\n      \"firstName\": \"Pablo\",\r\n      \"lastName\": \"Rodriguez\",\r\n      \"email\": \"pablo.rodriguez@example.com\",\r\n      \"phone\": \"+3456789012\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"5678901234\",\r\n      \"firstName\": \"Marta\",\r\n      \"lastName\": \"Lopez\",\r\n      \"email\": \"marta.lopez@example.com\",\r\n      \"phone\": \"+5678901234\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"8901234567\",\r\n      \"firstName\": \"Jose\",\r\n      \"lastName\": \"Sanchez\",\r\n      \"email\": \"jose.sanchez@example.com\",\r\n      \"phone\": \"+8901234567\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"1234567890\",\r\n      \"firstName\": \"Elena\",\r\n      \"lastName\": \"Gonzalez\",\r\n      \"email\": \"elena.gonzalez@example.com\",\r\n      \"phone\": \"+1234567890\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"2345678901\",\r\n      \"firstName\": \"Daniel\",\r\n      \"lastName\": \"Martinez\",\r\n      \"email\": \"daniel.martinez@example.com\",\r\n      \"phone\": \"+2345678901\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"3456789012\",\r\n      \"firstName\": \"Luis\",\r\n      \"lastName\": \"Fernandez\",\r\n      \"email\": \"luis.fernandez@example.com\",\r\n      \"phone\": \"+3456789012\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"4567890123\",\r\n      \"firstName\": \"Maria\",\r\n      \"lastName\": \"Sanchez\",\r\n      \"email\": \"maria.sanchez@example.com\",\r\n      \"phone\": \"+4567890123\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"5678901234\",\r\n      \"firstName\": \"Carlos\",\r\n      \"lastName\": \"Gomez\",\r\n      \"email\": \"carlos.gomez@example.com\",\r\n      \"phone\": \"+5678901234\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"6789012345\",\r\n      \"firstName\": \"Laura\",\r\n      \"lastName\": \"Lopez\",\r\n      \"email\": \"laura.lopez@example.com\",\r\n      \"phone\": \"+6789012345\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"7890123456\",\r\n      \"firstName\": \"Pedro\",\r\n      \"lastName\": \"Fernandez\",\r\n      \"email\": \"pedro.fernandez@example.com\",\r\n      \"phone\": \"+7890123456\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": true\r\n    }\r\n  ]\r\n}\r\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "SubjectId = 1, SemesterId = 1",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "subjectId",
+              "value": "1",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "query",
+              "modifier": "semesterId",
+              "value": "1",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "bc212b19-ffd9-4945-94df-07f97c2b9ce0",
+          "body": "{\r\n  \"successful\": true,\r\n  \"message\": null,\r\n  \"data\": [\r\n    {\r\n      \"ci\": \"1111111111\",\r\n      \"firstName\": \"Héctor\",\r\n      \"lastName\": \"Martínez\",\r\n      \"email\": \"hector.martinez@example.com\",\r\n      \"phone\": \"+1111111111\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"2222222222\",\r\n      \"firstName\": \"Laura\",\r\n      \"lastName\": \"Rodríguez\",\r\n      \"email\": \"laura.rodriguez@example.com\",\r\n      \"phone\": \"+2222222222\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"3333333333\",\r\n      \"firstName\": \"Andrés\",\r\n      \"lastName\": \"Sánchez\",\r\n      \"email\": \"andres.sanchez@example.com\",\r\n      \"phone\": \"+3333333333\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"4444444444\",\r\n      \"firstName\": \"Carolina\",\r\n      \"lastName\": \"Fernández\",\r\n      \"email\": \"carolina.fernandez@example.com\",\r\n      \"phone\": \"+4444444444\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"5555555555\",\r\n      \"firstName\": \"Gabriel\",\r\n      \"lastName\": \"Pérez\",\r\n      \"email\": \"gabriel.perez@example.com\",\r\n      \"phone\": \"+5555555555\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"6666666666\",\r\n      \"firstName\": \"Valentina\",\r\n      \"lastName\": \"González\",\r\n      \"email\": \"valentina.gonzalez@example.com\",\r\n      \"phone\": \"+6666666666\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"7777777777\",\r\n      \"firstName\": \"Alejandro\",\r\n      \"lastName\": \"López\",\r\n      \"email\": \"alejandro.lopez@example.com\",\r\n      \"phone\": \"+7777777777\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"8888888888\",\r\n      \"firstName\": \"Camila\",\r\n      \"lastName\": \"Torres\",\r\n      \"email\": \"camila.torres@example.com\",\r\n      \"phone\": \"+8888888888\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"9999999999\",\r\n      \"firstName\": \"Ricardo\",\r\n      \"lastName\": \"Ramírez\",\r\n      \"email\": \"ricardo.ramirez@example.com\",\r\n      \"phone\": \"+9999999999\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"1010101010\",\r\n      \"firstName\": \"Ana\",\r\n      \"lastName\": \"García\",\r\n      \"email\": \"ana.garcia@example.com\",\r\n      \"phone\": \"+1010101010\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"1111111112\",\r\n      \"firstName\": \"Javier\",\r\n      \"lastName\": \"Herrera\",\r\n      \"email\": \"javier.herrera@example.com\",\r\n      \"phone\": \"+1111111112\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"1212121212\",\r\n      \"firstName\": \"Isabel\",\r\n      \"lastName\": \"Morales\",\r\n      \"email\": \"isabel.morales@example.com\",\r\n      \"phone\": \"+1212121212\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"1313131313\",\r\n      \"firstName\": \"Sergio\",\r\n      \"lastName\": \"Castro\",\r\n      \"email\": \"sergio.castro@example.com\",\r\n      \"phone\": \"+1313131313\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"1414141414\",\r\n      \"firstName\": \"Natalia\",\r\n      \"lastName\": \"Vargas\",\r\n      \"email\": \"natalia.vargas@example.com\",\r\n      \"phone\": \"+1414141414\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"1515151515\",\r\n      \"firstName\": \"Esteban\",\r\n      \"lastName\": \"Silva\",\r\n      \"email\": \"esteban.silva@example.com\",\r\n      \"phone\": \"+1515151515\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"1616161616\",\r\n      \"firstName\": \"Vanessa\",\r\n      \"lastName\": \"Mendoza\",\r\n      \"email\": \"vanessa.mendoza@example.com\",\r\n      \"phone\": \"+1616161616\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": false\r\n    }\r\n  ]\r\n}\r\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "SubjectId = 2, SemesterId = 1 ",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "subjectId",
+              "value": "2",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "query",
+              "modifier": "semesterId",
+              "value": "1",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "c38d1ede-bbff-487e-94fe-98701b3a6aa1",
+          "body": "{\n  \"successful\": true,\n  \"message\": null,\n  \"data\": [\n    {\n      \"ci\": \"1111111111\",\n      \"firstName\": \"Eduardo\",\n      \"lastName\": \"Ramírez\",\n      \"email\": \"eduardo.ramirez@example.com\",\n      \"phone\": \"+1111111111\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"2222222222\",\n      \"firstName\": \"Valeria\",\n      \"lastName\": \"Gómez\",\n      \"email\": \"valeria.gomez@example.com\",\n      \"phone\": \"+2222222222\",\n      \"major\": \"Ingenieria Civil\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"3333333333\",\n      \"firstName\": \"Diego\",\n      \"lastName\": \"Fernández\",\n      \"email\": \"diego.fernandez@example.com\",\n      \"phone\": \"+3333333333\",\n      \"major\": \"Ingeniería de Telecomunicaciones\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"4444444444\",\n      \"firstName\": \"María\",\n      \"lastName\": \"López\",\n      \"email\": \"maria.lopez@example.com\",\n      \"phone\": \"+4444444444\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"5555555555\",\n      \"firstName\": \"Luis\",\n      \"lastName\": \"Torres\",\n      \"email\": \"luis.torres@example.com\",\n      \"phone\": \"+5555555555\",\n      \"major\": \"Ingenieria Civil\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"6666666666\",\n      \"firstName\": \"Camilo\",\n      \"lastName\": \"Herrera\",\n      \"email\": \"camilo.herrera@example.com\",\n      \"phone\": \"+6666666666\",\n      \"major\": \"Ingeniería de Telecomunicaciones\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"7777777777\",\n      \"firstName\": \"Sofía\",\n      \"lastName\": \"Pérez\",\n      \"email\": \"sofia.perez@example.com\",\n      \"phone\": \"+7777777777\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"8888888888\",\n      \"firstName\": \"Andrea\",\n      \"lastName\": \"Martínez\",\n      \"email\": \"andrea.martinez@example.com\",\n      \"phone\": \"+8888888888\",\n      \"major\": \"Ingenieria Civil\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"9999999999\",\n      \"firstName\": \"Joaquín\",\n      \"lastName\": \"Sánchez\",\n      \"email\": \"joaquin.sanchez@example.com\",\n      \"phone\": \"+9999999999\",\n      \"major\": \"Ingeniería de Telecomunicaciones\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"1010101010\",\n      \"firstName\": \"Laura\",\n      \"lastName\": \"García\",\n      \"email\": \"laura.garcia@example.com\",\n      \"phone\": \"+1010101010\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"1111111112\",\n      \"firstName\": \"Fernando\",\n      \"lastName\": \"Silva\",\n      \"email\": \"fernando.silva@example.com\",\n      \"phone\": \"+1111111112\",\n      \"major\": \"Ingenieria Civil\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"1212121212\",\n      \"firstName\": \"Isabella\",\n      \"lastName\": \"Morales\",\n      \"email\": \"isabella.morales@example.com\",\n      \"phone\": \"+1212121212\",\n      \"major\": \"Ingeniería de Telecomunicaciones\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"1313131313\",\n      \"firstName\": \"Santiago\",\n      \"lastName\": \"Castro\",\n      \"email\": \"santiago.castro@example.com\",\n      \"phone\": \"+1313131313\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"1414141414\",\n      \"firstName\": \"Natalie\",\n      \"lastName\": \"Vargas\",\n      \"email\": \"natalie.vargas@example.com\",\n      \"phone\": \"+1414141414\",\n      \"major\": \"Ingenieria Civil\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"1515151515\",\n      \"firstName\": \"Esteban\",\n      \"lastName\": \"González\",\n      \"email\": \"esteban.gonzalez@example.com\",\n      \"phone\": \"+1515151515\",\n      \"major\": \"Ingeniería de Telecomunicaciones\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"1616161616\",\n      \"firstName\": \"Vanessa\",\n      \"lastName\": \"Mendoza\",\n      \"email\": \"vanessa.mendoza@example.com\",\n      \"phone\": \"+1616161616\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"1717171717\",\n      \"firstName\": \"Gustavo\",\n      \"lastName\": \"Luna\",\n      \"email\": \"gustavo.luna@example.com\",\n      \"phone\": \"+1717171717\",\n      \"major\": \"Ingenieria Civil\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"1818181818\",\n      \"firstName\": \"Mariana\",\n      \"lastName\": \"Díaz\",\n      \"email\": \"mariana.diaz@example.com\",\n      \"phone\": \"+1818181818\",\n      \"major\": \"Ingeniería de Telecomunicaciones\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"1919191919\",\n      \"firstName\": \"Carlos\",\n      \"lastName\": \"Gutiérrez\",\n      \"email\": \"carlos.gutierrez@example.com\",\n      \"phone\": \"+1919191919\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"2020202020\",\n      \"firstName\": \"Renata\",\n      \"lastName\": \"Ortega\",\n      \"email\": \"renata.ortega@example.com\",\n      \"phone\": \"+2020202020\",\n      \"major\": \"Ingenieria Civil\",\n      \"isActive\": false\n    }\n  ]\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "SubjectId = 1, SemesterId = 2",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "subjectId",
+              "value": "1",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "query",
+              "modifier": "semesterId",
+              "value": "2",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "f16b0f7b-f97a-4de7-ae25-b8ad386113da",
+          "body": "{\r\n  \"successful\": true,\r\n  \"message\": null,\r\n  \"data\": [\r\n    {\r\n      \"ci\": \"1234567890\",\r\n      \"firstName\": \"Juan\",\r\n      \"lastName\": \"Perez\",\r\n      \"email\": \"juan.perez@example.com\",\r\n      \"phone\": \"+1234567890\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"9876543210\",\r\n      \"firstName\": \"Maria\",\r\n      \"lastName\": \"Gonzalez\",\r\n      \"email\": \"maria.gonzalez@example.com\",\r\n      \"phone\": \"+9876543210\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"4567890123\",\r\n      \"firstName\": \"Carlos\",\r\n      \"lastName\": \"Lopez\",\r\n      \"email\": \"carlos.lopez@example.com\",\r\n      \"phone\": \"+4567890123\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"7890123456\",\r\n      \"firstName\": \"Luis\",\r\n      \"lastName\": \"Martinez\",\r\n      \"email\": \"luis.martinez@example.com\",\r\n      \"phone\": \"+7890123456\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"2345678901\",\r\n      \"firstName\": \"Ana\",\r\n      \"lastName\": \"Rodriguez\",\r\n      \"email\": \"ana.rodriguez@example.com\",\r\n      \"phone\": \"+2345678901\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"5678901234\",\r\n      \"firstName\": \"Pedro\",\r\n      \"lastName\": \"Sanchez\",\r\n      \"email\": \"pedro.sanchez@example.com\",\r\n      \"phone\": \"+5678901234\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"8901234567\",\r\n      \"firstName\": \"Laura\",\r\n      \"lastName\": \"Diaz\",\r\n      \"email\": \"laura.diaz@example.com\",\r\n      \"phone\": \"+8901234567\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"3456789012\",\r\n      \"firstName\": \"Jose\",\r\n      \"lastName\": \"Lopez\",\r\n      \"email\": \"jose.lopez@example.com\",\r\n      \"phone\": \"+3456789012\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"6789012345\",\r\n      \"firstName\": \"Sofia\",\r\n      \"lastName\": \"Gomez\",\r\n      \"email\": \"sofia.gomez@example.com\",\r\n      \"phone\": \"+6789012345\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"9012345678\",\r\n      \"firstName\": \"Daniel\",\r\n      \"lastName\": \"Fernandez\",\r\n      \"email\": \"daniel.fernandez@example.com\",\r\n      \"phone\": \"+9012345678\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"1234509876\",\r\n      \"firstName\": \"Marta\",\r\n      \"lastName\": \"Martinez\",\r\n      \"email\": \"marta.martinez@example.com\",\r\n      \"phone\": \"+1234509876\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"3456789012\",\r\n      \"firstName\": \"Carlos\",\r\n      \"lastName\": \"Gonzalez\",\r\n      \"email\": \"carlos.gonzalez@example.com\",\r\n      \"phone\": \"+3456789012\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"5678901234\",\r\n      \"firstName\": \"Luisa\",\r\n      \"lastName\": \"Rodriguez\",\r\n      \"email\": \"luisa.rodriguez@example.com\",\r\n      \"phone\": \"+5678901234\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"7890123456\",\r\n      \"firstName\": \"Pablo\",\r\n      \"lastName\": \"Sanchez\",\r\n      \"email\": \"pablo.sanchez@example.com\",\r\n      \"phone\": \"+7890123456\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"9876543210\",\r\n      \"firstName\": \"Elena\",\r\n      \"lastName\": \"Diaz\",\r\n      \"email\": \"elena.diaz@example.com\",\r\n      \"phone\": \"+9876543210\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"2345678901\",\r\n      \"firstName\": \"Juan\",\r\n      \"lastName\": \"Lopez\",\r\n      \"email\": \"juan.lopez@example.com\",\r\n      \"phone\": \"+2345678901\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": false\r\n    }\r\n  ]\r\n}\r\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "SubjectId = 2, SemesterId = 2",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "subjectId",
+              "value": "2",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "query",
+              "modifier": "semesterId",
+              "value": "2",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "8e46d7c0-cd4b-49ce-8a8b-cf0f22c11d6d",
+          "body": "{\n  \"successful\": true,\n  \"message\": null,\n  \"data\": [\n    {\n      \"ci\": \"1111111111\",\n      \"firstName\": \"Eduardo\",\n      \"lastName\": \"Ramírez\",\n      \"email\": \"eduardo.ramirez@example.com\",\n      \"phone\": \"+1111111111\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"2222222222\",\n      \"firstName\": \"Valeria\",\n      \"lastName\": \"Gómez\",\n      \"email\": \"valeria.gomez@example.com\",\n      \"phone\": \"+2222222222\",\n      \"major\": \"Ingenieria de Telecomunicaciones\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"3333333333\",\n      \"firstName\": \"Diego\",\n      \"lastName\": \"Fernández\",\n      \"email\": \"diego.fernandez@example.com\",\n      \"phone\": \"+3333333333\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"4444444444\",\n      \"firstName\": \"María\",\n      \"lastName\": \"López\",\n      \"email\": \"maria.lopez@example.com\",\n      \"phone\": \"+4444444444\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"5555555555\",\n      \"firstName\": \"Luis\",\n      \"lastName\": \"Torres\",\n      \"email\": \"luis.torres@example.com\",\n      \"phone\": \"+5555555555\",\n      \"major\": \"Ingenieria de Telecomunicaciones\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"6666666666\",\n      \"firstName\": \"Camilo\",\n      \"lastName\": \"Herrera\",\n      \"email\": \"camilo.herrera@example.com\",\n      \"phone\": \"+6666666666\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"7777777777\",\n      \"firstName\": \"Sofía\",\n      \"lastName\": \"Pérez\",\n      \"email\": \"sofia.perez@example.com\",\n      \"phone\": \"+7777777777\",\n      \"major\": \"Ingenieria de Telecomunicaciones\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"8888888888\",\n      \"firstName\": \"Andrea\",\n      \"lastName\": \"Martínez\",\n      \"email\": \"andrea.martinez@example.com\",\n      \"phone\": \"+8888888888\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"9999999999\",\n      \"firstName\": \"Joaquín\",\n      \"lastName\": \"Sánchez\",\n      \"email\": \"joaquin.sanchez@example.com\",\n      \"phone\": \"+9999999999\",\n      \"major\": \"Ingenieria de Telecomunicaciones\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"1010101010\",\n      \"firstName\": \"Laura\",\n      \"lastName\": \"García\",\n      \"email\": \"laura.garcia@example.com\",\n      \"phone\": \"+1010101010\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"1111111112\",\n      \"firstName\": \"Fernando\",\n      \"lastName\": \"Silva\",\n      \"email\": \"fernando.silva@example.com\",\n      \"phone\": \"+1111111112\",\n      \"major\": \"Ingenieria de Telecomunicaciones\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"1212121212\",\n      \"firstName\": \"Isabella\",\n      \"lastName\": \"Morales\",\n      \"email\": \"isabella.morales@example.com\",\n      \"phone\": \"+1212121212\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"1313131313\",\n      \"firstName\": \"Santiago\",\n      \"lastName\": \"Castro\",\n      \"email\": \"santiago.castro@example.com\",\n      \"phone\": \"+1313131313\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"1414141414\",\n      \"firstName\": \"Natalie\",\n      \"lastName\": \"Vargas\",\n      \"email\": \"natalie.vargas@example.com\",\n      \"phone\": \"+1414141414\",\n      \"major\": \"Ingenieria de Telecomunicaciones\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"1515151515\",\n      \"firstName\": \"Esteban\",\n      \"lastName\": \"González\",\n      \"email\": \"esteban.gonzalez@example.com\",\n      \"phone\": \"+1515151515\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    }\n  ]\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "SubjectId = 1, SemesterId = 3",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "subjectId",
+              "value": "1",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "query",
+              "modifier": "semesterId",
+              "value": "3",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "22f8d1e6-5d0b-40bd-83f1-8a79a8b765cd",
+          "body": "{\r\n  \"successful\": true,\r\n  \"message\": null,\r\n  \"data\": [\r\n    {\r\n      \"ci\": \"1234567890\",\r\n      \"firstName\": \"Juan\",\r\n      \"lastName\": \"Perez\",\r\n      \"email\": \"juan.perez@example.com\",\r\n      \"phone\": \"+1234567890\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"9876543210\",\r\n      \"firstName\": \"Maria\",\r\n      \"lastName\": \"Gonzalez\",\r\n      \"email\": \"maria.gonzalez@example.com\",\r\n      \"phone\": \"+9876543210\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"4567890123\",\r\n      \"firstName\": \"Carlos\",\r\n      \"lastName\": \"Lopez\",\r\n      \"email\": \"carlos.lopez@example.com\",\r\n      \"phone\": \"+4567890123\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"7890123456\",\r\n      \"firstName\": \"Luis\",\r\n      \"lastName\": \"Martinez\",\r\n      \"email\": \"luis.martinez@example.com\",\r\n      \"phone\": \"+7890123456\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"2345678901\",\r\n      \"firstName\": \"Ana\",\r\n      \"lastName\": \"Rodriguez\",\r\n      \"email\": \"ana.rodriguez@example.com\",\r\n      \"phone\": \"+2345678901\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"5678901234\",\r\n      \"firstName\": \"Pedro\",\r\n      \"lastName\": \"Sanchez\",\r\n      \"email\": \"pedro.sanchez@example.com\",\r\n      \"phone\": \"+5678901234\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"8901234567\",\r\n      \"firstName\": \"Laura\",\r\n      \"lastName\": \"Diaz\",\r\n      \"email\": \"laura.diaz@example.com\",\r\n      \"phone\": \"+8901234567\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"3456789012\",\r\n      \"firstName\": \"Jose\",\r\n      \"lastName\": \"Lopez\",\r\n      \"email\": \"jose.lopez@example.com\",\r\n      \"phone\": \"+3456789012\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"6789012345\",\r\n      \"firstName\": \"Sofia\",\r\n      \"lastName\": \"Gomez\",\r\n      \"email\": \"sofia.gomez@example.com\",\r\n      \"phone\": \"+6789012345\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"9012345678\",\r\n      \"firstName\": \"Daniel\",\r\n      \"lastName\": \"Fernandez\",\r\n      \"email\": \"daniel.fernandez@example.com\",\r\n      \"phone\": \"+9012345678\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"1234509876\",\r\n      \"firstName\": \"Marta\",\r\n      \"lastName\": \"Martinez\",\r\n      \"email\": \"marta.martinez@example.com\",\r\n      \"phone\": \"+1234509876\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"3456789012\",\r\n      \"firstName\": \"Carlos\",\r\n      \"lastName\": \"Gonzalez\",\r\n      \"email\": \"carlos.gonzalez@example.com\",\r\n      \"phone\": \"+3456789012\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"5678901234\",\r\n      \"firstName\": \"Luisa\",\r\n      \"lastName\": \"Rodriguez\",\r\n      \"email\": \"luisa.rodriguez@example.com\",\r\n      \"phone\": \"+5678901234\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"7890123456\",\r\n      \"firstName\": \"Pablo\",\r\n      \"lastName\": \"Sanchez\",\r\n      \"email\": \"pablo.sanchez@example.com\",\r\n      \"phone\": \"+7890123456\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"9876543210\",\r\n      \"firstName\": \"Elena\",\r\n      \"lastName\": \"Diaz\",\r\n      \"email\": \"elena.diaz@example.com\",\r\n      \"phone\": \"+9876543210\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"2345678901\",\r\n      \"firstName\": \"Juan\",\r\n      \"lastName\": \"Lopez\",\r\n      \"email\": \"juan.lopez@example.com\",\r\n      \"phone\": \"+2345678901\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"4567890123\",\r\n      \"firstName\": \"Maria\",\r\n      \"lastName\": \"Gomez\",\r\n      \"email\": \"maria.gomez@example.com\",\r\n      \"phone\": \"+4567890123\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"7890123456\",\r\n      \"firstName\": \"Carlos\",\r\n      \"lastName\": \"Fernandez\",\r\n      \"email\": \"carlos.fernandez@example.com\",\r\n      \"phone\": \"+7890123456\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"1234567890\",\r\n      \"firstName\": \"Luisa\",\r\n      \"lastName\": \"Martinez\",\r\n      \"email\": \"luisa.martinez@example.com\",\r\n      \"phone\": \"+1234567890\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"3456789012\",\r\n      \"firstName\": \"Eduardo\",\r\n      \"lastName\": \"Lopez\",\r\n      \"email\": \"eduardo.lopez@example.com\",\r\n      \"phone\": \"+3456789012\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"5678901234\",\r\n      \"firstName\": \"Sofia\",\r\n      \"lastName\": \"Gonzalez\",\r\n      \"email\": \"sofia.gonzalez@example.com\",\r\n      \"phone\": \"+5678901234\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"8901234567\",\r\n      \"firstName\": \"Manuel\",\r\n      \"lastName\": \"Gomez\",\r\n      \"email\": \"manuel.gomez@example.com\",\r\n      \"phone\": \"+8901234567\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"1234509876\",\r\n      \"firstName\": \"Ana\",\r\n      \"lastName\": \"Fernandez\",\r\n      \"email\": \"ana.fernandez@example.com\",\r\n      \"phone\": \"+1234509876\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"3456789012\",\r\n      \"firstName\": \"Pablo\",\r\n      \"lastName\": \"Rodriguez\",\r\n      \"email\": \"pablo.rodriguez@example.com\",\r\n      \"phone\": \"+3456789012\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"5678901234\",\r\n      \"firstName\": \"Marta\",\r\n      \"lastName\": \"Lopez\",\r\n      \"email\": \"marta.lopez@example.com\",\r\n      \"phone\": \"+5678901234\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"8901234567\",\r\n      \"firstName\": \"Jose\",\r\n      \"lastName\": \"Sanchez\",\r\n      \"email\": \"jose.sanchez@example.com\",\r\n      \"phone\": \"+8901234567\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"1234567890\",\r\n      \"firstName\": \"Elena\",\r\n      \"lastName\": \"Gonzalez\",\r\n      \"email\": \"elena.gonzalez@example.com\",\r\n      \"phone\": \"+1234567890\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"2345678901\",\r\n      \"firstName\": \"Daniel\",\r\n      \"lastName\": \"Martinez\",\r\n      \"email\": \"daniel.martinez@example.com\",\r\n      \"phone\": \"+2345678901\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"3456789012\",\r\n      \"firstName\": \"Luis\",\r\n      \"lastName\": \"Fernandez\",\r\n      \"email\": \"luis.fernandez@example.com\",\r\n      \"phone\": \"+3456789012\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"4567890123\",\r\n      \"firstName\": \"Maria\",\r\n      \"lastName\": \"Sanchez\",\r\n      \"email\": \"maria.sanchez@example.com\",\r\n      \"phone\": \"+4567890123\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"5678901234\",\r\n      \"firstName\": \"Carlos\",\r\n      \"lastName\": \"Gomez\",\r\n      \"email\": \"carlos.gomez@example.com\",\r\n      \"phone\": \"+5678901234\",\r\n      \"major\": \"Ingenieria de Sistemas\",\r\n      \"isActive\": true\r\n    },\r\n    {\r\n      \"ci\": \"6789012345\",\r\n      \"firstName\": \"Laura\",\r\n      \"lastName\": \"Lopez\",\r\n      \"email\": \"laura.lopez@example.com\",\r\n      \"phone\": \"+6789012345\",\r\n      \"major\": \"Economia e Inteligencia de Negocios\",\r\n      \"isActive\": false\r\n    },\r\n    {\r\n      \"ci\": \"7890123456\",\r\n      \"firstName\": \"Pedro\",\r\n      \"lastName\": \"Fernandez\",\r\n      \"email\": \"pedro.fernandez@example.com\",\r\n      \"phone\": \"+7890123456\",\r\n      \"major\": \"Ingeniería de Telecomunicaciones\",\r\n      \"isActive\": true\r\n    }\r\n  ]\r\n}\r\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "SubjectId = 2, SemesterId = 3",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "subjectId",
+              "value": "2",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "query",
+              "modifier": "semesterId",
+              "value": "3",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "0c614246-8909-4b69-85cb-fcefec50a1b9",
+          "body": "{\n  \"successful\": true,\n  \"message\": null,\n  \"data\": [\n    {\n      \"ci\": \"1111111111\",\n      \"firstName\": \"Eduardo\",\n      \"lastName\": \"Ramírez\",\n      \"email\": \"eduardo.ramirez@example.com\",\n      \"phone\": \"+1111111111\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"7777777777\",\n      \"firstName\": \"Sofía\",\n      \"lastName\": \"Pérez\",\n      \"email\": \"sofia.perez@example.com\",\n      \"phone\": \"+7777777777\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"1010101010\",\n      \"firstName\": \"Laura\",\n      \"lastName\": \"García\",\n      \"email\": \"laura.garcia@example.com\",\n      \"phone\": \"+1010101010\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"1313131313\",\n      \"firstName\": \"Santiago\",\n      \"lastName\": \"Castro\",\n      \"email\": \"santiago.castro@example.com\",\n      \"phone\": \"+1313131313\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"1616161616\",\n      \"firstName\": \"Vanessa\",\n      \"lastName\": \"Mendoza\",\n      \"email\": \"vanessa.mendoza@example.com\",\n      \"phone\": \"+1616161616\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"1919191919\",\n      \"firstName\": \"Carlos\",\n      \"lastName\": \"Gutiérrez\",\n      \"email\": \"carlos.gutierrez@example.com\",\n      \"phone\": \"+1919191919\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"2222222222\",\n      \"firstName\": \"Valeria\",\n      \"lastName\": \"Gómez\",\n      \"email\": \"valeria.gomez@example.com\",\n      \"phone\": \"+2222222222\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"7777777777\",\n      \"firstName\": \"Alejandro\",\n      \"lastName\": \"López\",\n      \"email\": \"alejandro.lopez@example.com\",\n      \"phone\": \"+7777777777\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"1010101010\",\n      \"firstName\": \"Laura\",\n      \"lastName\": \"García\",\n      \"email\": \"laura.garcia@example.com\",\n      \"phone\": \"+1010101010\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"1919191919\",\n      \"firstName\": \"Carlos\",\n      \"lastName\": \"Gutiérrez\",\n      \"email\": \"carlos.gutierrez@example.com\",\n      \"phone\": \"+1919191919\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"2222222222\",\n      \"firstName\": \"Valeria\",\n      \"lastName\": \"Gómez\",\n      \"email\": \"valeria.gomez@example.com\",\n      \"phone\": \"+2222222222\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"7777777777\",\n      \"firstName\": \"Alejandro\",\n      \"lastName\": \"López\",\n      \"email\": \"alejandro.lopez@example.com\",\n      \"phone\": \"+7777777777\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    }\n  ]\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "SubjectId = 3, SemesterId = 3",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "subjectId",
+              "value": "3",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "query",
+              "modifier": "semesterId",
+              "value": "3",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "c2f887f9-8d35-46c5-8b97-f576be845ba2",
+          "body": "{\n  \"successful\": true,\n  \"message\": null,\n  \"data\": [\n    {\n      \"ci\": \"1111111111\",\n      \"firstName\": \"Eduardo\",\n      \"lastName\": \"Ramírez\",\n      \"email\": \"eduardo.ramirez@example.com\",\n      \"phone\": \"+1111111111\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"2222222222\",\n      \"firstName\": \"Valeria\",\n      \"lastName\": \"Gómez\",\n      \"email\": \"valeria.gomez@example.com\",\n      \"phone\": \"+2222222222\",\n      \"major\": \"Ingenieria de Telecomunicaciones\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"3333333333\",\n      \"firstName\": \"Diego\",\n      \"lastName\": \"Fernández\",\n      \"email\": \"diego.fernandez@example.com\",\n      \"phone\": \"+3333333333\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"4444444444\",\n      \"firstName\": \"María\",\n      \"lastName\": \"López\",\n      \"email\": \"maria.lopez@example.com\",\n      \"phone\": \"+4444444444\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"5555555555\",\n      \"firstName\": \"Luis\",\n      \"lastName\": \"Torres\",\n      \"email\": \"luis.torres@example.com\",\n      \"phone\": \"+5555555555\",\n      \"major\": \"Ingenieria de Telecomunicaciones\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"6666666666\",\n      \"firstName\": \"Camilo\",\n      \"lastName\": \"Herrera\",\n      \"email\": \"camilo.herrera@example.com\",\n      \"phone\": \"+6666666666\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"7777777777\",\n      \"firstName\": \"Sofía\",\n      \"lastName\": \"Pérez\",\n      \"email\": \"sofia.perez@example.com\",\n      \"phone\": \"+7777777777\",\n      \"major\": \"Ingenieria de Telecomunicaciones\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"8888888888\",\n      \"firstName\": \"Andrea\",\n      \"lastName\": \"Martínez\",\n      \"email\": \"andrea.martinez@example.com\",\n      \"phone\": \"+8888888888\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"9999999999\",\n      \"firstName\": \"Joaquín\",\n      \"lastName\": \"Sánchez\",\n      \"email\": \"joaquin.sanchez@example.com\",\n      \"phone\": \"+9999999999\",\n      \"major\": \"Ingenieria de Telecomunicaciones\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"1010101010\",\n      \"firstName\": \"Laura\",\n      \"lastName\": \"García\",\n      \"email\": \"laura.garcia@example.com\",\n      \"phone\": \"+1010101010\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"1111111112\",\n      \"firstName\": \"Fernando\",\n      \"lastName\": \"Silva\",\n      \"email\": \"fernando.silva@example.com\",\n      \"phone\": \"+1111111112\",\n      \"major\": \"Ingenieria de Telecomunicaciones\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"1212121212\",\n      \"firstName\": \"Isabella\",\n      \"lastName\": \"Morales\",\n      \"email\": \"isabella.morales@example.com\",\n      \"phone\": \"+1212121212\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": false\n    }\n  ]\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "SubjectId = 1, SemesterId = 4",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "subjectId",
+              "value": "1",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "query",
+              "modifier": "semesterId",
+              "value": "4",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "930e6dfc-c0cd-45ef-9aa0-3c0644db9373",
+          "body": "{\n  \"successful\": true,\n  \"message\": null,\n  \"data\": [\n    {\n      \"ci\": \"3333333333\",\n      \"firstName\": \"Ricardo\",\n      \"lastName\": \"Martínez\",\n      \"email\": \"ricardo.martinez@example.com\",\n      \"phone\": \"+3333333333\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"4444444444\",\n      \"firstName\": \"Daniela\",\n      \"lastName\": \"García\",\n      \"email\": \"daniela.garcia@example.com\",\n      \"phone\": \"+4444444444\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"5555555555\",\n      \"firstName\": \"Jorge\",\n      \"lastName\": \"Fernández\",\n      \"email\": \"jorge.fernandez@example.com\",\n      \"phone\": \"+5555555555\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"7777777777\",\n      \"firstName\": \"Carlos\",\n      \"lastName\": \"López\",\n      \"email\": \"carlos.lopez@example.com\",\n      \"phone\": \"+7777777777\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"8888888888\",\n      \"firstName\": \"Laura\",\n      \"lastName\": \"Martínez\",\n      \"email\": \"laura.martinez@example.com\",\n      \"phone\": \"+8888888888\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"9999999999\",\n      \"firstName\": \"Pedro\",\n      \"lastName\": \"Gómez\",\n      \"email\": \"pedro.gomez@example.com\",\n      \"phone\": \"+9999999999\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"1010101010\",\n      \"firstName\": \"Isabel\",\n      \"lastName\": \"Torres\",\n      \"email\": \"isabel.torres@example.com\",\n      \"phone\": \"+1010101010\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"1111111112\",\n      \"firstName\": \"Sergio\",\n      \"lastName\": \"Herrera\",\n      \"email\": \"sergio.herrera@example.com\",\n      \"phone\": \"+1111111112\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"1212121212\",\n      \"firstName\": \"Natalia\",\n      \"lastName\": \"Silva\",\n      \"email\": \"natalia.silva@example.com\",\n      \"phone\": \"+1212121212\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"1414141414\",\n      \"firstName\": \"Elena\",\n      \"lastName\": \"Pérez\",\n      \"email\": \"elena.perez@example.com\",\n      \"phone\": \"+1414141414\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"1515151515\",\n      \"firstName\": \"Gustavo\",\n      \"lastName\": \"Ortega\",\n      \"email\": \"gustavo.ortega@example.com\",\n      \"phone\": \"+1515151515\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"1616161616\",\n      \"firstName\": \"Mariana\",\n      \"lastName\": \"Díaz\",\n      \"email\": \"mariana.diaz@example.com\",\n      \"phone\": \"+1616161616\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"1717171717\",\n      \"firstName\": \"Alejandro\",\n      \"lastName\": \"Gutiérrez\",\n      \"email\": \"alejandro.gutierrez@example.com\",\n      \"phone\": \"+1717171717\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"1818181818\",\n      \"firstName\": \"Renata\",\n      \"lastName\": \"Martínez\",\n      \"email\": \"renata.martinez@example.com\",\n      \"phone\": \"+1818181818\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": false\n    },\n    {\n      \"ci\": \"2020202020\",\n      \"firstName\": \"Luisa\",\n      \"lastName\": \"Herrera\",\n      \"email\": \"luisa.herrera@example.com\",\n      \"phone\": \"+2020202020\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": false\n    }\n  ]\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "SubjectId = 2, SemesterId = 4",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "subjectId",
+              "value": "2",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "query",
+              "modifier": "semesterId",
+              "value": "4",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "4901229d-dab7-4743-8230-e4c4364d3803",
+          "body": "{\n  \"successful\": true,\n  \"message\": null,\n  \"data\": [\n    {\n      \"ci\": \"1111111111\",\n      \"firstName\": \"Eduardo\",\n      \"lastName\": \"Ramírez\",\n      \"email\": \"eduardo.ramirez@example.com\",\n      \"phone\": \"+1111111111\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"1010101010\",\n      \"firstName\": \"Laura\",\n      \"lastName\": \"García\",\n      \"email\": \"laura.garcia@example.com\",\n      \"phone\": \"+1010101010\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"1313131313\",\n      \"firstName\": \"Santiago\",\n      \"lastName\": \"Castro\",\n      \"email\": \"santiago.castro@example.com\",\n      \"phone\": \"+1313131313\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"1616161616\",\n      \"firstName\": \"Vanessa\",\n      \"lastName\": \"Mendoza\",\n      \"email\": \"vanessa.mendoza@example.com\",\n      \"phone\": \"+1616161616\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"2222222222\",\n      \"firstName\": \"Valeria\",\n      \"lastName\": \"Gómez\",\n      \"email\": \"valeria.gomez@example.com\",\n      \"phone\": \"+2222222222\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"7777777777\",\n      \"firstName\": \"Alejandro\",\n      \"lastName\": \"López\",\n      \"email\": \"alejandro.lopez@example.com\",\n      \"phone\": \"+7777777777\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"1919191919\",\n      \"firstName\": \"Carlos\",\n      \"lastName\": \"Gutiérrez\",\n      \"email\": \"carlos.gutierrez@example.com\",\n      \"phone\": \"+1919191919\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"2222222222\",\n      \"firstName\": \"Valeria\",\n      \"lastName\": \"Gómez\",\n      \"email\": \"valeria.gomez@example.com\",\n      \"phone\": \"+2222222222\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    },\n    {\n      \"ci\": \"7777777777\",\n      \"firstName\": \"Alejandro\",\n      \"lastName\": \"López\",\n      \"email\": \"alejandro.lopez@example.com\",\n      \"phone\": \"+7777777777\",\n      \"major\": \"Ingenieria de Sistemas\",\n      \"isActive\": true\n    }\n  ]\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "SubjectId = 4, SemesterId = 4",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "subjectId",
+              "value": "4",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "query",
+              "modifier": "semesterId",
+              "value": "4",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "0db25a37-a153-4301-b559-fd1c75156390",
+      "type": "http",
+      "documentation": "Get the list of semesters taught by a professor id (Gestión de Materias y Calificaciones por semestre)",
+      "method": "get",
+      "endpoint": "api/v1/semesters/professors/:professorId",
+      "responses": [
+        {
+          "uuid": "6ba98b5e-c7cc-41f7-b5ed-c0bd68f5a9f2",
+          "body": "{\n  \"successful\": true,\n  \"message\": null,\n  \"data\": [\n    {\n      \"semesterId\": 1,\n      \"semesterName\": \"1-2022\",\n      \"academicYear\": 2022,\n      \"startDate\": \"2022-02-01\",\n      \"endDate\": \"2022-06-15\"\n    },\n    {\n      \"semesterId\": 2,\n      \"semesterName\": \"2-2022\",\n      \"academicYear\": 2022,\n      \"startDate\": \"2022-08-01\",\n      \"endDate\": \"2022-12-15\"\n    },\n    {\n      \"semesterId\": 3,\n      \"semesterName\": \"1-2023\",\n      \"academicYear\": 2023,\n      \"startDate\": \"2023-02-01\",\n      \"endDate\": \"2023-06-15\"\n    },\n    {\n      \"semesterId\": 4,\n      \"semesterName\": \"2-2023\",\n      \"academicYear\": 2024,\n      \"startDate\": \"2023-08-01\",\n      \"endDate\": \"2023-12-15\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "4383e96d-fdd8-454c-bf6d-8ba49f913d1b",
+      "type": "http",
+      "documentation": "Get a professors info by its id",
+      "method": "get",
+      "endpoint": "api/v1/professors/:professorId",
+      "responses": [
+        {
+          "uuid": "615a4b02-3f10-4746-8d8b-787caf7c0810",
+          "body": "{\n  \"successful\": true,\n  \"message\": null,\n  \"data\": {\n    \"firstName\": \"Oswaldo\",\n    \"lastName\": \"Figueroa Domejean\",\n    \"email\": \"ofigueroa@ucb.edu.bo\",\n    \"phone\": \"76205685\"\n  }\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Get professor Info",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "professorId",
+              "value": "1",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "03fe1558-e269-441a-bb51-85af1a4ea063",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "api/v1/kardex/my-kardex",
+      "responses": [
+        {
+          "uuid": "578a3709-6bd9-49c1-9b64-e16186c8f9e4",
+          "body": "{\n  \"successful\": true,\n  \"message\": null,\n  \"data\": [\n    {\n      \"academicPeriod\": \"1-2020\",\n      \"initSemester\": \"2020-02-03\",\n      \"endSemester\": \"2020-12-07\",\n      \"career\": \"Ingenieria de Sistemas\",\n      \"subjects\": [\n        {\n          \"site\": \"La Paz\",\n          \"careerSail\": \"CAR\",\n          \"subjectSail\": \"CAR-109\",\n          \"subjectName\": \"ESCRITURA ACADEMICA\",\n          \"parallel\": 16,\n          \"academicCredits\": 5,\n          \"economicCredits\": 5,\n          \"continuousScore\": 90,\n          \"reference\": {\n            \"semester\": 1,\n            \"year\": 2020,\n            \"turn\": 1\n          },\n          \"finalTestScore\": 90,\n          \"finalScore\": 90\n        },\n        {\n          \"site\": \"La Paz\",\n          \"careerSail\": \"INS\",\n          \"subjectSail\": \"SIS-121\",\n          \"subjectName\": \"INGENIERIA DE SISTEMAS 1\",\n          \"parallel\": 1,\n          \"academicCredits\": 5,\n          \"economicCredits\": 5,\n          \"continuousScore\": 93,\n          \"reference\": {\n            \"semester\": 1,\n            \"year\": 2020,\n            \"turn\": 1\n          },\n          \"finalTestScore\": 93,\n          \"finalScore\": 93\n        }\n      ],\n      \"totalCredits\": 10,\n      \"average\": 91.5\n    },\n    {\n      \"academicPeriod\": \"2-2020\",\n      \"initSemester\": \"2020-03-08\",\n      \"endSemester\": \"2020-31-12\",\n      \"career\": \"Ingenieria de Sistemas\",\n      \"subjects\": [\n        {\n          \"site\": \"La Paz\",\n          \"careerSail\": \"REL\",\n          \"subjectSail\": \"FHC-140\",\n          \"subjectName\": \"ANTROPOLOGIA CRISTIANA\",\n          \"parallel\": 3,\n          \"academicCredits\": 5,\n          \"economicCredits\": 5,\n          \"continuousScore\": 88,\n          \"reference\": {\n            \"semester\": 2,\n            \"year\": 2020,\n            \"turn\": 1\n          },\n          \"finalTestScore\": 70,\n          \"finalScore\": 79\n        },\n        {\n          \"site\": \"La Paz\",\n          \"careerSail\": \"INS\",\n          \"subjectSail\": \"SIS-131\",\n          \"subjectName\": \"ARQUITECTURA DE COMPUTADORAS\",\n          \"parallel\": 1,\n          \"academicCredits\": 6,\n          \"economicCredits\": 6,\n          \"continuousScore\": 100,\n          \"reference\": {\n            \"semester\": 2,\n            \"year\": 2020,\n            \"turn\": 1\n          },\n          \"finalTestScore\": 100,\n          \"finalScore\": 100\n        }\n      ],\n      \"totalCredits\": 11,\n      \"average\": 89.5\n    }\n  ]\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "90cfb723-4629-42fe-a014-e7779533e414",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "api/v1/kardex/brief",
+      "responses": [
+        {
+          "uuid": "718c3fd7-e271-4312-bbe3-8a3591d54385",
+          "body": "{\n  \"successful\": true,\n  \"message\": null,\n  \"data\": [\n    {\n      \"concept\": \"Subjects without grade:\",\n      \"value\": 6\n    },\n    {\n      \"concept\": \"Passed subjects:\",\n      \"value\": 41\n    },\n    {\n      \"concept\": \"Failed subjects:\",\n      \"value\": 0\n    },\n    {\n      \"concept\": \"Pending subjects:\",\n      \"value\": 0\n    },\n    {\n      \"concept\": \"Subjects not enabled:\",\n      \"value\": 0\n    },\n    {\n      \"concept\": \"Subjects with loss of eligibility:\",\n      \"value\": 0\n    },\n    {\n      \"concept\": \"Subjects with partial abandonment:\",\n      \"value\": 0\n    },\n    {\n      \"concept\": \"Subjects with total abandonment:\",\n      \"value\": 0\n    },\n    {\n      \"concept\": \"Subjects not attended:\",\n      \"value\": 0\n    },\n    {\n      \"concept\": \"Sessions failed:\",\n      \"value\": 0\n    },\n    {\n      \"concept\": \"Sessions not attended:\",\n      \"value\": 0\n    },\n    {\n      \"concept\": \"Convalidated subjects:\",\n      \"value\": 2\n    },\n    {\n      \"concept\": \"Total subjects:\",\n      \"value\": 48\n    },\n    {\n      \"concept\": \"Total semesters:\",\n      \"value\": 10\n    },\n    {\n      \"concept\": \"Approved academic credits:\",\n      \"value\": 224\n    },\n    {\n      \"concept\": \"Approved economic credits:\",\n      \"value\": 224\n    },\n    {\n      \"concept\": \"Total sessions:\",\n      \"value\": 41\n    },\n    {\n      \"concept\": \"Total failures:\",\n      \"value\": 0\n    },\n    {\n      \"concept\": \"General overall:\",\n      \"value\": 91.08\n    },\n    {\n      \"concept\": \"Weighted overall:\",\n      \"value\": 91.17\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "folder",
+      "uuid": "cdef64de-a784-421a-982e-d30bc3fb8a18"
+    },
+    {
+      "type": "folder",
+      "uuid": "256cf49a-44b4-4378-aaf1-74cd970a3287"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": []
+}
