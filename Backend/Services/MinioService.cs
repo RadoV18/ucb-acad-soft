@@ -6,11 +6,12 @@ namespace Backend.Services;
 public class MinioService
 {
     private readonly MinioClient _minioClient = new MinioClient()
-        // .WithEndpoint("localhost:9000")
-        // .WithCredentials("3mJTBzaMRuF6nRXS", "OoP4u1vJCkH1Srqjp4415rQb2sLLTg2j")
-        .WithEndpoint("play.min.io")
-        .WithCredentials("Q3AM3UQ867SPQQA43P2F", "zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG")
-        .WithSSL()
+        .WithEndpoint(Environment.GetEnvironmentVariable("MINIO_ENDPOINT"))
+        .WithCredentials(
+            Environment.GetEnvironmentVariable("ACCESS_KEY"),
+            Environment.GetEnvironmentVariable("SECRET_KEY")
+        )
+        // .WithSSL()
         .Build();
     
     public async Task<NewFileDTO> UploadFile(string bucketName, string objectName, byte[] fileData, string contentType) {

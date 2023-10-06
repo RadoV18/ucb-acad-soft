@@ -7,7 +7,10 @@ namespace Backend.Services;
 
 public class StudentAndProfessorService {
     
-    private readonly RestClient _client = new RestClient("http://localhost:8080/api/v1");
+    private readonly RestClient _client = new RestClient(
+        Environment.GetEnvironmentVariable("MOCKOON_ENDPOINT") ??
+        "http://localhost:8080/api/v1"
+    );
     
     public async Task<ProfessorInfoDTO> GetProfessorInfoByProfessorId(int professorId)
     {

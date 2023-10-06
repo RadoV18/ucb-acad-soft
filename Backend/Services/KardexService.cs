@@ -8,7 +8,10 @@ namespace Services.KardexService;
 
 public class KardexService
 {
-    private readonly RestClient _client = new RestClient("http://localhost:8080/api/v1/kardex");
+    private readonly RestClient _client = new RestClient(
+        Environment.GetEnvironmentVariable("MOCKOON_ENDPOINT") + "/kardex" ??
+        "http://localhost:8080/api/v1/kardex"
+    );
     private readonly JsonSerializerOptions _options = new JsonSerializerOptions
     {
         PropertyNameCaseInsensitive = true

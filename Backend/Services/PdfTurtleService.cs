@@ -5,7 +5,10 @@ namespace Backend.Services;
 
 public class PdfTurtleService
 {
-    private readonly RestClient _client = new RestClient("http://localhost:8000/api/pdf");
+    private readonly RestClient _client = new RestClient(
+        Environment.GetEnvironmentVariable("PDF_TURTLE_ENDPOINT") ??
+        "http://localhost:8000/api/pdf"
+    );
 
     public async Task<byte[]> getPdf(string footer, string header, string body, object model)
     {
