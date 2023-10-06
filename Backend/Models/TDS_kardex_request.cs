@@ -17,6 +17,6 @@ public class TDS_kardex_request
     public TDS_student Student { get; set; }
 
     [ForeignKey("s3_object_s3_object_id")]
-    public s3_object S3Object { get; set; }
+    public S3Object S3Object { get; set; }
     
 }

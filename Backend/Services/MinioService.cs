@@ -1,10 +1,13 @@
+using System.Data.Common;
 using Backend.DTOs;
+using Backend.Models;
 using Minio;
 
 namespace Backend.Services;
 
 public class MinioService
 {
+    private readonly S3ObjectContext _db = new S3ObjectContext();
     private readonly MinioClient _minioClient = new MinioClient()
         .WithEndpoint(Environment.GetEnvironmentVariable("MINIO_ENDPOINT"))
         .WithCredentials(
@@ -39,6 +42,17 @@ public class MinioService
             );
             // Get pre-signed URL
             Console.WriteLine("Successfully uploaded " + objectName );
+            Console.WriteLine(Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection"));
+            // Save to database
+            var s3Object = new S3Object {
+                ContentType = contentType,
+                Bucket = bucketName,
+                Filename = objectName,
+                Status = true
+            };
+            _db.S3Objects.Add(s3Object);
+            _db.SaveChanges();
+
             return new NewFileDTO {
                     BucketName = bucketName,
                     ObjectName = objectName,
