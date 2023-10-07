@@ -57,7 +57,7 @@ public class StudentAndProfessorService {
         }
     }
     
-    public async Task<List<StudentAtendanceDTO>> GetStudentAttendanceBySubjectIdAndSemesterId(int subjectId, int semesterId)
+    public async Task<List<StudentAttendanceDTO>> GetStudentAttendanceBySubjectIdAndSemesterId(int subjectId, int semesterId)
     {
         var request = new RestRequest($"students/subjects/{subjectId}/attendances");
         // Add headers
@@ -71,7 +71,7 @@ public class StudentAndProfessorService {
         // Check response
         if (response.StatusCode == HttpStatusCode.OK && response.Content != null)
         {
-            var responseDto = JsonConvert.DeserializeObject<ResponseDTO<List<StudentAtendanceDTO>>>(response.Content);
+            var responseDto = JsonConvert.DeserializeObject<ResponseDTO<List<StudentAttendanceDTO>>>(response.Content);
             return responseDto!.Data!;
         }
         else
