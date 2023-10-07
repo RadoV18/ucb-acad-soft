@@ -23,9 +23,6 @@ public class S3ObjectContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        // use sql server
-        Console.WriteLine("Using SQL Server");
-        Console.WriteLine(Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection"));
         optionsBuilder.UseSqlServer(Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection"));
     }
 }
