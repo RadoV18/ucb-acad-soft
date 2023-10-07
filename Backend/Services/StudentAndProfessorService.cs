@@ -56,4 +56,27 @@ public class StudentAndProfessorService {
             throw new Exception("Error while fetching students");
         }
     }
+    
+    public async Task<List<StudentAtendanceDTO>> GetStudentAttendanceBySubjectIdAndSemesterId(int subjectId, int semesterId)
+    {
+        var request = new RestRequest($"students/subjects/{subjectId}/attendances");
+        // Add headers
+        request.AddHeader("Accept", "application/json");
+        request.AddHeader("Content-Type", "application/json");
+        request.AddUrlSegment("subjectId", subjectId.ToString());
+        request.AddQueryParameter("semesterId", semesterId.ToString());
+        
+        var response = await _client.GetAsync(request);
+        
+        // Check response
+        if (response.StatusCode == HttpStatusCode.OK && response.Content != null)
+        {
+            var responseDto = JsonConvert.DeserializeObject<ResponseDTO<List<StudentAtendanceDTO>>>(response.Content);
+            return responseDto!.Data!;
+        }
+        else
+        {
+            throw new Exception("Error while fetching students");
+        }
+    }
 }

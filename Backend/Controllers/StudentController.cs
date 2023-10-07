@@ -77,4 +77,24 @@ public class StudentController: ControllerBase
             return BadRequest(e.Message);
         }
     }
+    
+    [HttpGet("subjects/{subjectId:int}/attendances")]
+    public async Task<ActionResult<ResponseDTO<List<StudentAtendanceDTO>>>> GetStudentsAttendance(int subjectId, [FromQuery] int semesterId)
+    {
+        try
+        {
+            // Get students attendance
+            var studentsAttendance = await _studentAndProfessorService.GetStudentAttendanceBySubjectIdAndSemesterId(subjectId, semesterId);
+            return Ok(new ResponseDTO<List<StudentAtendanceDTO>> 
+                (
+                    studentsAttendance,
+                    null,
+                    true
+                ));
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 }
