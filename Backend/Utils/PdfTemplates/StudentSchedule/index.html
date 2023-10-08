@@ -7,7 +7,6 @@
 </head>
 <body>
     <style>
-        /* Table with borders*/
         table {
             border-collapse: collapse;
             width: 100%;
@@ -17,8 +16,43 @@
             border: 1px solid black;
         }
 
+        td {
+            height: 20px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #e1e1e1;
+        }
+
         td.active{
-            background-color: burlywood;
+            background-color: white;
+        }
+
+        #student-table td {
+            padding-left: 4px;
+        }
+
+        #student-table td:nth-child(1) {
+            font-weight: bold;
+        }
+
+        #subjects-table {
+            margin-top: 20px;
+        }
+
+        #subjects-table tbody tr td:nth-child(1), #subjects-table tbody tr td:nth-child(2), #subjects-table tbody tr td:nth-child(4) {
+            width: 10%;
+            text-align: center;
+        }
+
+        #subjects-table tbody tr td:nth-child(3), #subjects-table tbody tr td:nth-child(5) {
+            width: 30%;
+            padding: 4px;
+        }
+
+        #schedule-table {
+            margin-top: 20px;
+            text-align: center;
         }
 
         .subject {
@@ -27,6 +61,10 @@
             align-items: center;
             justify-content: center;
             height: 100%;
+        }
+
+        * {
+            font-size: 12px;
         }
     </style>
     <!-- header -->
@@ -40,7 +78,7 @@
     </div>
     <!-- header -->
     <!-- body -->
-    <table>
+    <table id="student-table">
         <tbody>
             <tr>
                 <td>Doc. de Identidad</td>
@@ -60,7 +98,7 @@
             </tr>
         </tbody>
     </table>
-    <table>
+    <table id="subjects-table">
         <thead>
             <tr>
                 <th colspan="5">Asignaturas Inscritas</th>
@@ -73,10 +111,10 @@
                 <th>Docente</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="subjects-tbody">
         </tbody>
     </table>
-    <table>
+    <table id="schedule-table">
         <thead>
             <tr>
                 <th colspan="7">Horario</th>
@@ -244,8 +282,24 @@
     <!-- footer -->
 </body>
 <script>
-    const data = {{ .data}};
+    const data = {{ .data }}
 
+    // fill subjects
+    const subjectsTbody = document.getElementById('subjects-tbody');
+    data.subjects.forEach(subject => {
+        const tr = document.createElement('tr');
+        const period =  {{ .period }}
+        tr.innerHTML = `
+            <td>${period}</td>
+            <td>${subject.code}</td>
+            <td>${subject.name}</td>
+            <td>${subject.section}</td>
+            <td>${subject.professor}</td>
+        `;
+        subjectsTbody.appendChild(tr);
+    });
+
+    // fill schedule
     const scheduleLines = document.querySelectorAll('tr[id^="sch-"]');
     const scheduleTimes = Array.from(scheduleLines).map(line => {
         const timeString = line.querySelector('td:first-child').innerText;
@@ -259,7 +313,23 @@
 
     const overlappingSubjects = [];
 
+    const colors = [
+        '#CF4845',
+        '#397EA0',
+        '#518162',
+        '#746496',
+        '#747474',
+        '#967110',
+				'#3FB9B5',
+				'#414B83',
+				'#6C0052',
+    ];
+    const subjectColors = {};
+    let currentColor = 0;
+
     data.subjects.forEach(subject => {
+        const subjectColor = colors[currentColor];
+        currentColor = (currentColor + 1) % colors.length;
         subject.schedule.forEach(line => {
             const startLineId = scheduleTimes.find(time => time.start === line.start).lineId;
             const endLineId = scheduleTimes.find(time => time.end === line.end).lineId;
@@ -267,7 +337,7 @@
             const lineToSpan = document.getElementById(startLineId);
             const nthChild = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'].indexOf(line.day) + 2;
             const td = lineToSpan.querySelector(`td:nth-child(${nthChild})`);
-            td.innerHTML = `
+            td.innerHTML += `
                 <div class="subject">
                     <div>${subject.code} [${subject.section}]</div>
                     <div>Aula: ${line.classroom}</div>
@@ -276,6 +346,13 @@
             if(td.style.display === 'none') {
                 td.style.display = 'table-cell';
             }
+
+            // add color
+            td.style.backgroundColor = subjectColor;
+            td.style.color = 'white';
+			td.style.fontWeight = 'bold';
+            
+
             td.setAttribute('rowspan', rowspan);
             // hide the tds that are spanned
             for (let i = 1; i < rowspan; i++) {
