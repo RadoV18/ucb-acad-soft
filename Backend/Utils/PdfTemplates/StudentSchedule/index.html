@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        /* Table with borders*/
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        td.active{
+            background-color: burlywood;
+        }
+
+        .subject {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+    </style>
+    <!-- header -->
+    <div class="header">
+        <div class="img">
+
+        </div>
+        <div class="title">
+            <h1>Asignaturas y Horarios del Estudiante</h1>
+        </div>
+    </div>
+    <!-- header -->
+    <!-- body -->
+    <table>
+        <tbody>
+            <tr>
+                <td>Doc. de Identidad</td>
+                <td>6963744</td>
+            </tr>
+            <tr>
+                <td>Nombre:</td>
+                <td>Radomir Luis Vladislavic Nolasco</td>
+            </tr>
+            <tr>
+                <td>Carrera</td>
+                <td>Ingeniería de Sistemas</td>
+            </tr>
+            <tr>
+                <td>Periodo Académico</td>
+                <td>2-2023</td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="5">Asignaturas Inscritas</th>
+            </tr>
+            <tr>
+                <th>Periodo</th>
+                <th>Sigla</th>
+                <th>Nombre</th>
+                <th>Paralelo</th>
+                <th>Docente</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="7">Horario</th>
+            </tr>
+            <tr>
+                <th>Horario</th>
+                <th>Lunes</th>
+                <th>Martes</th>
+                <th>Miércoles</th>
+                <th>Jueves</th>
+                <th>Viernes</th>
+                <th>Sábado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="sch-1">
+                <td>07:15 - 08:00</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr id="sch-2">
+                <td>08:00 - 08:45</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr id="sch-3">
+                <td>09:00 - 09:45</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr id="sch-4">
+                <td>09:45 - 10:30</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr id="sch-5">
+                <td>10:45 - 11:30</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr id="sch-6">
+                <td>11:30 - 12:15</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr id="sch-7">
+                <td>12:30 - 13:15</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr id="sch-8">
+                <td>13:15 - 14:00</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr id="sch-9">
+                <td>14:15 - 15:00</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr id="sch-10">
+                <td>15:00 - 15:45</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr id="sch-11">
+                <td>16:00 - 16:45</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr id="sch-12">
+                <td>16:45 - 17:30</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr id="sch-13">
+                <td>17:45 - 18:30</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr id="sch-14">
+                <td>18:30 - 19:15</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr id="sch-15">
+                <td>19:30 - 20:15</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr id="sch-16">
+                <td>20:15 - 21:00</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- body -->
+    
+    <!-- footer -->
+    <!-- footer -->
+</body>
+<script>
+    const data = {{ .data}};
+
+    const scheduleLines = document.querySelectorAll('tr[id^="sch-"]');
+    const scheduleTimes = Array.from(scheduleLines).map(line => {
+        const timeString = line.querySelector('td:first-child').innerText;
+        const timeArray = timeString.split(' - ');
+        return {
+            start: timeArray[0],
+            end: timeArray[1],
+            lineId: line.id
+        }
+    });
+
+    const overlappingSubjects = [];
+
+    data.subjects.forEach(subject => {
+        subject.schedule.forEach(line => {
+            const startLineId = scheduleTimes.find(time => time.start === line.start).lineId;
+            const endLineId = scheduleTimes.find(time => time.end === line.end).lineId;
+            const rowspan = endLineId.split('-')[1] - startLineId.split('-')[1] + 1;
+            const lineToSpan = document.getElementById(startLineId);
+            const nthChild = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'].indexOf(line.day) + 2;
+            const td = lineToSpan.querySelector(`td:nth-child(${nthChild})`);
+            td.innerHTML = `
+                <div class="subject">
+                    <div>${subject.code} [${subject.section}]</div>
+                    <div>Aula: ${line.classroom}</div>
+                </div>
+            `;
+            if(td.style.display === 'none') {
+                td.style.display = 'table-cell';
+            }
+            td.setAttribute('rowspan', rowspan);
+            // hide the tds that are spanned
+            for (let i = 1; i < rowspan; i++) {
+                const lineToHide = document.getElementById(`sch-${parseInt(startLineId.split('-')[1]) + i}`);
+                const tdToHide = lineToHide.querySelector(`td:nth-child(${nthChild})`); 
+                tdToHide.style.display = 'none';
+            }
+        })
+    });
+</script>
+</html>
