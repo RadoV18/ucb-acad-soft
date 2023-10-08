@@ -19,7 +19,7 @@
     <th mat-header-cell *matHeaderCellDef> Detalle de la solicitud </th>
 
     <td mat-cell *matCellDef="let element">
-      <button mat-fab extended>
+      <button mat-fab extended (click)="openDialog(element)">
         <mat-icon>file_copy</mat-icon>
         Ver Detalle
       </button>

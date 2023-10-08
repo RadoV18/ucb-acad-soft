@@ -27,6 +27,8 @@ import { ClassItemComponent } from './components/schedule/class-item/class-item.
 import {HttpClient } from "@angular/common/http";
 import {CommonModule} from "@angular/common";
 import { StudentKardexRequestComponent } from './pages/student-kardex-request/student-kardex-request.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {DialogComponent} from "./components/dialog/dialog.component";
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { StudentKardexRequestComponent } from './pages/student-kardex-request/st
     ScheduleComponent,
     ScheduleDayComponent,
     ClassItemComponent,
+    DialogComponent,
     StudentKardexRequestComponent
   ],
   imports: [
@@ -57,6 +60,7 @@ import { StudentKardexRequestComponent } from './pages/student-kardex-request/st
     MatInputModule,
     MatSelectModule,
     MatGridListModule,
+    MatDialogModule,
     MatTableModule
   ],
   providers: [],
