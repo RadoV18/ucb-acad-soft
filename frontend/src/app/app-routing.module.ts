@@ -5,6 +5,7 @@ import { StudentScheduleComponent } from './pages/student-schedule/student-sched
 import { StudentListComponent } from './pages/student-list/student-list.component';
 import { StudentKardexComponent } from './pages/student-kardex/student-kardex.component';
 import {StudentKardexRequestComponent} from "./pages/student-kardex-request/student-kardex-request.component";
+import {NewRequestComponent} from "./components/new-request/new-request.component";
 
 const routes: Routes = [
   {
@@ -20,8 +21,9 @@ const routes: Routes = [
       { path: 'list', component: StudentListComponent },
       { path: 'kardex', component: StudentKardexComponent },
       { path: 'request/kardex', component: StudentKardexRequestComponent },
+      { path: 'request/kardex/new', component: NewRequestComponent },
     ],
-  },
+  },git
 ];
 
 @NgModule({

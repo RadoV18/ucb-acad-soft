@@ -1,0 +1,26 @@
+<div class="upload-container" [ngClass]="{'dragging': isDragging}" (dragover)="onDragOver($event)" (drop)="onDrop($event)" (dragleave)="onDragLeave($event)">
+  <input type="file" (change)="onFileChanged($event)" accept="image/*" #fileInput style="display: none">
+  <div class="drag-drop-area" (click)="fileInput.click()">
+    <div class="drag-drop-text">
+      Arrastra y suelta una imagen aquí o <span>selecciona un archivo</span>
+    </div>
+  </div>
+  <div *ngIf="imageURL" class="image-container">
+    <button class="delete-button" (click)="removeImage()">
+      <i class="fas fa-trash-alt"></i>
+    </button>
+    <img [src]="imageURL" alt="Vista previa del logo" class="preview-image">
+  </div>
+</div>
+
+<div>
+  <mat-form-field>
+    <mat-label>Ingrese el motivo de la solicitud</mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field>
+
+  <mat-button-toggle>Solicitud de permiso</mat-button-toggle>
+
+</div>
+
+

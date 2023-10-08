@@ -29,6 +29,8 @@ import {CommonModule} from "@angular/common";
 import { StudentKardexRequestComponent } from './pages/student-kardex-request/student-kardex-request.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {DialogComponent} from "./components/dialog/dialog.component";
+import {NewRequestComponent} from "./components/new-request/new-request.component";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import {DialogComponent} from "./components/dialog/dialog.component";
     ScheduleDayComponent,
     ClassItemComponent,
     DialogComponent,
-    StudentKardexRequestComponent
+    StudentKardexRequestComponent,
+    NewRequestComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,8 @@ import {DialogComponent} from "./components/dialog/dialog.component";
     MatSelectModule,
     MatGridListModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

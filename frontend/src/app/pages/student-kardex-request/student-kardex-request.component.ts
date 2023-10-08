@@ -3,6 +3,7 @@ import {RequestKardex} from "../../models/RequestKardex";
 import {RequestKardexService} from "../../services/request-kardex-service/request-kardex.service";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {DailogService} from "../../services/dialog/dailog.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-student-kardex-request',
@@ -24,7 +25,7 @@ export class StudentKardexRequestComponent {
   dataSource : RequestKardex[] = [];
 
 
-  constructor(private requestKardexService: RequestKardexService, private dialog: DailogService) {
+  constructor(private requestKardexService: RequestKardexService, private dialog: DailogService, private router: Router) {
   }
 
 
@@ -40,6 +41,10 @@ export class StudentKardexRequestComponent {
 
   openDialog(request: RequestKardex) {
     this.dialog.open(request);
+  }
+
+  sendToNewRequest() {
+    this.router.navigate(['/student/request/kardex/new']);
   }
 
 }
