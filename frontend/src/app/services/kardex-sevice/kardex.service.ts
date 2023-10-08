@@ -3,13 +3,14 @@ import {HttpClient} from "@angular/common/http";
 import {KardexBrief, SemesterResume} from "../../models/SemesterResume";
 import {Observable} from "rxjs";
 import {ResponseDto} from "../../dto/response.dto";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class KardexService {
 
-  baseUrl = 'http://localhost:5260/api/reports/kardex';
+  baseUrl = `${environment.BACKEND_URL}/api/reports/kardex`;
   constructor(private http : HttpClient) { }
 
 

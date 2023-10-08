@@ -7,12 +7,13 @@ import { SubjectDto } from '../dto/subject.dto';
 import { SubjectDetailDto } from '../dto/subject-detail.dto';
 import {StudentInfoDto} from "../dto/student-info.dto";
 import {FileDto} from "../dto/file.dto";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentListService {
-  baseUrl = 'http://localhost:5260/api/v1/reports';
+  baseUrl = `${environment.BACKEND_URL}/api/v1/reports`;
   constructor(private http: HttpClient) { }
 
   public getSemestersByProfessorId(professorId: number): Observable<ResponseDto<SemesterDto[]>> {

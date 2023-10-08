@@ -1,7 +1,7 @@
 version: "3.7"
 networks:
-  network-uas:
-    name: network-uas
+  network-tds-reports:
+    name: network-tds-reports
     driver: bridge
 
 services:
@@ -17,10 +17,10 @@ services:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER}
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
     volumes:
-      - ~/Desktop/uas/minio/data:/data
+      - ~/Desktop/tds-reports/minio/data:/data
     command: server /data --console-address ":9090"
     networks:
-      - network-uas
+      - network-tds-reports
 
   pdf-turtle:
     container_name: pdf-turtle
@@ -32,7 +32,7 @@ services:
       PORT: ${PDF_TURTLE_DEV_PORT}
       SERVE_PLAYGROUND: ${PDF_TURTLE_DEV_SERVE_PLAYGROUND}
     networks:
-      - network-uas
+      - network-tds-reports
 
   mockoon:
     container_name: mockoon
@@ -43,7 +43,7 @@ services:
       - ./UCB_ACAD_SOFT.json:/data
     command: ["--data", "data"]
     networks:
-      - network-uas
+      - network-tds-reports
 
   sql-server:
     image: mcr.microsoft.com/mssql/server:2022-latest
@@ -53,27 +53,29 @@ services:
     ports:
       - "1433:1433"
     volumes:
-      - ~/Desktop/uas/sql-server/data:/var/opt/mssql/
+      - ~/Desktop/tds-reports/sql-server/data:/var/opt/mssql/
     environment:
       SA_PASSWORD: ${SQL_SERVER_SA_PASSWORD}
       ACCEPT_EULA: Y
     networks:
-      - network-uas
+      - network-tds-reports
 
-  # backend:
-  #   container_name: backend
-  #   image: backend:1.0.0
-  #   restart: always
-  #   ports:
-  #     - "5260:80"
-  #   networks:
-  #     - network-uas
+  backend:
+    container_name: tds-reports-backend
+    image: thealanmc/tds-reports-backend:0.0.1
+    restart: always
+    ports:
+      - "5260:80"
+    networks:
+      - network-tds-reports
 
-  # frontend:
-  #   container_name: frontend
-  #   image: frontend:0.1.1
-  #   restart: always
-  #   ports:
-  #     - "4200:80"
-  #   networks:
-  #     - network-uas
+  frontend:
+    container_name: tds-reports-frontend
+    image: thealanmc/tds-reports-frontend:0.0.1
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ~/Desktop/tds-reports/angular/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - network-tds-reports
