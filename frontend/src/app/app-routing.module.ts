@@ -23,7 +23,7 @@ const routes: Routes = [
       { path: 'request/kardex', component: StudentKardexRequestComponent },
       { path: 'request/kardex/new', component: NewRequestComponent },
     ],
-  },git
+  },
 ];
 
 @NgModule({

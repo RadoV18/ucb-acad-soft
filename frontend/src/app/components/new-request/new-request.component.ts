@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
+import {RequestKardexService} from "../../services/request-kardex-service/request-kardex.service";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-new-request',
@@ -12,7 +14,13 @@ export class NewRequestComponent {
   isDragging = false;
   imageFile: File | null = null;
 
-  constructor(private router: Router) {  }
+  reasson: FormControl = new FormControl('');
+
+  constructor(
+    private router: Router,
+    public formService: RequestKardexService,
+
+  ) {  }
 
 
   onFileChanged(event: any) {
@@ -54,6 +62,19 @@ export class NewRequestComponent {
   removeImage() {
     this.imageURL = null;
   }
+
+  sendToMyRequests() {
+   this.formService.newKardexRequest(this.reasson.value, this.imageFile).subscribe(
+      {next: (response) => {
+        console.log(response);
+
+      }, error: (error) => {
+        console.log(error);
+        }
+      }
+   )
+  }
+  
 
 
 

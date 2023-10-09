@@ -16,10 +16,10 @@
 <div>
   <mat-form-field>
     <mat-label>Ingrese el motivo de la solicitud</mat-label>
-    <textarea matInput></textarea>
+    <textarea [formControl]="reasson" matInput></textarea>
   </mat-form-field>
 
-  <mat-button-toggle>Solicitud de permiso</mat-button-toggle>
+  <mat-button-toggle (click)='sendToMyRequests()'>Solicitud de permiso</mat-button-toggle>
 
 </div>
 

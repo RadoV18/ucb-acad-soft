@@ -31,6 +31,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {DialogComponent} from "./components/dialog/dialog.component";
 import {NewRequestComponent} from "./components/new-request/new-request.component";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
     MatGridListModule,
     MatDialogModule,
     MatTableModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
