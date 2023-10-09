@@ -19,7 +19,7 @@ public class KardexRequestController : ControllerBase
     {
         try
         {   Console.WriteLine(reasson);
-            var response = await _minioService.UploadMultipartFile("voucher",file);
+              var response = await _minioService.UploadMultipartFile("voucher",file);
             // Save to database
             var s3Object = new S3Object {
                 ContentType = response.ContentType,
