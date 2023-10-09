@@ -12,12 +12,13 @@ public class KardexRequestController : ControllerBase
 
     private readonly MinioService _minioService = new MinioService();
     private readonly S3ObjectContext _db = new S3ObjectContext();
+    private readonly TDSKardexRequest.TDSKardexRequestContext _dbKardexRequest = new TDSKardexRequest.TDSKardexRequestContext();
     
     [HttpPost("vouchers")]
-    public async Task<ActionResult<ResponseDTO<VoucherDTO>>> UploadVoucher ([FromForm] IFormFile file)
+    public async Task<ActionResult<ResponseDTO<VoucherDTO>>> UploadVoucher ([FromForm] IFormFile file, [FromForm] string reasson)
     {
         try
-        {
+        {   Console.WriteLine(reasson);
             var response = await _minioService.UploadMultipartFile("voucher",file);
             // Save to database
             var s3Object = new S3Object {
@@ -35,10 +36,28 @@ public class KardexRequestController : ControllerBase
                 ContentType = s3Object.ContentType,
                 Filename =  file.FileName
             };
+            
+            var kardexRequestDb = new TDSKardexRequest()
+            {
+                TDS_student_student_id = 1,
+                reason = reasson,
+                s3_object_S3_object_id = voucher.VoucherId,
+                request_state = "Pendiente",
+                date = DateTime.Today
+            };
+            
+            _dbKardexRequest.TDS_kardex_request.Add(kardexRequestDb);
+            _dbKardexRequest.SaveChanges();
+            
             return Ok(new ResponseDTO<VoucherDTO>(voucher, null, true));
         }
         catch (Exception e)
         {
+            while (e.InnerException != null)
+            {
+                e = e.InnerException;
+            }
+
             return BadRequest(e.Message);
         }
     }
