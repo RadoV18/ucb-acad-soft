@@ -1,0 +1,42 @@
+<mat-card class="custom-card" *ngIf="dataDisplay">
+  <mat-card-header>
+    <mat-card-title>ASISTENCIA</mat-card-title>
+    <div class="spacer"></div>
+    <button mat-raised-button color="primary" (click)="downloadCSV()">Descargar como CSV</button>
+  </mat-card-header>
+    <mat-card-content class="custom-card-content">
+      <mat-table mat-table [dataSource]="dataDisplay!">
+        <ng-container matColumnDef="index">
+          <th mat-header-cell *matHeaderCellDef>No.</th>
+          <td mat-cell *matCellDef="let element">{{ element.index}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>APELLIDOS Y NOMBRES</th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
+
+        <ng-container *ngFor="let date of dates" >
+          <ng-container matColumnDef="{{ date }}">
+            <th mat-header-cell *matHeaderCellDef class="mat-column-date">
+              <div class="date-header">
+                {{ date | date: 'dd/MM/yyyy' }}
+              </div>
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <mat-checkbox
+                [checked]="element[date.toString()]"
+                [disabled]="true"
+                [color]="element[date.toString()] ? 'primary' : 'warn'"
+              ></mat-checkbox>
+            </td>
+
+          </ng-container>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </mat-table>
+    </mat-card-content>
+</mat-card>

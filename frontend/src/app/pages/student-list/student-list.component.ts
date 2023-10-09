@@ -40,7 +40,6 @@ export class StudentListComponent implements OnInit{
       error: (error) => {
         console.log(error);
       }
-
     });
   }
 }

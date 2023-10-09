@@ -27,6 +27,9 @@ import { ClassItemComponent } from './components/schedule/class-item/class-item.
 import {HttpClient } from "@angular/common/http";
 import {CommonModule} from "@angular/common";
 import { StudentKardexRequestComponent } from './pages/student-kardex-request/student-kardex-request.component';
+import { StudentAttendanceComponent } from './pages/student-attendance/student-attendance.component';
+import { StudentAttendanceTableComponent } from './components/student-attendance-table/student-attendance-table.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -40,25 +43,28 @@ import { StudentKardexRequestComponent } from './pages/student-kardex-request/st
     ScheduleComponent,
     ScheduleDayComponent,
     ClassItemComponent,
-    StudentKardexRequestComponent
+    StudentKardexRequestComponent,
+    StudentAttendanceComponent,
+    StudentAttendanceTableComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    CommonModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    CommonModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatCardModule,
-    MatTabsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatGridListModule,
-    MatTableModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        CommonModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        CommonModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatCardModule,
+        MatTabsModule,
+        MatInputModule,
+        MatSelectModule,
+        MatGridListModule,
+        MatTableModule,
+        MatCheckboxModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,5 @@
+<mat-tab-group>
+  <mat-tab *ngFor="let subject of subjects" [label]="subject.description">
+    <app-student-attendance-table [subjectId]="subject.subjectId" [semesterId]="semesterId" [professorId]="professorId"></app-student-attendance-table>
+  </mat-tab>
+</mat-tab-group>
