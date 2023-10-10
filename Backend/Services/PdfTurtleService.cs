@@ -1,16 +1,19 @@
-using Backend.Dto;
+using Backend.DTOs;
 using RestSharp;
 
 namespace Backend.Services;
 
 public class PdfTurtleService
 {
-    private readonly RestClient _client = new RestClient("http://localhost:8000/api/pdf");
+    private readonly RestClient _client = new RestClient(
+        Environment.GetEnvironmentVariable("PDF_TURTLE_ENDPOINT") ??
+        "http://localhost:8000/api/pdf"
+    );
 
     public async Task<byte[]> getPdf(string footer, string header, string body, object model)
     {
         var request = new RestRequest("from/html-template/render");
-        var pdfTurtleRequestDto = new PdfTurtleRequestDto()
+        var pdfTurtleRequestDto = new PdfTurtleRequestDTO()
         {
             FooterHtmlTemplate = footer,
             HeaderHtmlTemplate = header,

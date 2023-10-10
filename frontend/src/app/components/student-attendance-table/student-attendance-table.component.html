@@ -1,0 +1,96 @@
+<div *ngIf="!isAttendanceResumeActive; else attendanceResume">
+  <mat-card class="custom-card" *ngIf="attendanceList">
+    <mat-card-header>
+      <mat-card-title>ASISTENCIA</mat-card-title>
+      <div class="spacer"></div>
+      <button mat-raised-button color="primary" (click)="showAttendanceResume()">Ver resumen</button>
+    </mat-card-header>
+      <mat-card-content class="custom-card-content">
+        <mat-table mat-table [dataSource]="dataDisplay!" class="custom-table">
+          <ng-container matColumnDef="index">
+            <th mat-header-cell *matHeaderCellDef>No.</th>
+            <td mat-cell *matCellDef="let element">{{ element.index}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>APELLIDOS Y NOMBRES</th>
+            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+          </ng-container>
+
+          <ng-container *ngFor="let date of dates" >
+            <ng-container matColumnDef="{{ date }}">
+              <th mat-header-cell *matHeaderCellDef class="mat-column-date">
+                <div class="date-header">
+                  {{ date | date: 'dd/MM/yyyy' }}
+                </div>
+              </th>
+              <td mat-cell *matCellDef="let element">
+                <mat-checkbox
+                  [checked]="element[date.toString()]"
+                  [disabled]="true"
+                  [color]="element[date.toString()] ? 'primary' : 'warn'"
+                ></mat-checkbox>
+              </td>
+
+            </ng-container>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </mat-table>
+      </mat-card-content>
+  </mat-card>
+</div>
+
+<ng-template #attendanceResume>
+  <mat-card class="custom-resume-card" *ngIf="attendanceList">
+    <mat-card-header>
+      <mat-card-title>RESUMEN DE ASISTENCIA</mat-card-title>
+      <div class="spacer"></div>
+      <button mat-raised-button color="primary" (click)="hideAttendanceResume()">Ver asistencia</button>
+      <div class="button-spacer"></div>
+      <button mat-raised-button color="primary" (click)="downloadCSV()">Descargar como CSV</button>
+    </mat-card-header>
+    <mat-card-content class="custom-card-content">
+      <mat-table mat-table [dataSource]="attendanceListResume!" class="custom-resume-table">
+        <ng-container matColumnDef="index">
+          <th mat-header-cell *matHeaderCellDef>No.</th>
+          <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>APELLIDOS Y NOMBRES</th>
+          <td mat-cell *matCellDef="let element">{{ element.fullName}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="totalNumberOfClasses">
+          <th mat-header-cell *matHeaderCellDef>TOTAL DE CLASES</th>
+          <td mat-cell *matCellDef="let element">{{ element.totalNumberOfClasses}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="numberOfAttendances">
+          <th mat-header-cell *matHeaderCellDef>ASISTENCIAS</th>
+          <td mat-cell *matCellDef="let element">{{ element.numberOfAttendances}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="numberOfAbsences">
+          <th mat-header-cell *matHeaderCellDef>FALTAS</th>
+          <td mat-cell *matCellDef="let element">{{ element.numberOfAbsences}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="attendancePercentage">
+          <th mat-header-cell *matHeaderCellDef>PORCENTAJE DE ASISTENCIA</th>
+          <td mat-cell *matCellDef="let element">{{ element.attendancePercentage}} %</td>
+        </ng-container>
+
+        <ng-container matColumnDef="attendanceScore">
+          <th mat-header-cell *matHeaderCellDef>PUNTUACIÓN DE ASISTENCIA</th>
+          <td mat-cell *matCellDef="let element">{{ element.attendanceScore}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsResume"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsResume;"></tr>
+      </mat-table>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
