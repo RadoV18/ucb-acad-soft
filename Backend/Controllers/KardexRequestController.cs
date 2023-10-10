@@ -94,21 +94,19 @@ public class KardexRequestController : ControllerBase
     
     // Get all vouchers an transform them into a KardexRequestDTO
     [HttpGet("vouchers")]
-    public async Task<ActionResult<ResponseDTO<List<KardexRequestDto>>>> GetVouchers()
-    {   List<String> imageUrl = new List<string>();
+    public async Task<ActionResult<ResponseDTO<PaginationDTO<List<KardexRequestDto>>>>> GetVouchers([FromQuery] int page = 2, [FromQuery] int size = 5, [FromQuery] String order = "asc", [FromQuery] String orderBy = "requestId")
+    {   
         try
         {
-            var s3Objects = await _db.S3Objects.ToListAsync();
-            foreach (var s3Object in s3Objects)
-            {
-                var response = await _minioService.GetPreSignedUrl(s3Object.Bucket, s3Object.Filename);
-                imageUrl.Add(response);
-            }
-            // var response = await _minioService.GetPreSignedUrl(s3Object.Bucket, s3Object.Filename);
-            var requests = await _dbKardexRequest.TDS_kardex_request.ToListAsync();
+            var requests = await _dbKardexRequest.TDS_kardex_request
+                .Skip(page * size)
+                .Take(size)
+                .ToListAsync();
             var vouchers = new List<KardexRequestDto>();
             for (var i = 0; i < requests.Count; i++)
             {
+                var s3Object = await _db.S3Objects.FindAsync(requests[i].s3_object_S3_object_id);
+                var response = await _minioService.GetPreSignedUrl(s3Object.Bucket, s3Object.Filename);
                 var voucher = new KardexRequestDto
                 {
                     id = requests[i].id,
@@ -117,12 +115,21 @@ public class KardexRequestController : ControllerBase
                     detail = new KardexRequestDetailDto
                     {
                         reason = requests[i].reason,
-                        image =  imageUrl[i]
+                        image =  response
                     }
                 };
                 vouchers.Add(voucher);
             }
-            return Ok(new ResponseDTO<List<KardexRequestDto>>(vouchers, null, true));
+            //GET TOTAL ELEMENTS IN A QUERY FROM KARDEX REQUEST
+            var totalElements = await _dbKardexRequest.TDS_kardex_request.CountAsync();
+            var pagination = new PaginationDTO<KardexRequestDto>
+            {
+
+                Content = vouchers,
+                TotalElements = totalElements
+            };
+            
+            return Ok(new ResponseDTO<PaginationDTO<KardexRequestDto>>(pagination, null, true));
         }
         catch (Exception e)
         {
