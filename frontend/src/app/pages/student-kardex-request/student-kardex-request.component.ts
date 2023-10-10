@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RequestKardex} from "../../models/RequestKardex";
 import {RequestKardexService} from "../../services/request-kardex-service/request-kardex.service";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./student-kardex-request.component.sass']
 })
 
-export class StudentKardexRequestComponent {
+export class StudentKardexRequestComponent implements OnInit{
 
 
 
