@@ -6,6 +6,12 @@
 # Visual Studio Code
 .vscode
 
+# environment variables
+.env
+
+# compiled output
+out/
+
 # User-specific files
 *.rsuser
 *.suo

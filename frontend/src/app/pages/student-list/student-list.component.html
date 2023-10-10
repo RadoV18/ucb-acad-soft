@@ -1,1 +1,20 @@
-<p>student-list works!</p>
+<mat-card class="custom-card">
+  <mat-card-title>Seleccione el semestre</mat-card-title>
+  <mat-card-content>
+    <mat-form-field>
+      <mat-label>Semestre</mat-label>
+      <mat-select (selectionChange)="onSemesterChange($event)">
+        <mat-option *ngFor="let semester of semesters" [value]="semester.semesterId">
+          {{semester.semesterName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </mat-card-content>
+</mat-card>
+
+<mat-tab-group *ngIf="selectedSemesterId > 0">
+  <mat-tab *ngFor="let subject of subjects" [label]="subject.description">
+    <app-student-list-table [subjectId]="subject.subjectId" [semesterId]="selectedSemesterId" [professorId]="professorId"></app-student-list-table>
+  </mat-tab>
+</mat-tab-group>

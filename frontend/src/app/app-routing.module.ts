@@ -4,13 +4,28 @@ import { ProfessorScheduleComponent } from './pages/professor-schedule/professor
 import { StudentScheduleComponent } from './pages/student-schedule/student-schedule.component';
 import { StudentListComponent } from './pages/student-list/student-list.component';
 import { StudentKardexComponent } from './pages/student-kardex/student-kardex.component';
+import {StudentKardexRequestComponent} from "./pages/student-kardex-request/student-kardex-request.component";
+import {StudentAttendanceComponent} from "./pages/student-attendance/student-attendance.component";
+import {NewRequestComponent} from "./components/new-request/new-request.component";
 
 const routes: Routes = [
-  { path: 'professor/schedule', component: ProfessorScheduleComponent },
-  { path: 'student/schedule', component: StudentScheduleComponent },
-  { path: 'student/list', component: StudentListComponent },
-  { path: 'student/kardex', component: StudentKardexComponent },
-
+  {
+    path: 'professor',
+    children: [
+      { path: 'schedule', component: ProfessorScheduleComponent },
+    ],
+  },
+  {
+    path: 'student',
+    children: [
+      { path: 'schedule', component: StudentScheduleComponent },
+      { path: 'list', component: StudentListComponent },
+      { path: 'kardex', component: StudentKardexComponent },
+      { path: 'request/kardex', component: StudentKardexRequestComponent },
+      { path: 'attendance', component: StudentAttendanceComponent },
+      { path: 'request/kardex/new', component: NewRequestComponent },
+    ],
+  },
 ];
 
 @NgModule({
