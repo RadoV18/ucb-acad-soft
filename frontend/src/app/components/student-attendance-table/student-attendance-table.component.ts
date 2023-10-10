@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AttendanceDto} from "../../dto/attendance.dto";
 import {StudentAttendanceService} from "../../services/student-attendance.service";
+import {StudentAttendanceResumeDto} from "../../dto/student-attendance-resume.dto";
 
 @Component({
   selector: 'app-student-attendance-table',
@@ -11,11 +12,17 @@ export class StudentAttendanceTableComponent implements OnInit {
   @Input() professorId: number = 0;
   @Input() subjectId: number = 0;
   @Input() semesterId: number = 0;
-
+  @Input() subjectDescription: string = '';
   attendanceList: AttendanceDto[] | undefined;
   displayedColumns: string[] = ['index', 'name'];
   dates: Date[] = [];
   dataDisplay: any = [];
+  isAttendanceResumeActive: boolean = false;
+
+  // Attendance resume
+  attendanceListResume: StudentAttendanceResumeDto[] | undefined;
+  displayedColumnsResume: string[] = ['index', 'name', 'numberOfAttendances', 'numberOfAbsences', 'attendancePercentage', 'attendanceScore'];
+
 
 
   constructor(private studentAttendanceService: StudentAttendanceService) {
@@ -69,7 +76,45 @@ export class StudentAttendanceTableComponent implements OnInit {
     console.log(this.dataDisplay);
   }
 
-  downloadCSV() {
+  showAttendanceResume() {
+    this.isAttendanceResumeActive = true;
+    this.studentAttendanceService.getAttendanceResumeBySubjectIdAndSemesterId(this.subjectId, this.semesterId).subscribe({
+      next: (response) => {
+        console.log(response.data);
+        this.attendanceListResume = response.data;
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
+  }
 
+  hideAttendanceResume() {
+    this.isAttendanceResumeActive = false;
+  }
+  downloadCSV() {
+    this.studentAttendanceService.getStudentAttendanceResumeCSVBySubjectIdAndSemesterId(this.subjectId, this.semesterId).subscribe({
+      next: (response) => {
+        // console.log(response.data);
+        // window.open(response.data.downloadLink);
+        fetch(response.data.downloadLink).then(res => res.blob()).then(blob => {
+          // Create a new blob object using the response data of the onload object
+          const blobData = new Blob([blob], { type: 'text/csv' });
+          // Create a link element
+          const anchor = document.createElement('a');
+          // Create a reference to the object URL
+          anchor.href = window.URL.createObjectURL(blobData);
+          // Set the filename that will be downloaded
+          anchor.download = `RESUMEN DE ASISTENCIA ${this.subjectDescription}.csv`;
+          // Trigger the download by simulating click
+          anchor.click();
+          // Revoking the object URL to free up memory
+          window.URL.revokeObjectURL(anchor.href);
+        });
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
   }
 }
