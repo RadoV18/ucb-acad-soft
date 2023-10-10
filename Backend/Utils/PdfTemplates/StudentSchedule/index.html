@@ -82,19 +82,19 @@
         <tbody>
             <tr>
                 <td>Doc. de Identidad</td>
-                <td>6963744</td>
+                <td>{{ .ci }}</td>
             </tr>
             <tr>
                 <td>Nombre:</td>
-                <td>Radomir Luis Vladislavic Nolasco</td>
+                <td>{{ .name }}</td>
             </tr>
             <tr>
                 <td>Carrera</td>
-                <td>Ingeniería de Sistemas</td>
+                <td>{{ .career }}</td>
             </tr>
             <tr>
                 <td>Periodo Académico</td>
-                <td>2-2023</td>
+                <td>{{ .period }}</td>
             </tr>
         </tbody>
     </table>
@@ -320,9 +320,9 @@
         '#746496',
         '#747474',
         '#967110',
-				'#3FB9B5',
-				'#414B83',
-				'#6C0052',
+		'#3FB9B5',
+		'#414B83',
+		'#6C0052',
     ];
     const subjectColors = {};
     let currentColor = 0;
