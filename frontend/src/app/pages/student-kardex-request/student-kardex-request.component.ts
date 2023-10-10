@@ -6,11 +6,15 @@ import {DailogService} from "../../services/dialog/dailog.service";
 import {Router} from "@angular/router";
 import {KardexService} from "../../services/kardex-sevice/kardex.service";
 import {MatPaginatorIntl} from "@angular/material/paginator";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-student-kardex-request',
   templateUrl: './student-kardex-request.component.html',
-  styleUrls: ['./student-kardex-request.component.sass']
+  styleUrls: ['./student-kardex-request.component.sass'],
+  providers: [
+    { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() }
+  ]
 })
 
 export class StudentKardexRequestComponent implements OnInit{
@@ -24,14 +28,13 @@ export class StudentKardexRequestComponent implements OnInit{
     'requestDetail'
   ];
 
-  dataSource : RequestKardex[] = [];
+  dataSource = new MatTableDataSource<RequestKardex>();
 
-  // Pagination
   orderBy: string = 'id';
   order: string = 'asc';
   page: number = 0;
   size: number = 10;
-  totalElements: number = 0;
+  totalElements: number = 100;
 
   constructor(private requestKardexService: RequestKardexService, private dialog: DailogService, private router: Router) {
   }
@@ -71,7 +74,7 @@ export class StudentKardexRequestComponent implements OnInit{
   getData() {
     this.requestKardexService.getMyKardexRequests(this.page, this.size, this.order, this.orderBy).subscribe({
       next: (data) => {
-        this.dataSource = data.data;
+        this.dataSource.data = data.data.content;
       },
       error: (error) => {
         console.log(error);
