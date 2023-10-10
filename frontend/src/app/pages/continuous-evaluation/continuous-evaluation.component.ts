@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { StudentContinuousEvaluation, Subject } from 'src/app/interfaces/interfaces';
+import { StudentContinuousEvaluation, Subject, SubjectContinuousGrades } from 'src/app/interfaces/interfaces';
+import { SubjectsService } from 'src/app/services/subjects.service';
 
 @Component({
   selector: 'app-continuous-evaluation',
@@ -56,7 +57,13 @@ export class ContinuousEvaluationComponent {
   displayedColumns: string[] = [];
   tasksColumns: string[] = [];
 
-  subject : Subject;
+  subject : Subject = {
+    name: '',
+    code: '',
+    instructor: '',
+    parallel: '',
+    classes: []
+  };
 
   getTaskGrade (student : StudentContinuousEvaluation, taskName : string) {
     const evaluation = student.continuousEvaluation.find(evaluation => evaluation.name === taskName);
@@ -67,24 +74,22 @@ export class ContinuousEvaluationComponent {
     return 0;
   }
 
-  constructor() { 
-    this.subject = {
-      name: "Programacion 1",
-      code: "CC3001",
-      instructor: "Juan Perez",
-      parallel: "1",
-      classes: []
-    }
+  constructor(private subjectsService: SubjectsService) { 
+    this.subjectsService.fetchSubjectContinuousEvaluation("").subscribe((response: SubjectContinuousGrades) => {   
+      this.evaluations = response.students;
+      this.subject = response.subject
 
-    this.displayedColumns.push('name');
+      this.displayedColumns.push('name');
 
-    if (this.evaluations.length > 0) {
-      for (let i = 0; i < this.evaluations[0].continuousEvaluation.length; i++) {
-        this.tasksColumns.push(this.evaluations[0].continuousEvaluation[i].name);
-        this.displayedColumns.push(this.evaluations[0].continuousEvaluation[i].name);
+      if (this.evaluations.length > 0) {
+        for (let i = 0; i < this.evaluations[0].continuousEvaluation.length; i++) {
+          this.tasksColumns.push(this.evaluations[0].continuousEvaluation[i].name);
+          this.displayedColumns.push(this.evaluations[0].continuousEvaluation[i].name);
+        }
       }
-    }
 
-    this.displayedColumns.push('finalGrade');
+      this.displayedColumns.push('finalGrade');
+
+    });
   }
 }

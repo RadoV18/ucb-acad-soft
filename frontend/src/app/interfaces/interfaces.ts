@@ -34,3 +34,9 @@ export interface StudentContinuousEvaluation {
     continuousEvaluation: ContinuousEvaluation[]
     finalGrade: number
 }
+
+
+export interface SubjectContinuousGrades {
+    subject: Subject
+    students: StudentContinuousEvaluation[]
+}
