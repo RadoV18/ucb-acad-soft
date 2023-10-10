@@ -135,6 +135,7 @@ public class StudentController : ControllerBase
                         attendanceDict[studentName] = new StudentAttendanceResumeDTO
                         {
                             FullName = studentName,
+                            TotalNumberOfClasses = studentsAttendance.Count,
                             NumberOfAttendances = 0,
                             NumberOfAbsences = 0,
                             AttendancePercentage = 0,
@@ -164,7 +165,8 @@ public class StudentController : ControllerBase
                 studentAttendanceResume.AttendanceScore =
                     Math.Round(studentAttendanceResume.AttendancePercentage / 10, 2);
             }
-
+            
+            
             // Sort by last name and first name
             var studentsAttendanceResumeList = attendanceDict.Values.ToList();
             studentsAttendanceResumeList.Sort((student1, student2) =>
@@ -210,6 +212,7 @@ public class StudentController : ControllerBase
                         attendanceDict[studentName] = new StudentAttendanceResumeDTO
                         {
                             FullName = studentName,
+                            TotalNumberOfClasses = studentsAttendance.Count,
                             NumberOfAttendances = 0,
                             NumberOfAbsences = 0,
                             AttendancePercentage = 0,

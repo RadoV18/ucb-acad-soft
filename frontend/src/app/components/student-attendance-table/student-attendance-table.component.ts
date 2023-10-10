@@ -21,7 +21,7 @@ export class StudentAttendanceTableComponent implements OnInit {
 
   // Attendance resume
   attendanceListResume: StudentAttendanceResumeDto[] | undefined;
-  displayedColumnsResume: string[] = ['index', 'name', 'numberOfAttendances', 'numberOfAbsences', 'attendancePercentage', 'attendanceScore'];
+  displayedColumnsResume: string[] = ['index', 'name', 'totalNumberOfClasses', 'numberOfAttendances', 'numberOfAbsences', 'attendancePercentage', 'attendanceScore'];
 
 
 
