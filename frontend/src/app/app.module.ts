@@ -35,6 +35,7 @@ import {DialogComponent} from "./components/dialog/dialog.component";
 import {NewRequestComponent} from "./components/new-request/new-request.component";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {ReactiveFormsModule} from "@angular/forms";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -74,7 +75,9 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatTableModule,
     MatButtonToggleModule,
     ReactiveFormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSortModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
