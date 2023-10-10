@@ -2,6 +2,7 @@ using Backend.DTOs;
 using Backend.Models;
 using Backend.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Controllers;
 
@@ -90,4 +91,43 @@ public class KardexRequestController : ControllerBase
             return BadRequest(e.Message);
         }
     }
+    
+    // Get all vouchers an transform them into a KardexRequestDTO
+    [HttpGet("vouchers")]
+    public async Task<ActionResult<ResponseDTO<List<KardexRequestDto>>>> GetVouchers()
+    {   List<String> imageUrl = new List<string>();
+        try
+        {
+            var s3Objects = await _db.S3Objects.ToListAsync();
+            foreach (var s3Object in s3Objects)
+            {
+                var response = await _minioService.GetPreSignedUrl(s3Object.Bucket, s3Object.Filename);
+                imageUrl.Add(response);
+            }
+            // var response = await _minioService.GetPreSignedUrl(s3Object.Bucket, s3Object.Filename);
+            var requests = await _dbKardexRequest.TDS_kardex_request.ToListAsync();
+            var vouchers = new List<KardexRequestDto>();
+            for (var i = 0; i < requests.Count; i++)
+            {
+                var voucher = new KardexRequestDto
+                {
+                    id = requests[i].id,
+                    date = requests[i].date,
+                    status = requests[i].request_state,
+                    detail = new KardexRequestDetailDto
+                    {
+                        reason = requests[i].reason,
+                        image =  imageUrl[i]
+                    }
+                };
+                vouchers.Add(voucher);
+            }
+            return Ok(new ResponseDTO<List<KardexRequestDto>>(vouchers, null, true));
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+    
 }
