@@ -75,6 +75,7 @@ export class StudentKardexRequestComponent implements OnInit{
     this.requestKardexService.getMyKardexRequests(this.page, this.size, this.order, this.orderBy).subscribe({
       next: (data) => {
         this.dataSource.data = data.data.content;
+        this.totalElements = data.data.totalElements;
       },
       error: (error) => {
         console.log(error);
