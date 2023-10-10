@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RequestKardex} from "../../models/RequestKardex";
 import {RequestKardexService} from "../../services/request-kardex-service/request-kardex.service";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {DailogService} from "../../services/dialog/dailog.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-student-kardex-request',
@@ -8,7 +11,7 @@ import {RequestKardexService} from "../../services/request-kardex-service/reques
   styleUrls: ['./student-kardex-request.component.sass']
 })
 
-export class StudentKardexRequestComponent {
+export class StudentKardexRequestComponent implements OnInit{
 
 
 
@@ -19,57 +22,13 @@ export class StudentKardexRequestComponent {
     'requestDetail'
   ];
 
-  dataSource : RequestKardex[] = [
-    // {
-    //   id: 1,
-    //   date: "2021-05-01",
-    //   status: "Pendiente",
-    //   detail: {
-    //     reason: "Porque si",
-    //     image: "url"
-    //   }
-    // },
-    // {
-    //   id: 2,
-    //   date: "2021-05-01",
-    //   status: "Pendiente",
-    //   detail: {
-    //     reason: "Porque si",
-    //     image: "url"
-    //   }
-    // },
-    // {
-    //   id: 3,
-    //   date: "2021-05-01",
-    //   status: "Pendiente",
-    //   detail: {
-    //     reason: "Porque si",
-    //     image: "url"
-    //   }
-    // },
-    // {
-    //   id: 4,
-    //   date: "2021-05-01",
-    //   status: "Rechazado",
-    //   detail: {
-    //     reason: "Porque si",
-    //     image: "url"
-    //   }
-    // },
-    // {
-    //   id: 5,
-    //   date: "2021-05-01",
-    //   status: "Aceptado",
-    //   detail: {
-    //     reason: "Porque si",
-    //     image: "url"
-    //   }
-    // },
-  ];
+  dataSource : RequestKardex[] = [];
 
 
-  constructor(private requestKardexService: RequestKardexService) {
+  constructor(private requestKardexService: RequestKardexService, private dialog: DailogService, private router: Router) {
   }
+
+
 
   ngOnInit(): void {
     this.requestKardexService.getMyKardexRequests().subscribe(
@@ -78,6 +37,14 @@ export class StudentKardexRequestComponent {
         this.dataSource = response.data;
       }}
     );
+  }
+
+  openDialog(request: RequestKardex) {
+    this.dialog.open(request);
+  }
+
+  sendToNewRequest() {
+    this.router.navigate(['/student/request/kardex/new']);
   }
 
 }

@@ -6,6 +6,7 @@ import { StudentListComponent } from './pages/student-list/student-list.componen
 import { StudentKardexComponent } from './pages/student-kardex/student-kardex.component';
 import {StudentKardexRequestComponent} from "./pages/student-kardex-request/student-kardex-request.component";
 import {StudentAttendanceComponent} from "./pages/student-attendance/student-attendance.component";
+import {NewRequestComponent} from "./components/new-request/new-request.component";
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: 'kardex', component: StudentKardexComponent },
       { path: 'request/kardex', component: StudentKardexRequestComponent },
       { path: 'attendance', component: StudentAttendanceComponent },
+      { path: 'request/kardex/new', component: NewRequestComponent },
     ],
   },
 ];

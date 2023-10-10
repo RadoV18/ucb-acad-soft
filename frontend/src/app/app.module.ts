@@ -30,6 +30,11 @@ import { StudentKardexRequestComponent } from './pages/student-kardex-request/st
 import { StudentAttendanceComponent } from './pages/student-attendance/student-attendance.component';
 import { StudentAttendanceTableComponent } from './components/student-attendance-table/student-attendance-table.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatDialogModule} from "@angular/material/dialog";
+import {DialogComponent} from "./components/dialog/dialog.component";
+import {NewRequestComponent} from "./components/new-request/new-request.component";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -45,26 +50,32 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     ClassItemComponent,
     StudentKardexRequestComponent,
     StudentAttendanceComponent,
-    StudentAttendanceTableComponent
+    StudentAttendanceTableComponent,
+    DialogComponent,
+    StudentKardexRequestComponent,
+    NewRequestComponent
   ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        CommonModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        CommonModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatIconModule,
-        MatCardModule,
-        MatTabsModule,
-        MatInputModule,
-        MatSelectModule,
-        MatGridListModule,
-        MatTableModule,
-        MatCheckboxModule
-    ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    CommonModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    CommonModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCardModule,
+    MatTabsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatGridListModule,
+    MatDialogModule,
+    MatTableModule,
+    MatButtonToggleModule,
+    ReactiveFormsModule,
+    MatCheckboxModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -19,6 +19,10 @@ builder.Services.AddCors(options => options.AddPolicy(
     )
 );
 
+// add database environment variables
+builder.Configuration.AddEnvironmentVariables(prefix: "DB_");
+
+
 var app = builder.Build();
 
 app.UseCors("CorsPolicy");
