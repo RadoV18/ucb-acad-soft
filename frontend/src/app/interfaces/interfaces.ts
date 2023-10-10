@@ -22,3 +22,15 @@ export interface Subject {
     parallel: string
     classes: ClassInfo[]
 }
+
+
+export interface ContinuousEvaluation { 
+    name : string
+    grade : number
+}
+
+export interface StudentContinuousEvaluation {
+    name: string
+    continuousEvaluation: ContinuousEvaluation[]
+    finalGrade: number
+}

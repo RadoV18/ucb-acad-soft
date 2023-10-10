@@ -17,6 +17,7 @@ import { StudentKardexComponent } from './pages/student-kardex/student-kardex.co
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { ScheduleDayComponent } from './components/schedule/schedule-day/schedule-day.component';
 import { ClassItemComponent } from './components/schedule/class-item/class-item.component';
+import { ContinuousEvaluationComponent } from './pages/continuous-evaluation/continuous-evaluation.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ClassItemComponent } from './components/schedule/class-item/class-item.
     StudentKardexComponent,
     ScheduleComponent,
     ScheduleDayComponent,
-    ClassItemComponent
+    ClassItemComponent,
+    ContinuousEvaluationComponent
   ],
   imports: [
     BrowserModule,

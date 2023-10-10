@@ -4,9 +4,11 @@ import { ProfessorScheduleComponent } from './pages/professor-schedule/professor
 import { StudentScheduleComponent } from './pages/student-schedule/student-schedule.component';
 import { StudentListComponent } from './pages/student-list/student-list.component';
 import { StudentKardexComponent } from './pages/student-kardex/student-kardex.component';
+import { ContinuousEvaluationComponent } from './pages/continuous-evaluation/continuous-evaluation.component';
 
 const routes: Routes = [
   { path: 'professor/schedule', component: ProfessorScheduleComponent },
+  { path: 'profesor/evaluacion-continua', component: ContinuousEvaluationComponent },
   { path: 'student/schedule', component: StudentScheduleComponent },
   { path: 'student/list', component: StudentListComponent },
   { path: 'student/kardex', component: StudentKardexComponent },
