@@ -19,6 +19,7 @@ export class KardexService {
     return this.http.get<ResponseDto<SemesterResume>>(`${this.baseUrl}`)
   }
 
-
-
+  public getStudentKardexPDF(): Observable<ResponseDto<string>> {
+    return this.http.get<ResponseDto<string>>(`${this.baseUrl}/pdf`)
+  }
 }

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Subject } from 'src/app/interfaces/interfaces';
 import { SubjectsService } from 'src/app/services/subjects.service';
+import {StudentListService} from "../../services/student-list.service";
+import {ResponseDto} from "../../dto/response.dto";
 
 @Component({
   selector: 'app-student-schedule',
@@ -13,7 +15,7 @@ export class StudentScheduleComponent {
 
   displayedColumns: string[] = ['code', 'parallel', 'name', 'instructor'];
 
-  constructor(private subjectsService: SubjectsService) { 
+  constructor(private subjectsService: SubjectsService, private studentListService: StudentListService) {
 
   }
 
@@ -23,5 +25,12 @@ export class StudentScheduleComponent {
 
       console.log(this.subjects)
     })
+  }
+
+  downloadReport(): void {
+    this.studentListService.getStudentSchedulePDF().subscribe((response: ResponseDto<string>) => {
+      const data = response.data;
+      window.open(data, "_blank")
+    });
   }
 }
