@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
 import {KardexService} from "../../services/kardex-sevice/kardex.service";
 import {MatPaginatorIntl} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-student-kardex-request',
@@ -22,10 +23,10 @@ export class StudentKardexRequestComponent implements OnInit{
 
 
   displayedColumns: string[] = [
-    'requestId',
-    'requestDate',
-    'requestStatus',
-    'requestDetail'
+    'id',
+    'date',
+    'request_state',
+    'request_detail',
   ];
 
   dataSource = new MatTableDataSource<RequestKardex>();
@@ -36,7 +37,20 @@ export class StudentKardexRequestComponent implements OnInit{
   size: number = 10;
   totalElements: number = 100;
 
-  constructor(private requestKardexService: RequestKardexService, private dialog: DailogService, private router: Router) {
+  filterForm: FormGroup;
+
+  dateFrom: string = '';
+  dateTo: string = '';
+  requestState: string = '';
+
+
+
+  constructor(private requestKardexService: RequestKardexService, private dialog: DailogService, private router: Router, private formBuilder: FormBuilder) {
+    this.filterForm = this.formBuilder.group({
+      dateFrom: [''],
+      dateTo: [''],
+      requestState: [''],
+    });
   }
 
 
@@ -72,7 +86,7 @@ export class StudentKardexRequestComponent implements OnInit{
   }
 
   getData() {
-    this.requestKardexService.getMyKardexRequests(this.page, this.size, this.order, this.orderBy).subscribe({
+    this.requestKardexService.getMyKardexRequests(this.page, this.size, this.order, this.orderBy, this.dateFrom, this.dateTo, this.requestState).subscribe({
       next: (data) => {
         this.dataSource.data = data.data.content;
         this.totalElements = data.data.totalElements;
@@ -81,6 +95,18 @@ export class StudentKardexRequestComponent implements OnInit{
         console.log(error);
       }
     });
+  }
+
+  onFilter() {
+    this.page = 0;
+    this.dateFrom = this.filterForm.get('dateFrom')?.value ?? '';
+    this.dateTo = this.filterForm.get('dateTo')?.value ?? '';
+    this.requestState = this.filterForm.get('requestState')?.value ?? '';
+    this.getData();
+  }
+
+  onClear() {
+    this.filterForm?.reset();
   }
 }
 

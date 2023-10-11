@@ -24,8 +24,8 @@ export class RequestKardexService {
     return this.formGroup;
   }
 
-  public getMyKardexRequests(page: number, size: number, order: string, orderBy: string) : Observable<ResponseDto<PaginationDto<RequestKardex[]>>> {
-    return this.http.get<ResponseDto<PaginationDto<RequestKardex[]>>>(`${this.baseUrl}?page=${page}&size=${size}&order=${order}&orderBy=${orderBy}`);
+  public getMyKardexRequests(page: number, size: number, order: string, orderBy: string, dateFrom: string, dateTo: string, requestState: string) : Observable<ResponseDto<PaginationDto<RequestKardex[]>>> {
+    return this.http.get<ResponseDto<PaginationDto<RequestKardex[]>>>(`${this.baseUrl}?page=${page}&size=${size}&order=${order}&orderBy=${orderBy}&dateFrom=${dateFrom}&dateTo=${dateTo}&requestState=${requestState}`);
   }
 
   newKardexRequest(reason: string, file: File | null)  {

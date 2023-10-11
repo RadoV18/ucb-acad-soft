@@ -94,14 +94,50 @@ public class KardexRequestController : ControllerBase
     
     // Get all vouchers an transform them into a KardexRequestDTO
     [HttpGet("vouchers")]
-    public async Task<ActionResult<ResponseDTO<PaginationDTO<List<KardexRequestDto>>>>> GetVouchers([FromQuery] int page = 2, [FromQuery] int size = 5, [FromQuery] String order = "asc", [FromQuery] String orderBy = "requestId")
+    public async Task<ActionResult<ResponseDTO<PaginationDTO<List<KardexRequestDto>>>>> GetVouchers(
+        [FromQuery] int page = 0, [FromQuery] int size = 10, [FromQuery] string order = "asc", [FromQuery] string orderBy = "requestId",
+        [FromQuery] string dateFrom = "", [FromQuery] string dateTo = "", [FromQuery] string requestState = ""
+        )
     {   
         try
         {
-            var requests = await _dbKardexRequest.TDS_kardex_request
-                .Skip(page * size)
-                .Take(size)
-                .ToListAsync();
+            var requests = new List<TDSKardexRequest>();
+            var query = _dbKardexRequest.TDS_kardex_request.AsQueryable();
+            var totalElements = 0;
+            // Apply date range filter
+
+            if (dateFrom != "" && dateTo != "")
+            {
+                query = query.Where(e =>
+                    EF.Property<DateTime>(e, "date") >= DateTime.Parse(dateFrom) &&
+                    EF.Property<DateTime>(e, "date") <= DateTime.Parse(dateTo));
+            }
+            
+            if (requestState != "")
+            {
+                query = query.Where(e => e.request_state == requestState);
+            }
+            
+            if (order == "desc")
+            {
+                requests = await query
+                    .OrderByDescending(e =>  EF.Property<object>(e, orderBy))
+                    .Skip(page * size)
+                    .Take(size)
+                    .ToListAsync();
+            }
+            else
+            {
+                requests = await query
+                    .OrderBy(e =>  EF.Property<object>(e, orderBy))
+                    .Skip(page * size)
+                    .Take(size)
+                    .ToListAsync();
+            }
+            
+            totalElements = await query
+                .CountAsync();
+            
             var vouchers = new List<KardexRequestDto>();
             for (var i = 0; i < requests.Count; i++)
             {
@@ -120,8 +156,6 @@ public class KardexRequestController : ControllerBase
                 };
                 vouchers.Add(voucher);
             }
-            //GET TOTAL ELEMENTS IN A QUERY FROM KARDEX REQUEST
-            var totalElements = await _dbKardexRequest.TDS_kardex_request.CountAsync();
             var pagination = new PaginationDTO<KardexRequestDto>
             {
 
