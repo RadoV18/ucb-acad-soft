@@ -8,7 +8,7 @@ namespace Backend.Services;
 public class SubjectAndSemesterGradeService
 {
     private readonly RestClient _client = new RestClient(
-        Environment.GetEnvironmentVariable("MOCKOON_ENDPOINT") ??
+        // Environment.GetEnvironmentVariable("MOCKOON_ENDPOINT") ??
         "http://localhost:8080/api/v1"
     );
     
@@ -47,6 +47,25 @@ public class SubjectAndSemesterGradeService
         if (response.StatusCode == HttpStatusCode.OK && response.Content != null) 
         {
             var responseDto = JsonConvert.DeserializeObject<ResponseDTO<List<SubjectPartialDTO>>>(response.Content);
+            return responseDto!.Data!;
+        }
+        else
+        {
+            throw new Exception("Error while fetching subjects");
+        }
+    }
+
+    public async Task<List<SubjectScheduleDTO>> GetSubjectsByStudentId(int studentId)
+    {
+        var request = new RestRequest($"subjects/students/{studentId}");
+        request.AddHeader("Accept", "application/json");
+        request.AddHeader("Content-Type", "application/json");
+        
+        var response = await _client.GetAsync(request);
+
+        if (response.StatusCode == HttpStatusCode.OK && response.Content != null) 
+        {
+            var responseDto = JsonConvert.DeserializeObject<ResponseDTO<List<SubjectScheduleDTO>>>(response.Content);
             return responseDto!.Data!;
         }
         else

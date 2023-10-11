@@ -72,15 +72,15 @@
         <tbody>
             <tr>
                 <td>Doc. de Identidad</td>
-                <td>{{ .ci }}</td>
+                <td>{{ .student.ci }}</td>
             </tr>
             <tr>
                 <td>Nombre:</td>
-                <td>{{ .name }}</td>
+                <td>{{ .student.firstName }} {{ .student.lastName }}</td>
             </tr>
             <tr>
                 <td>Carrera</td>
-                <td>{{ .career }}</td>
+                <td>{{ .student.major }}</td>
             </tr>
             <tr>
                 <td>Periodo Académico</td>
@@ -273,7 +273,7 @@
 
     // fill subjects
     const subjectsTbody = document.getElementById('subjects-tbody');
-    data.subjects.forEach(subject => {
+    data.forEach(subject => {
         const tr = document.createElement('tr');
         const period =  {{ .period }}
         tr.innerHTML = `
@@ -314,7 +314,7 @@
     const subjectColors = {};
     let currentColor = 0;
 
-    data.subjects.forEach(subject => {
+    data.forEach(subject => {
         const subjectColor = colors[currentColor];
         currentColor = (currentColor + 1) % colors.length;
         subject.schedule.forEach(line => {

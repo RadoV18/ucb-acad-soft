@@ -8,7 +8,7 @@ namespace Backend.Services;
 public class StudentAndProfessorService {
     
     private readonly RestClient _client = new RestClient(
-        Environment.GetEnvironmentVariable("MOCKOON_ENDPOINT") ??
+        // Environment.GetEnvironmentVariable("MOCKOON_ENDPOINT") ??
         "http://localhost:8080/api/v1"
     );
     
@@ -77,6 +77,27 @@ public class StudentAndProfessorService {
         else
         {
             throw new Exception("Error while fetching students");
+        }
+    }
+
+    public async Task<StudentDTO> GetStudentById(int studentId)
+    {
+        var request = new RestRequest($"students/{studentId}");
+        // Add headers
+        request.AddHeader("Accept", "application/json");
+        request.AddHeader("Content-Type", "application/json");
+        
+        var response = await _client.GetAsync(request);
+
+        // Check response
+        if (response.StatusCode == HttpStatusCode.OK && response.Content != null)
+        {
+            var responseDto = JsonConvert.DeserializeObject<ResponseDTO<StudentDTO>>(response.Content);
+            return responseDto!.Data;
+        }
+        else
+        {
+            throw new Exception("Error while fetching student");
         }
     }
 }
