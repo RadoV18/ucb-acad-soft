@@ -94,21 +94,55 @@ public class KardexRequestController : ControllerBase
     
     // Get all vouchers an transform them into a KardexRequestDTO
     [HttpGet("vouchers")]
-    public async Task<ActionResult<ResponseDTO<List<KardexRequestDto>>>> GetVouchers()
-    {   List<String> imageUrl = new List<string>();
+    public async Task<ActionResult<ResponseDTO<PaginationDTO<List<KardexRequestDto>>>>> GetVouchers(
+        [FromQuery] int page = 0, [FromQuery] int size = 10, [FromQuery] string order = "asc", [FromQuery] string orderBy = "requestId",
+        [FromQuery] string dateFrom = "", [FromQuery] string dateTo = "", [FromQuery] string requestState = ""
+        )
+    {   
         try
         {
-            var s3Objects = await _db.S3Objects.ToListAsync();
-            foreach (var s3Object in s3Objects)
+            var requests = new List<TDSKardexRequest>();
+            var query = _dbKardexRequest.TDS_kardex_request.AsQueryable();
+            var totalElements = 0;
+            // Apply date range filter
+
+            if (dateFrom != "" && dateTo != "")
             {
-                var response = await _minioService.GetPreSignedUrl(s3Object.Bucket, s3Object.Filename);
-                imageUrl.Add(response);
+                query = query.Where(e =>
+                    EF.Property<DateTime>(e, "date") >= DateTime.Parse(dateFrom) &&
+                    EF.Property<DateTime>(e, "date") <= DateTime.Parse(dateTo));
             }
-            // var response = await _minioService.GetPreSignedUrl(s3Object.Bucket, s3Object.Filename);
-            var requests = await _dbKardexRequest.TDS_kardex_request.ToListAsync();
+            
+            if (requestState != "")
+            {
+                query = query.Where(e => e.request_state == requestState);
+            }
+            
+            if (order == "desc")
+            {
+                requests = await query
+                    .OrderByDescending(e =>  EF.Property<object>(e, orderBy))
+                    .Skip(page * size)
+                    .Take(size)
+                    .ToListAsync();
+            }
+            else
+            {
+                requests = await query
+                    .OrderBy(e =>  EF.Property<object>(e, orderBy))
+                    .Skip(page * size)
+                    .Take(size)
+                    .ToListAsync();
+            }
+            
+            totalElements = await query
+                .CountAsync();
+            
             var vouchers = new List<KardexRequestDto>();
             for (var i = 0; i < requests.Count; i++)
             {
+                var s3Object = await _db.S3Objects.FindAsync(requests[i].s3_object_S3_object_id);
+                var response = await _minioService.GetPreSignedUrl(s3Object.Bucket, s3Object.Filename);
                 var voucher = new KardexRequestDto
                 {
                     id = requests[i].id,
@@ -117,12 +151,21 @@ public class KardexRequestController : ControllerBase
                     detail = new KardexRequestDetailDto
                     {
                         reason = requests[i].reason,
-                        image =  imageUrl[i]
+                        image =  response,
+                        deliverDate = requests[i].deliver_date
+                        
                     }
                 };
                 vouchers.Add(voucher);
             }
-            return Ok(new ResponseDTO<List<KardexRequestDto>>(vouchers, null, true));
+            var pagination = new PaginationDTO<KardexRequestDto>
+            {
+
+                Content = vouchers,
+                TotalElements = totalElements
+            };
+            
+            return Ok(new ResponseDTO<PaginationDTO<KardexRequestDto>>(pagination, null, true));
         }
         catch (Exception e)
         {

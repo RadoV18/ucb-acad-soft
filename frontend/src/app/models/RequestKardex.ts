@@ -9,4 +9,5 @@ export interface RequestKardex {
 export interface DetailRequestKardex {
   reason: string;
   image: string;
+  deliverDate: string
 }

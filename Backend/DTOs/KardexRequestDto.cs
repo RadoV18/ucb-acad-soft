@@ -7,4 +7,5 @@ public class KardexRequestDto
     public String status { get; set; } = null!;
     public KardexRequestDetailDto detail { get; set; } = null!;
     
+    
 }

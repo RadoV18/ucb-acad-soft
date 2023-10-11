@@ -5,6 +5,7 @@ import {ResponseDto} from "../../dto/response.dto";
 import {RequestKardex} from "../../models/RequestKardex";
 import {environment} from "../../../environments/environment";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {PaginationDto} from "../../dto/pagination.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,8 @@ export class RequestKardexService {
     return this.formGroup;
   }
 
-  public getMyKardexRequests() : Observable<ResponseDto<RequestKardex[]>> {
-    return this.http.get<ResponseDto<RequestKardex[]>>(`${this.baseUrl}`);
+  public getMyKardexRequests(page: number, size: number, order: string, orderBy: string, dateFrom: string, dateTo: string, requestState: string) : Observable<ResponseDto<PaginationDto<RequestKardex[]>>> {
+    return this.http.get<ResponseDto<PaginationDto<RequestKardex[]>>>(`${this.baseUrl}?page=${page}&size=${size}&order=${order}&orderBy=${orderBy}&dateFrom=${dateFrom}&dateTo=${dateTo}&requestState=${requestState}`);
   }
 
   newKardexRequest(reason: string, file: File | null)  {
