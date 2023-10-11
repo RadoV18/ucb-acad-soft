@@ -151,7 +151,9 @@ public class KardexRequestController : ControllerBase
                     detail = new KardexRequestDetailDto
                     {
                         reason = requests[i].reason,
-                        image =  response
+                        image =  response,
+                        deliverDate = requests[i].deliver_date
+                        
                     }
                 };
                 vouchers.Add(voucher);
