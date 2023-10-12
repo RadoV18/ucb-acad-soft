@@ -1,10 +1,66 @@
 <div>
 	<style>
 		* {
-			font-size: 12px;
+			font-size: 9px;
 		}
+
+		table {
+			border-collapse: collapse;
+		}
+
+		td {
+			padding: 4px;
+			height: 16px;
+		}
+
+		tr:nth-child(even) {
+			background-color: #e1e1e1;
+		}
+
+		#student-table td:nth-child(1) {
+			font-weight: bold;
+		}
+
+		#kardex-table {
+			width: 100%;
+		}
+
+		#kardex-table table {
+			width: 100%;
+		}
+
+		#kardex-table td:nth-child(1),
+		#kardex-table td:nth-child(2),
+		#kardex-table td:nth-child(3),
+		#kardex-table td:nth-child(5) {
+			text-align: center;
+			width: 6%;
+		}
+
+		#kardex-table td:nth-child(6),
+		#kardex-table td:nth-child(7),
+		#kardex-table td:nth-child(9),
+		#kardex-table td:nth-child(10) {
+			text-align: center;
+			width: 10%;
+		}
+
+		#kardex-table table tbody tr:last-child td:first-child {
+			text-align: right;
+		}
+
+		.header {
+			width: 100%;
+			text-align: center;
+			margin-top: 16px;
+			background-color: #0d2845;
+			color: white;
+			font-weight: bold;
+			padding: 4px 0;
+		}
+
 	</style>
-	<table>
+	<table id="student-table">
 		<tbody>
 			<tr>
 				<td>Doc. de Identidad:</td>
@@ -25,15 +81,14 @@
 		</tbody>
 	</table>
 	<div id="kardex-table">
-	
-
+	</div>
 <script>
 	const kardexTable = document.getElementById('kardex-table')
 	const data = {{ .kardex.data }}
 
 	data.forEach((sem) => {
 		const header = `
-			<div>
+			<div class="header">
 				<div>Periodo Académico: ${sem.academicPeriod}</div>
 				<div>Del: ${sem.initSemester} al ${sem.endSemester}</div>
 				<div>Carrera: ${sem.career}</div>
@@ -87,6 +142,7 @@
 			${header}
 			${tBody}
 		</div>
+		<hr/>
 		`;
 	})
 </script>
