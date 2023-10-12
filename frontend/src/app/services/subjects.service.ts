@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from '../interfaces/interfaces';
 import {environment} from "../../environments/environment";
+import { Subject, SubjectContinuousGrades } from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -14,4 +14,10 @@ export class SubjectsService {
   fetchSubjects() {
     return this.httpClient.get<Subject[]>(`${this.baseUrl}`);
   }
+
+  fetchSubjectContinuousEvaluation(subjectCode : string) {
+    return this.httpClient.get<SubjectContinuousGrades>(`http://localhost:5260/api/continuousgrades`)
+  }
+
+
 }

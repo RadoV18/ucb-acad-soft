@@ -7,12 +7,14 @@ import { StudentKardexComponent } from './pages/student-kardex/student-kardex.co
 import {StudentKardexRequestComponent} from "./pages/student-kardex-request/student-kardex-request.component";
 import {StudentAttendanceComponent} from "./pages/student-attendance/student-attendance.component";
 import {NewRequestComponent} from "./components/new-request/new-request.component";
+import { ContinuousEvaluationComponent } from './pages/continuous-evaluation/continuous-evaluation.component';
 
 const routes: Routes = [
   {
     path: 'professor',
     children: [
       { path: 'schedule', component: ProfessorScheduleComponent },
+      { path: 'continuous-evaluation', component: ContinuousEvaluationComponent },
     ],
   },
   {
