@@ -35,4 +35,8 @@ export class StudentListService {
   public getStudentListCSVBySubjectIdAndSemesterId(subjectId: number, semesterId: number): Observable<ResponseDto<FileDto>> {
     return this.http.get<ResponseDto<FileDto>>(`${this.baseUrl}/students/csv/subjects/${subjectId}?semesterId=${semesterId}`);
   }
+
+  public getStudentSchedulePDF(): Observable<ResponseDto<string>> {
+    return this.http.get<ResponseDto<string>>(`${this.baseUrl}/students/schedule`);
+  }
 }

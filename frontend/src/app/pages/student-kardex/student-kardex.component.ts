@@ -34,11 +34,7 @@ export class StudentKardexComponent implements OnInit {
 
    kardex: SemesterResume | any;
 
-
-
   constructor(private kardexService: KardexService) {
-
-
   }
 
   ngOnInit(): void {
@@ -49,9 +45,14 @@ export class StudentKardexComponent implements OnInit {
         this.kardex = response;
         console.log("Kardex");
         console.log(this.kardex);
-        // this.dataSource = new MatTableDataSource<any>(this.kardex);
       }}
     );
+  }
 
+  downloadReport(): void {
+    this.kardexService.getStudentKardexPDF().subscribe((response) => {
+      const data = response.data;
+      window.open(data, "_blank");
+    })
   }
 }

@@ -1,4 +1,7 @@
-<div *ngIf="kardex">
+<div *ngIf="kardex" class="kardex-container">
+  <div class="download-button">
+    <button mat-raised-button color="primary" (click)="downloadReport()">Descargar PDF</button>
+  </div>
   <div class="mat-elevation-z8" *ngFor="let semester of kardex.semesters">
     <div class="info-container">
       <p>Periodo Académico: {{ semester.academicPeriod }}</p>

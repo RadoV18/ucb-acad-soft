@@ -1,0 +1,149 @@
+<div>
+	<style>
+		* {
+			font-size: 9px;
+		}
+
+		table {
+			border-collapse: collapse;
+		}
+
+		td {
+			padding: 4px;
+			height: 16px;
+		}
+
+		tr:nth-child(even) {
+			background-color: #e1e1e1;
+		}
+
+		#student-table td:nth-child(1) {
+			font-weight: bold;
+		}
+
+		#kardex-table {
+			width: 100%;
+		}
+
+		#kardex-table table {
+			width: 100%;
+		}
+
+		#kardex-table td:nth-child(1),
+		#kardex-table td:nth-child(2),
+		#kardex-table td:nth-child(3),
+		#kardex-table td:nth-child(5) {
+			text-align: center;
+			width: 6%;
+		}
+
+		#kardex-table td:nth-child(6),
+		#kardex-table td:nth-child(7),
+		#kardex-table td:nth-child(9),
+		#kardex-table td:nth-child(10) {
+			text-align: center;
+			width: 10%;
+		}
+
+		#kardex-table table tbody tr:last-child td:first-child {
+			text-align: right;
+		}
+
+		.header {
+			width: 100%;
+			text-align: center;
+			margin-top: 16px;
+			background-color: #0d2845;
+			color: white;
+			font-weight: bold;
+			padding: 4px 0;
+		}
+
+	</style>
+	<table id="student-table">
+		<tbody>
+			<tr>
+				<td>Doc. de Identidad:</td>
+				<td>{{ .student.ci }}</td>
+			</tr>
+			<tr>
+				<td>Nombres:</td>
+				<td>{{ .student.firstName }}</td>
+			</tr>
+			<tr>
+				<td>Apellidos:</td>
+				<td>{{ .student.lastName }}</td>
+			</tr>
+			<tr>
+				<td>Carrera:</td>
+				<td>{{ .student.major }}</td>
+			</tr>
+		</tbody>
+	</table>
+	<div id="kardex-table">
+	</div>
+<script>
+	const kardexTable = document.getElementById('kardex-table')
+	const data = {{ .kardex.data }}
+
+	data.forEach((sem) => {
+		const header = `
+			<div class="header">
+				<div>Periodo Académico: ${sem.academicPeriod}</div>
+				<div>Del: ${sem.initSemester} al ${sem.endSemester}</div>
+				<div>Carrera: ${sem.career}</div>
+			</div>
+		`;
+		let tBody = `
+		 <table>
+			<thead>
+				<tr>
+					<th>SEDE</th>
+					<th>DPTO</th>
+					<th>SIGLA</th>
+					<th>ASIGNATURA</th>
+					<th>PAR.</th>
+					<th>CREDITAJE ACADÉMICO</th>
+					<th>EVALUACIÓN CONTINUA</th>
+					<th>OBSERVACIÓN</th>
+					<th>EVALUACIÓN FINAL</th>
+					<th>NOTA FINAL</th>
+				</tr>
+			</thead>
+			<tbody>
+		`;
+		let sum = 0.0;
+		sem.subjects.forEach((subject) => {
+			tBody += `
+			<tr>
+				<td>${subject.site}</td>
+				<td>${subject.careerSail}</td>
+				<td>${subject.subjectSail}</td>
+				<td>${subject.subjectName}</td>
+				<td>${subject.parallel}</td>
+				<td>${subject.academicCredits}</td>
+				<td>${subject.continuousScore}</td>
+				<td>${subject.reference.semester} - ${subject.reference.year } TURNO ${ subject.reference.turn }</td>
+				<td>${subject.finalTestScore}</td>
+				<td>${subject.finalScore}</td>
+			</tr>
+			`;
+			sum += subject.finalScore;
+		})
+		tBody += `
+			<tr>
+				<td colspan="9">Promedio</td>
+				<td>${Math.round((sum / sem.subjects.length) * 100) / 100}</td>
+			</tr>
+		</tbody>
+		</table>`;
+		kardexTable.innerHTML += `
+		<div>
+			${header}
+			${tBody}
+		</div>
+		<hr/>
+		`;
+	})
+</script>
+</div>
