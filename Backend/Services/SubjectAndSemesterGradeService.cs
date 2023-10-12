@@ -73,4 +73,25 @@ public class SubjectAndSemesterGradeService
             throw new Exception("Error while fetching subjects");
         }
     }
+    
+    public async Task<ContinuousEvaluationReportDTO> GetContinuousEvaluationReport(int subjectId, int semesterId)
+    {
+        var request = new RestRequest($"subjects/{subjectId}/continuous-evaluation");
+        request.AddHeader("Accept", "application/json");
+        request.AddHeader("Content-Type", "application/json");
+        request.AddUrlSegment("subjectId", subjectId.ToString());
+        request.AddQueryParameter("semesterId", semesterId.ToString());
+        
+        var response = await _client.GetAsync(request);
+
+        if (response.StatusCode == HttpStatusCode.OK && response.Content != null) 
+        {
+            var responseDto = JsonConvert.DeserializeObject<ResponseDTO<ContinuousEvaluationReportDTO>>(response.Content);
+            return responseDto!.Data!;
+        }
+        else
+        {
+            throw new Exception("Error while fetching continuous evaluation report");
+        }
+    }
 }

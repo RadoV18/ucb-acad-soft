@@ -67,6 +67,7 @@ export class NewRequestComponent {
    this.formService.newKardexRequest(this.reasson.value, this.imageFile).subscribe(
       {next: (response) => {
         console.log(response);
+        this.router.navigate(['/student/request/kardex'])
 
       }, error: (error) => {
         console.log(error);
@@ -74,7 +75,7 @@ export class NewRequestComponent {
       }
    )
   }
-  
+
 
 
 
