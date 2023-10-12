@@ -1,30 +1,20 @@
 <div class="main-container">
-    
+
     <h1><strong>Evaluación continua</strong></h1>
 
-    <div class="subject-info">
-        <h2><strong>Asignatura:</strong> {{subject.name}} </h2>
-        <h2><strong>Código:</strong> {{subject.code}} </h2>
-        <h2><strong>Paralelo:</strong> {{subject.parallel}} </h2>
-    </div>
 
-    <table mat-table [dataSource]="evaluations">
+    <table mat-table [dataSource]="subjectListDto">
         <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Estudiante </th>
-            <td mat-cell *matCellDef="let user"> {{user.name}} </td>
-        </ng-container>
-    
-        <ng-container matColumnDef="finalGrade">
-            <th mat-header-cell *matHeaderCellDef> Nota Final </th>
-            <td mat-cell *matCellDef="let user"> {{user.finalGrade}} </td>
+            <th mat-header-cell *matHeaderCellDef> Materia </th>
+            <td mat-cell *matCellDef="let element"> {{element.description}} </td>
         </ng-container>
 
-        <!-- Add columns for all the values in task columns with a value 1 -->
-        <ng-container *ngFor="let task of tasksColumns" [matColumnDef]="task">
-            <th mat-header-cell *matHeaderCellDef> {{task}} </th>
-            <td mat-cell *matCellDef="let user"> {{ getTaskGrade(user, task) }} </td>
+        <ng-container matColumnDef="detail">
+            <th mat-header-cell *matHeaderCellDef> Detalle </th>
+            <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary" (click)="downloadReport()" >Ver</button> </td>
         </ng-container>
-        <!-- End of added code -->
+
+
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
