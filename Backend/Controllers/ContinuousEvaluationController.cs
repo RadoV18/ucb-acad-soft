@@ -17,11 +17,13 @@ public class ContinuousEvaluationController: ControllerBase
     {
         try
         {   
-            var header = System.IO.File.ReadAllText("Utils/PdfTemplates/StudentKardex/header.html");
-            var footer = System.IO.File.ReadAllText("Utils/PdfTemplates/StudentKardex/footer.html");
-            var body = System.IO.File.ReadAllText("Utils/PdfTemplates/StudentKardex/index.html");
+            var header = System.IO.File.ReadAllText("Utils/PdfTemplates/ContinuousScoreReport/header.html");
+            var footer = System.IO.File.ReadAllText("Utils/PdfTemplates/ContinuousScoreReport/footer.html");
+            var body = System.IO.File.ReadAllText("Utils/PdfTemplates/ContinuousScoreReport/index.html");
 
             var continuousEvaluationReport = await _subjectAndSemesterGradeService.GetContinuousEvaluationReport(1, 1);
+            // Sort by last name and then by first name
+            continuousEvaluationReport.Students.Sort((a, b) => a.LastName.CompareTo(b.LastName) == 0 ? a.FirstName.CompareTo(b.FirstName) : a.LastName.CompareTo(b.LastName));
             Console.WriteLine(continuousEvaluationReport);
             byte[] pdf = await _pdfTurtleService.getPdf(footer, header, body, continuousEvaluationReport);
 

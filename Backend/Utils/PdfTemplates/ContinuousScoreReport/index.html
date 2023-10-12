@@ -66,6 +66,14 @@
 		.continuous-score {
 			width: 5%;
 		}
+		
+		.sign {
+			display: flex;
+			position: fixed;
+			bottom: 0;
+			right: 0;
+
+		}
 </style>
 <table id="subject-table">
 </table>
@@ -77,7 +85,7 @@
 	</tbody>
 </table>
 
-<span id="dbg"></span>
+<span id="dbg" class="sign"></span>
 
 
 <script>
@@ -166,7 +174,7 @@
 					${studentNum}
 				</td>
 				<td>
-					${student.firstName} ${student.lastName}
+					${student.lastName} ${student.firstName} 
 				</td>
 		`;
 		scoresArray.forEach((score) => studentString += score);
@@ -192,7 +200,7 @@
 		studentString += '</tr>'
 		tableBody.innerHTML += studentString;
 	});
-
+	dbg.innerHTML = `Firma Professor ________________________`;
 
 </script>
 </div>
