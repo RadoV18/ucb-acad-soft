@@ -1,0 +1,211 @@
+<div>
+    <style>
+        * {
+            font-size: 12px;
+        }
+
+        #subject-table td:first-child {
+            font-weight: bold;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 4px;
+            height: 16px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #e1e1e1;
+        }
+
+        .score {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #scores-table {
+            margin-top: 16px;
+            width: 100%;
+            margin-bottom: 92px;
+        }
+
+        #scores-table thead {
+            border-bottom: 1px solid #a0a0a0;
+        }
+
+        #scores-body tr :not(td:nth-child(2)) {
+            text-align: center;
+        }
+
+        #scores-body tr {
+            height: 30px;
+            border-bottom: 1px solid #afafaf;
+        }
+
+        .success {
+            padding: 0 8px;
+            border-radius: 8px;
+            background-color: green;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .error {
+            padding: 0 8px;
+            border-radius: 8px;
+            background-color: red;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .continuous-score {
+            width: 5%;
+        }
+
+        .signature {
+            border-top: 1px solid black;
+            width: 35%;
+            margin: 0 auto;
+            height: 64px;
+            text-align: center;
+        }
+    </style>
+    <table id="subject-table">
+    </table>
+
+    <table id="scores-table">
+        <thead id="scores-header">
+        </thead>
+        <tbody id="scores-body">
+        </tbody>
+    </table>
+
+    <div class="signature" id="signature">
+    </div>
+
+
+    <script>
+
+        const subject = {{ .subject }}
+        const signature = document.getElementById('signature');
+        signature.innerHTML = subject.professor;
+        const subjectTable = document.getElementById('subject-table');
+
+        subjectTable.innerHTML = `
+            <tbody>
+                <tr>
+                    <td>Asignatura</td>
+                    <td>${subject.name}</td>
+                </tr>
+                <tr>
+                    <td>Docente</td>
+                    <td>${subject.professor}</td>
+                </tr>
+                <tr>
+                    <td>Paralelo</td>
+                    <td>${subject.section}</td>
+                </tr>
+                <tr>
+                    <td>Periodo Académico</td>
+                    <td>${subject.period}</td>
+                </tr>
+            </tbody>
+        `;
+
+
+        const scores = {{ .scores }}
+        const scoresHeader = document.getElementById('scores-header');
+
+        let scoresString = `
+            <tr>
+                <th>#</th>
+                <th>Estudiante</th>
+        `;
+
+        const dbg = document.getElementById('dbg');
+
+        let idx = 3;
+        const order = {};
+
+        scores.forEach((score) => {
+            order[`${score.scoreId}`] = idx;
+            idx++;
+            scoresString += `
+                <th>
+                    <div class="score">
+                        <span>${score.name}</span>
+                        <span>${Math.round(score.weight * 100.0) / 100.0}</span>
+                    </div>
+                </th>
+            `;
+        })
+        scoresString += `
+            <th class="continuous-score">
+                Evaluación Continua
+            </th>
+            <th>
+                Estado
+            </th>
+        `;
+        scoresString += '</tr>';
+        scoresHeader.innerHTML = scoresString;
+
+
+        const students = {{ .students }}
+        const tableBody = document.getElementById('scores-body');
+        let studentNum = 1;
+
+        students.forEach((student) => {
+            let sum = 0.0;
+            const scoresArray = Array(scores.length).fill('');
+            student.scores.forEach((score) => {
+                sum += score.value
+                scoresArray[order[score.scoreId] - 2] = `
+                    <td>
+                        ${score.value}
+                    </td>
+                `;
+            });
+
+            let studentString = `
+                <tr>
+                    <td>
+                        ${studentNum}
+                    </td>
+                    <td>
+                        ${student.firstName} ${student.lastName}
+                    </td>
+            `;
+            scoresArray.forEach((score) => studentString += score);
+            studentNum++;
+            studentString += `
+                <td>
+                    ${sum}
+                </td>
+            `;
+            studentString += sum >= 60 ? `
+                <td>
+                    <span class="success">
+                        Habilitado
+                    </span>
+                </td>
+            ` : `
+                <td >
+                    <span class="error">
+                        No Habilitado
+                    </span>
+                </td>
+            `;
+            studentString += '</tr>'
+            tableBody.innerHTML += studentString;
+        });
+
+
+    </script>
+</div>
