@@ -7,6 +7,7 @@ import { StudentKardexComponent } from './pages/student-kardex/student-kardex.co
 import {StudentKardexRequestComponent} from "./pages/student-kardex-request/student-kardex-request.component";
 import {StudentAttendanceComponent} from "./pages/student-attendance/student-attendance.component";
 import {NewRequestComponent} from "./components/new-request/new-request.component";
+import {AdminPageComponent} from "./pages/admin-page/admin-page.component";
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
       { path: 'request/kardex/new', component: NewRequestComponent },
     ],
   },
+  {
+    path: 'admin',
+    component: AdminPageComponent
+  }
 ];
 
 @NgModule({

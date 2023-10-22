@@ -36,6 +36,7 @@ import {NewRequestComponent} from "./components/new-request/new-request.componen
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     StudentAttendanceTableComponent,
     DialogComponent,
     StudentKardexRequestComponent,
-    NewRequestComponent
+    NewRequestComponent,
+    AdminPageComponent
   ],
   imports: [
     BrowserModule,
