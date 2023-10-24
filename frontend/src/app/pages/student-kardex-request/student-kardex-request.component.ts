@@ -53,8 +53,6 @@ export class StudentKardexRequestComponent implements OnInit{
     });
   }
 
-
-
   ngOnInit(): void {
     this.getData();
   }
