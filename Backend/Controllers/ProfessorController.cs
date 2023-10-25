@@ -1,5 +1,6 @@
 using Backend.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Backend.Controllers;
 
@@ -28,12 +29,12 @@ public class ProfessorController : ControllerBase
             string body = System.IO.File.ReadAllText("Utils/PdfTemplates/StudentSchedule/index.html");
 
             // get the student's schedule
-            var student = await _studentAndProfessorService.GetStudentById(1);
-            var subjects = await _subjectAndSemesterGradeService.GetSubjectsByStudentId(1);
+            var professor = await _studentAndProfessorService.GetProfessorInfoByProfessorId(1);
+            var subjects = await _subjectAndSemesterGradeService.GetSubjectsByProfessorIdAndSemesterId(1, 4);
             string period = "2-2023";
             var model = new
             {
-                student = student,
+                professor = professor,
                 data = subjects,
                 period = period
             };
