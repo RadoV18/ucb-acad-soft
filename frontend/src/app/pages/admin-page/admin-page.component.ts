@@ -40,6 +40,8 @@ export class AdminPageComponent implements OnInit{
   dateFrom: string = '';
   dateTo: string = '';
   requestState: string = '';
+  selected = "Pendiente"
+
 
   constructor(private requestKardexService: RequestKardexService, private dialog: DailogService, private router: Router, private formBuilder: FormBuilder) {
     this.filterForm = this.formBuilder.group({
@@ -86,7 +88,7 @@ export class AdminPageComponent implements OnInit{
     // @ts-ignore
     this.dateTo = this.filterForm.get('dateTo')?.value ?? '';
     // @ts-ignore
-    this.requestState = this.filterForm.get('requestState')?.value ?? '';
+    this.requestState = this.selected;
     this.getData();
   }
 

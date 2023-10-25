@@ -22,6 +22,7 @@ export class StudentKardexRequestComponent implements OnInit{
 
 
 
+
   displayedColumns: string[] = [
     'id',
     'date',
@@ -42,6 +43,7 @@ export class StudentKardexRequestComponent implements OnInit{
   dateFrom: string = '';
   dateTo: string = '';
   requestState: string = '';
+
 
 
 
@@ -96,6 +98,7 @@ export class StudentKardexRequestComponent implements OnInit{
   }
 
   onFilter() {
+    console.log(this.requestState)
     this.page = 0;
     this.dateFrom = this.filterForm.get('dateFrom')?.value ?? '';
     this.dateTo = this.filterForm.get('dateTo')?.value ?? '';
