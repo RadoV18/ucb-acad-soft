@@ -24,9 +24,9 @@ public class ProfessorController : ControllerBase
         try
         {
             // load html templates
-            string footer = System.IO.File.ReadAllText("Utils/PdfTemplates/StudentSchedule/footer.html");
-            string header = System.IO.File.ReadAllText("Utils/PdfTemplates/StudentSchedule/header.html");
-            string body = System.IO.File.ReadAllText("Utils/PdfTemplates/StudentSchedule/index.html");
+            string footer = System.IO.File.ReadAllText("Utils/PdfTemplates/ProfessorSchedule/footer.html");
+            string header = System.IO.File.ReadAllText("Utils/PdfTemplates/ProfessorSchedule/header.html");
+            string body = System.IO.File.ReadAllText("Utils/PdfTemplates/ProfessorSchedule/index.html");
 
             // get the student's schedule
             var professor = await _studentAndProfessorService.GetProfessorInfoByProfessorId(1);

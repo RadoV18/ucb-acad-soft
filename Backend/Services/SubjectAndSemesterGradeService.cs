@@ -94,4 +94,25 @@ public class SubjectAndSemesterGradeService
             throw new Exception("Error while fetching continuous evaluation report");
         }
     }
+    
+    public async Task<FinalEvaluationReportDTO> GetFinalEvaluationReport(int subjectId, int semesterId)
+    {
+        var request = new RestRequest($"subjects/{subjectId}/final-evaluation");
+        request.AddHeader("Accept", "application/json");
+        request.AddHeader("Content-Type", "application/json");
+        request.AddUrlSegment("subjectId", subjectId.ToString());
+        request.AddQueryParameter("semesterId", semesterId.ToString());
+        
+        var response = await _client.GetAsync(request);
+
+        if (response.StatusCode == HttpStatusCode.OK && response.Content != null) 
+        {
+            var responseDto = JsonConvert.DeserializeObject<ResponseDTO<FinalEvaluationReportDTO>>(response.Content);
+            return responseDto!.Data!;
+        }
+        else
+        {
+            throw new Exception("Error while fetching final evaluation report");
+        }
+    }
 }
