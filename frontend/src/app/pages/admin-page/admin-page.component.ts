@@ -56,7 +56,7 @@ export class AdminPageComponent implements OnInit{
   }
 
   openDialog(request: RequestKardex) {
-    this.dialog.open(request);
+    this.dialog.openAdmin(request);
   }
 
   sendToNewRequest() {

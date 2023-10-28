@@ -75,7 +75,3 @@
 
 <mat-paginator [pageIndex]="page" [length]="totalElements" [pageSize]="size" [pageSizeOptions]="[5, 10, 25, 100]"
                (page)="onPageChange($event)" (pageSize)="onPageSizeChange($event)" showFirstLastButtons></mat-paginator>
-
-<button mat-fab extended (click)='sendToNewRequest()'>
-  <mat-icon>add</mat-icon>
-</button>

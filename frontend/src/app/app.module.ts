@@ -37,6 +37,7 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+import { AdminDialogComponent } from './components/admin-dialog/admin-dialog.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { AdminPageComponent } from './pages/admin-page/admin-page.component';
     DialogComponent,
     StudentKardexRequestComponent,
     NewRequestComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    AdminDialogComponent
   ],
   imports: [
     BrowserModule,
