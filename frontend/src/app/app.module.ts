@@ -37,6 +37,8 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { ContinuousEvaluationComponent } from './pages/continuous-evaluation/continuous-evaluation.component';
+import {MatMenuModule} from "@angular/material/menu";
+import { FinalEvaluationComponent } from './pages/final-evaluation/final-evaluation.component';
 
 @NgModule({
   declarations: [
@@ -56,31 +58,33 @@ import { ContinuousEvaluationComponent } from './pages/continuous-evaluation/con
     DialogComponent,
     StudentKardexRequestComponent,
     NewRequestComponent,
-    ContinuousEvaluationComponent
+    ContinuousEvaluationComponent,
+    FinalEvaluationComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    CommonModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    CommonModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatCardModule,
-    MatTabsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatGridListModule,
-    MatDialogModule,
-    MatTableModule,
-    MatButtonToggleModule,
-    ReactiveFormsModule,
-    MatCheckboxModule,
-    MatSortModule,
-    MatPaginatorModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        CommonModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        CommonModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatCardModule,
+        MatTabsModule,
+        MatInputModule,
+        MatSelectModule,
+        MatGridListModule,
+        MatDialogModule,
+        MatTableModule,
+        MatButtonToggleModule,
+        ReactiveFormsModule,
+        MatCheckboxModule,
+        MatSortModule,
+        MatPaginatorModule,
+        MatMenuModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

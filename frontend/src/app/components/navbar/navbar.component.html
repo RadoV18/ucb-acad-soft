@@ -29,9 +29,20 @@
             <mat-icon>folder_open</mat-icon>
             Asistencia Estudiante
         </a>
-        <a routerLink="/professor/continuous-evaluation" mat-button class="navbar-option">
+<!--        drop down of routers-->
+        <mat-menu #menu="matMenu">
+          <a routerLink="/professor/continuous-evaluation" mat-button class="navbar-option">
             <mat-icon>fact_check</mat-icon>
             Evaluacion continua
+          </a>
+          <a routerLink="/professor/final-evaluation" mat-button class="navbar-option">
+            <mat-icon>fact_check</mat-icon>
+            Evaluacion final
+          </a>
+        </mat-menu>
+        <a [matMenuTriggerFor]="menu" mat-button class="navbar-option">
+            <mat-icon>fact_check</mat-icon>
+            Evaluaciones
         </a>
     </mat-toolbar-row>
 </mat-toolbar>

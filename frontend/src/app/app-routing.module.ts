@@ -8,6 +8,7 @@ import {StudentKardexRequestComponent} from "./pages/student-kardex-request/stud
 import {StudentAttendanceComponent} from "./pages/student-attendance/student-attendance.component";
 import {NewRequestComponent} from "./components/new-request/new-request.component";
 import { ContinuousEvaluationComponent } from './pages/continuous-evaluation/continuous-evaluation.component';
+import {FinalEvaluationComponent} from "./pages/final-evaluation/final-evaluation.component";
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
     children: [
       { path: 'schedule', component: ProfessorScheduleComponent },
       { path: 'continuous-evaluation', component: ContinuousEvaluationComponent },
+      { path: 'final-evaluation', component: FinalEvaluationComponent },
     ],
   },
   {
