@@ -25,7 +25,7 @@ public class FinalEvaluationController: ControllerBase
             var finalEvaluationReport = await _subjectAndSemesterGradeService.GetFinalEvaluationReport(1, 1);
             // Sort by last name and then by first name
             finalEvaluationReport.Students.Sort((a, b) => a.LastName.CompareTo(b.LastName) == 0 ? a.FirstName.CompareTo(b.FirstName) : a.LastName.CompareTo(b.LastName));
-            Console.WriteLine(JsonConvert.SerializeObject(finalEvaluationReport));
+            // Console.WriteLine(JsonConvert.SerializeObject(finalEvaluationReport));
             byte[] pdf = await _pdfTurtleService.getPdf(footer, header, body, finalEvaluationReport);
 
             // upload pdf to minio
