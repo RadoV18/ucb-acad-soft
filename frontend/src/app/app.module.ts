@@ -34,9 +34,17 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {DialogComponent} from "./components/dialog/dialog.component";
 import {NewRequestComponent} from "./components/new-request/new-request.component";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { ContinuousEvaluationComponent } from './pages/continuous-evaluation/continuous-evaluation.component';
+import {MatMenuModule} from "@angular/material/menu";
+import { FinalEvaluationComponent } from './pages/final-evaluation/final-evaluation.component';
+import { SecondTermEvaluationComponent } from './pages/second-term-evaluation/second-term-evaluation.component';
+import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+import { AdminDialogComponent } from './components/admin-dialog/admin-dialog.component';
+import { AdminDateDialogComponent } from './components/admin-date-dialog/admin-date-dialog.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -56,31 +64,40 @@ import { ContinuousEvaluationComponent } from './pages/continuous-evaluation/con
     DialogComponent,
     StudentKardexRequestComponent,
     NewRequestComponent,
-    ContinuousEvaluationComponent
+    ContinuousEvaluationComponent,
+    FinalEvaluationComponent,
+    SecondTermEvaluationComponent,
+    AdminPageComponent,
+    AdminDialogComponent,
+    AdminDateDialogComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    CommonModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    CommonModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatCardModule,
-    MatTabsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatGridListModule,
-    MatDialogModule,
-    MatTableModule,
-    MatButtonToggleModule,
-    ReactiveFormsModule,
-    MatCheckboxModule,
-    MatSortModule,
-    MatPaginatorModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        CommonModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        CommonModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatCardModule,
+        MatTabsModule,
+        MatInputModule,
+        MatSelectModule,
+        MatGridListModule,
+        MatDialogModule,
+        MatTableModule,
+        MatButtonToggleModule,
+        ReactiveFormsModule,
+        MatCheckboxModule,
+        MatSortModule,
+        MatPaginatorModule,
+        MatMenuModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        FormsModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

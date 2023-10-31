@@ -2,8 +2,9 @@ namespace Backend.DTOs;
 
 public class ProfessorInfoDTO
 {
-    public string FirstName { get; set; } = null!;
-    public string LastName { get; set; } = null!;
-    public string Email { get; set; } = null!;
-    public string Phone { get; set; } = null!;
+    public string ci { get; set; } = null!;
+    public string firstName { get; set; } = null!;
+    public string lastName { get; set; } = null!;
+    public string email { get; set; } = null!;
+    public string phone { get; set; } = null!;
 }

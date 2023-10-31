@@ -147,7 +147,7 @@
         })
         scoresString += `
             <th class="continuous-score">
-                Evaluación Continua
+               Nota Final
             </th>
             <th>
                 Estado
@@ -189,16 +189,16 @@
                     ${sum}
                 </td>
             `;
-            studentString += sum >= 60 ? `
+            studentString += sum > 50 ? `
                 <td>
                     <span class="success">
-                        Habilitado
+                        Aprobado
                     </span>
                 </td>
             ` : `
                 <td >
                     <span class="error">
-                        No Habilitado
+                        Reprobado
                     </span>
                 </td>
             `;

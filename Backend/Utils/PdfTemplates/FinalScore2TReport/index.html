@@ -89,9 +89,7 @@
     <div class="signature" id="signature">
     </div>
 
-
     <script>
-
         const subject = {{ .subject }}
         const signature = document.getElementById('signature');
         signature.innerHTML = subject.professor;
@@ -117,7 +115,6 @@
                 </tr>
             </tbody>
         `;
-
 
         const scores = {{ .scores }}
         const scoresHeader = document.getElementById('scores-header');
@@ -147,7 +144,7 @@
         })
         scoresString += `
             <th class="continuous-score">
-                Evaluación Continua
+                Nota Final
             </th>
             <th>
                 Estado
@@ -155,7 +152,6 @@
         `;
         scoresString += '</tr>';
         scoresHeader.innerHTML = scoresString;
-
 
         const students = {{ .students }}
         const tableBody = document.getElementById('scores-body');
@@ -189,23 +185,21 @@
                     ${sum}
                 </td>
             `;
-            studentString += sum >= 60 ? `
+            studentString += sum > 50 ? `
                 <td>
                     <span class="success">
-                        Habilitado
+                        Aprobado
                     </span>
                 </td>
             ` : `
                 <td >
                     <span class="error">
-                        No Habilitado
+                        Reprobado
                     </span>
                 </td>
             `;
             studentString += '</tr>'
             tableBody.innerHTML += studentString;
         });
-
-
     </script>
 </div>

@@ -21,8 +21,8 @@ public class SubjectController: ControllerBase
             // Create simple subjects
             var simpleSubjects = subjects.Select(subject => new SimpleSubjectDTO
             {
-                SubjectId = subject.SubjectId,
-                Description = $"[{semesters.First(semester => semester.SemesterId == semesterId).SemesterName}] {subject.SubjectCode} {subject.SubjectName} [Par. {subject.Parallel}]"
+                SubjectId = subject.subjectId,
+                Description = $"[{semesters.First(semester => semester.SemesterId == semesterId).SemesterName}] {subject.subjectCode} {subject.subjectName} [Par. {subject.parallel}]"
             }).ToList();
             
             return Ok(new ResponseDTO<List<SimpleSubjectDTO>>
@@ -46,22 +46,22 @@ public class SubjectController: ControllerBase
         {
             // Get semester subject
             var subjects = await _subjectAndSemesterGradeService.GetSubjectsByProfessorIdAndSemesterId(professorId, semesterId);
-            var subject = subjects.First(subject => subject.SubjectId == subjectId); // Get subject from list
+            var subject = subjects.First(subject => subject.subjectId == subjectId); // Get subject from list
             var semesters = await _subjectAndSemesterGradeService.GetSemestersByProfessorId(professorId);
             var semester = semesters.First(semester => semester.SemesterId == semesterId); // Get semester from list
             var professor = await _studentAndProfessorService.GetProfessorInfoByProfessorId(professorId);
             // Create semester subject
             var semesterSubject = new SemesterSubjectDTO
             {
-                SubjectId = subject.SubjectId,
+                SubjectId = subject.subjectId,
                 SemesterName = semester.SemesterName,
                 StartDate = semester.StartDate,
                 EndDate = semester.EndDate,
-                SubjectCode = subject.SubjectCode,
-                SubjectName = subject.SubjectName,
-                Parallel = subject.Parallel,
-                Credits = subject.Credits,
-                Professor = $"{professor.LastName} {professor.FirstName}"
+                SubjectCode = subject.subjectCode,
+                SubjectName = subject.subjectName,
+                Parallel = subject.parallel,
+                Credits = subject.credits,
+                Professor = $"{professor.lastName} {professor.firstName}"
             };
             
             return Ok(new ResponseDTO<SemesterSubjectDTO>

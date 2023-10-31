@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Detalle de Solicitud</h1>
+<mat-dialog-content>
+  <div>
+    <p>Id: {{ data.id }}</p>
+    <p *ngIf="data.status === 'Aceptado'">Fecha de entrega: {{data.detail.deliverDate | date: 'dd/MM/yyyy'}}</p>
+    <p>Estado: {{data.status}}</p>
+    <p>Motivo: {{data.detail.reason}}</p>
+    <p>Imagen: </p>
+    <img src='{{data.detail.image}}'>
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cerrar</button>
+  <button mat-button *ngIf="data.status == 'Pendiente'" (click)="openDateDialog(data)">Aceptar</button>
+  <button mat-button *ngIf="data.status == 'Pendiente'" (click)="rejectRequest(data)">Rechazar</button>
+</mat-dialog-actions>
