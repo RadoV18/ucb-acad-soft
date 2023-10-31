@@ -7,14 +7,13 @@ import {ResponseDto} from "../../dto/response.dto";
 @Injectable({
   providedIn: 'root'
 })
-export class ContinuosEvaluationService {
-
-  baseUrl = `${environment.BACKEND_URL}/api/reports/continuous-evaluation`;
+export class FinalEvaluationService {
+  baseUrl = `${environment.BACKEND_URL}/api/reports/final-evaluation`;
 
 
   constructor(private http : HttpClient) { }
 
-  public getContinuousEvaluation(): Observable<ResponseDto<string>> {
+  public getFinalEvaluation(): Observable<ResponseDto<string>> {
     return this.http.get<ResponseDto<string>>(`${this.baseUrl}/pdf`)
   }
 }

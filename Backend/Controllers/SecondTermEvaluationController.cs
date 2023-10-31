@@ -18,14 +18,14 @@ public class SecondTermEvaluationController: ControllerBase
     {
         try
         {   
-            var header = System.IO.File.ReadAllText("Utils/PdfTemplates/SecondTermScoreReport/header.html");
-            var footer = System.IO.File.ReadAllText("Utils/PdfTemplates/SecondTermScoreReport/footer.html");
-            var body = System.IO.File.ReadAllText("Utils/PdfTemplates/SecondTermScoreReport/index.html");
+            var header = System.IO.File.ReadAllText("Utils/PdfTemplates/FinalScore2TReport/header.html");
+            var footer = System.IO.File.ReadAllText("Utils/PdfTemplates/FinalScore2TReport/footer.html");
+            var body = System.IO.File.ReadAllText("Utils/PdfTemplates/FinalScore2TReport/index.html");
 
             var secondTermEvaluationReport = await _subjectAndSemesterGradeService.GetSecondTermEvaluationReport(1, 1);
             // Sort by last name and then by first name
             secondTermEvaluationReport.Students.Sort((a, b) => a.LastName.CompareTo(b.LastName) == 0 ? a.FirstName.CompareTo(b.FirstName) : a.LastName.CompareTo(b.LastName));
-            Console.WriteLine(JsonConvert.SerializeObject(secondTermEvaluationReport));
+            // Console.WriteLine(JsonConvert.SerializeObject(secondTermEvaluationReport));
             byte[] pdf = await _pdfTurtleService.getPdf(footer, header, body, secondTermEvaluationReport);
 
             // upload pdf to minio

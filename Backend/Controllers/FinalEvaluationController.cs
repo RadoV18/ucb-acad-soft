@@ -18,9 +18,9 @@ public class FinalEvaluationController: ControllerBase
     {
         try
         {   
-            var header = System.IO.File.ReadAllText("Utils/PdfTemplates/FinalScoreReport/header.html");
-            var footer = System.IO.File.ReadAllText("Utils/PdfTemplates/FinalScoreReport/footer.html");
-            var body = System.IO.File.ReadAllText("Utils/PdfTemplates/FinalScoreReport/index.html");
+            var header = System.IO.File.ReadAllText("Utils/PdfTemplates/FinalScore1TReport/header.html");
+            var footer = System.IO.File.ReadAllText("Utils/PdfTemplates/FinalScore1TReport/footer.html");
+            var body = System.IO.File.ReadAllText("Utils/PdfTemplates/FinalScore1TReport/index.html");
 
             var finalEvaluationReport = await _subjectAndSemesterGradeService.GetFinalEvaluationReport(1, 1);
             // Sort by last name and then by first name

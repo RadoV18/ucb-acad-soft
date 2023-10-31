@@ -37,7 +37,7 @@ export class ContinuousEvaluationComponent {
 
   downloadReport(): void {
     console.log("downloadReport");
-    this.continuousEvalaution.getContinuosEvaluation().subscribe((response) => {
+    this.continuousEvalaution.getContinuousEvaluation().subscribe((response) => {
       const data = response.data;
       window.open(data, "_blank");
     })
