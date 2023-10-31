@@ -34,12 +34,17 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {DialogComponent} from "./components/dialog/dialog.component";
 import {NewRequestComponent} from "./components/new-request/new-request.component";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { ContinuousEvaluationComponent } from './pages/continuous-evaluation/continuous-evaluation.component';
 import {MatMenuModule} from "@angular/material/menu";
 import { FinalEvaluationComponent } from './pages/final-evaluation/final-evaluation.component';
 import { SecondTermEvaluationComponent } from './pages/second-term-evaluation/second-term-evaluation.component';
+import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+import { AdminDialogComponent } from './components/admin-dialog/admin-dialog.component';
+import { AdminDateDialogComponent } from './components/admin-date-dialog/admin-date-dialog.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -62,6 +67,9 @@ import { SecondTermEvaluationComponent } from './pages/second-term-evaluation/se
     ContinuousEvaluationComponent,
     FinalEvaluationComponent,
     SecondTermEvaluationComponent,
+    AdminPageComponent,
+    AdminDialogComponent,
+    AdminDateDialogComponent
   ],
     imports: [
         BrowserModule,
@@ -85,7 +93,10 @@ import { SecondTermEvaluationComponent } from './pages/second-term-evaluation/se
         MatCheckboxModule,
         MatSortModule,
         MatPaginatorModule,
-        MatMenuModule
+        MatMenuModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        FormsModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

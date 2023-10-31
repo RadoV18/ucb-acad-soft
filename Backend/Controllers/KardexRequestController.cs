@@ -10,6 +10,7 @@ namespace Backend.Controllers;
 [ApiController]
 public class KardexRequestController : ControllerBase
 {
+    
 
     private readonly MinioService _minioService = new MinioService();
     private readonly S3ObjectContext _db = new S3ObjectContext();

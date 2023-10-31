@@ -10,6 +10,7 @@ import {NewRequestComponent} from "./components/new-request/new-request.componen
 import { ContinuousEvaluationComponent } from './pages/continuous-evaluation/continuous-evaluation.component';
 import {FinalEvaluationComponent} from "./pages/final-evaluation/final-evaluation.component";
 import {SecondTermEvaluationComponent} from "./pages/second-term-evaluation/second-term-evaluation.component";
+import {AdminPageComponent} from "./pages/admin-page/admin-page.component";
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
       { path: 'request/kardex/new', component: NewRequestComponent },
     ],
   },
+  {
+    path: 'admin',
+    component: AdminPageComponent
+  }
 ];
 
 @NgModule({
