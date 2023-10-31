@@ -9,6 +9,7 @@ import {StudentAttendanceComponent} from "./pages/student-attendance/student-att
 import {NewRequestComponent} from "./components/new-request/new-request.component";
 import { ContinuousEvaluationComponent } from './pages/continuous-evaluation/continuous-evaluation.component';
 import {FinalEvaluationComponent} from "./pages/final-evaluation/final-evaluation.component";
+import {SecondTermEvaluationComponent} from "./pages/second-term-evaluation/second-term-evaluation.component";
 
 const routes: Routes = [
   {
@@ -17,6 +18,8 @@ const routes: Routes = [
       { path: 'schedule', component: ProfessorScheduleComponent },
       { path: 'continuous-evaluation', component: ContinuousEvaluationComponent },
       { path: 'final-evaluation', component: FinalEvaluationComponent },
+      { path: 'second-term-evaluation', component: SecondTermEvaluationComponent },
+
     ],
   },
   {

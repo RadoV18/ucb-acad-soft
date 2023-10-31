@@ -39,6 +39,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import { ContinuousEvaluationComponent } from './pages/continuous-evaluation/continuous-evaluation.component';
 import {MatMenuModule} from "@angular/material/menu";
 import { FinalEvaluationComponent } from './pages/final-evaluation/final-evaluation.component';
+import { SecondTermEvaluationComponent } from './pages/second-term-evaluation/second-term-evaluation.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { FinalEvaluationComponent } from './pages/final-evaluation/final-evaluat
     StudentKardexRequestComponent,
     NewRequestComponent,
     ContinuousEvaluationComponent,
-    FinalEvaluationComponent
+    FinalEvaluationComponent,
+    SecondTermEvaluationComponent,
   ],
     imports: [
         BrowserModule,

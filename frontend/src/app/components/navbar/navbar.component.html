@@ -5,10 +5,7 @@
             <h2>Modulo de Reportes</h2>
         </div>
         <div class="spacer"></div>
-        <a routerLink="/professor/schedule" mat-button class="navbar-option">
-            <mat-icon>calendar_month</mat-icon>
-            Horario Profesor
-        </a>
+
         <a routerLink="/student/kardex" mat-button class="navbar-option">
             <mat-icon>table_view</mat-icon>
             Kardex Estudiante
@@ -16,6 +13,10 @@
         <a routerLink="/student/list" mat-button class="navbar-option">
             <mat-icon>description</mat-icon>
             Lista Estudiante
+        </a>
+        <a routerLink="/professor/schedule" mat-button class="navbar-option">
+          <mat-icon>calendar_month</mat-icon>
+          Horario Profesor
         </a>
         <a routerLink="/student/schedule" mat-button class="navbar-option">
             <mat-icon>calendar_month</mat-icon>
@@ -29,7 +30,6 @@
             <mat-icon>folder_open</mat-icon>
             Asistencia Estudiante
         </a>
-<!--        drop down of routers-->
         <mat-menu #menu="matMenu">
           <a routerLink="/professor/continuous-evaluation" mat-button class="navbar-option">
             <mat-icon>fact_check</mat-icon>
@@ -38,6 +38,10 @@
           <a routerLink="/professor/final-evaluation" mat-button class="navbar-option">
             <mat-icon>fact_check</mat-icon>
             Evaluacion final
+          </a>
+          <a routerLink="/professor/second-term-evaluation" mat-button class="navbar-option">
+            <mat-icon>fact_check</mat-icon>
+            Evaluacion segundo turno
           </a>
         </mat-menu>
         <a [matMenuTriggerFor]="menu" mat-button class="navbar-option">
