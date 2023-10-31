@@ -25,6 +25,8 @@ export class AdminDialogComponent {
       (response) => {
         console.log(response);
       });
+    window.location.reload();
+
   }
 
 }

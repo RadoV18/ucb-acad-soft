@@ -6,7 +6,7 @@ import {MatDatepickerInputEvent, MatDatepickerModule} from "@angular/material/da
 import {MatButtonModule} from "@angular/material/button";
 import {DatePipe} from "@angular/common";
 import {RequestKardexService} from "../../services/request-kardex-service/request-kardex.service";
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {RequestKardex} from "../../models/RequestKardex";
 import {AdminServiceService} from "../../services/admin-service/admin-service.service";
 
@@ -19,9 +19,11 @@ export class AdminDateDialogComponent {
   selectedDate: Date | null | undefined;
 
   formattedDate: string | null = '';
-  constructor(@Inject(MAT_DIALOG_DATA) public data: RequestKardex, private request: AdminServiceService) {
-  }
-
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: RequestKardex,
+    private request: AdminServiceService,
+    private dialogRef: MatDialogRef<AdminDateDialogComponent>
+  ) { }
 
   onDateChange(event: MatDatepickerInputEvent<Date>) {
     this.selectedDate = event.value;
@@ -36,6 +38,8 @@ export class AdminDateDialogComponent {
     this.request.adminAcceptRequest(this.formattedDate, this.data.id ).subscribe(
       (response) => {
         console.log(response);
+        this.dialogRef.close();
+        window.location.reload();
       });
   }
 }
