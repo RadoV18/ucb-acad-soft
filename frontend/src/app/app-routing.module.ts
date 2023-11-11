@@ -11,6 +11,9 @@ import { ContinuousEvaluationComponent } from './pages/continuous-evaluation/con
 import {FinalEvaluationComponent} from "./pages/final-evaluation/final-evaluation.component";
 import {SecondTermEvaluationComponent} from "./pages/second-term-evaluation/second-term-evaluation.component";
 import {AdminPageComponent} from "./pages/admin-page/admin-page.component";
+import {
+  AcademicPerformanceDashboardComponent
+} from "./pages/academic-performance-dashboard/academic-performance-dashboard.component";
 
 const routes: Routes = [
   {
@@ -37,7 +40,13 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminPageComponent
-  }
+  },
+  {
+    path: 'dashboard',
+    children: [
+      { path: 'academic-performance', component: AcademicPerformanceDashboardComponent },
+    ],
+  },
 ];
 
 @NgModule({

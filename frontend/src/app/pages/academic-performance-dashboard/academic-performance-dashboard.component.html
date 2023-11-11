@@ -1,0 +1,39 @@
+<div class="title">
+  Dashboard de Rendimiento Académico
+</div>
+<div class="filter-row">
+  <div class="input-wrapper">
+    <mat-form-field>
+      <mat-label>Docente</mat-label>
+      <mat-select [(ngModel)]="selectedProfessor">
+        <mat-option *ngFor="let option of professors" [value]="option.value">
+          {{option.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="input-wrapper">
+    <mat-form-field>
+      <mat-label>Materia</mat-label>
+      <mat-select [(ngModel)]="selectedSubject">
+        <mat-option *ngFor="let option of subjects" [value]="option.value">
+          {{option.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="dashboard">
+  <div id="chart">
+    <apx-chart
+      [series]="chartOptions.series!"
+      [chart]="chartOptions.chart!"
+      [labels]="chartOptions.labels!"
+      [responsive]="chartOptions.responsive!"
+      [title]="chartOptions.title!"
+      [subtitle]="chartOptions.subtitle!"
+    ></apx-chart>
+  </div>
+</div>

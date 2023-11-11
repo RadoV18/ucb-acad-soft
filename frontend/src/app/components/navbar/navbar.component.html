@@ -43,7 +43,7 @@
       Profesor
     </a>
 
-    <mat-menu #menu="matMenu">
+    <mat-menu #menuDashboard="matMenu">
       <a routerLink="/professor/continuous-evaluation" mat-button class="navbar-option">
         <mat-icon>fact_check</mat-icon>
         Evaluacion continua
@@ -57,9 +57,20 @@
         Evaluacion segundo turno
       </a>
     </mat-menu>
-    <a [matMenuTriggerFor]="menu" mat-button class="navbar-option">
+    <a [matMenuTriggerFor]="menuDashboard" mat-button class="navbar-option">
       <mat-icon>fact_check</mat-icon>
       Evaluaciones
+    </a>
+
+    <mat-menu #menu="matMenu">
+      <a routerLink="/dashboard/academic-performance" mat-button class="navbar-option">
+        <mat-icon>fact_check</mat-icon>
+        Rendimiento Academico
+      </a>
+    </mat-menu>
+    <a [matMenuTriggerFor]="menu" mat-button class="navbar-option">
+      <mat-icon>fact_check</mat-icon>
+      Dashboard
     </a>
 
     <a routerLink="/admin" mat-button class="navbar-option">

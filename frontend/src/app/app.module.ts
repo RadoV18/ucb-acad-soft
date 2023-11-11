@@ -45,6 +45,8 @@ import { AdminDialogComponent } from './components/admin-dialog/admin-dialog.com
 import { AdminDateDialogComponent } from './components/admin-date-dialog/admin-date-dialog.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import { AcademicPerformanceDashboardComponent } from './pages/academic-performance-dashboard/academic-performance-dashboard.component';
+import {NgApexchartsModule} from "ng-apexcharts";
 
 @NgModule({
   declarations: [
@@ -69,7 +71,8 @@ import {MatNativeDateModule} from "@angular/material/core";
     SecondTermEvaluationComponent,
     AdminPageComponent,
     AdminDialogComponent,
-    AdminDateDialogComponent
+    AdminDateDialogComponent,
+    AcademicPerformanceDashboardComponent
   ],
     imports: [
         BrowserModule,
@@ -97,6 +100,7 @@ import {MatNativeDateModule} from "@angular/material/core";
         MatDatepickerModule,
         MatNativeDateModule,
         FormsModule,
+        NgApexchartsModule,
     ],
   providers: [],
   bootstrap: [AppComponent]
