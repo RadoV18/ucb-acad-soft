@@ -1,4 +1,27 @@
 <div class="dashboard">
+  <div class="filters">
+    <mat-form-field>
+      <mat-label>Carrera</mat-label>
+      <mat-select [(value)]="selectedSubject">
+        <mat-option *ngFor="let carrer of carrers " [value]="carrer">{{carrer.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Asignatura</mat-label>
+      <mat-select [(value)]="selectedSubject">
+<!--        <mat-option *ngFor="let subject of subjects" [value]="subject">{{subject.parallel[1].value}}</mat-option>-->
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Paralelo</mat-label>
+      <mat-select [(value)]="selectedSubject">
+        <!--        <mat-option *ngFor="let subject of subjects" [value]="subject">{{subject.parallel[1].value}}</mat-option>-->
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="getData()">Filtrar</button>
+  </div>
   <div id="chart">
     <apx-chart
       [series]="chartOptions.series!"

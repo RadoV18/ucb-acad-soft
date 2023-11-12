@@ -7,6 +7,8 @@ import {
   ApexChart,
   ApexTitleSubtitle,
 } from "ng-apexcharts";
+import {StudentIndexService} from "../../services/dashboards/student-index/student-index.service";
+import {CarrerDto} from "../../dto/carrer.dto";
 
 
 export type ChartOptions = {
@@ -38,22 +40,30 @@ export class DashboardStudentIndexComponent {
     }]
   }];
 
-  subjects  = [
-    { value: "TODAS LAS MATERIAS"},
-    { value: "TALLER DE SOFTWARE"},
-    { value: "BASE DE DATOS I"},
-    { value: "BASE DE DATOS II"},
-    { value: "SISTEMAS DE INFORMACIÓN I"},
-    { value: "TALLER DE GRADO I"},
-    { value: "TALLER DE GRADO II"}
+  carrers: CarrerDto[]  = [
+
   ];
   title: string = "Estudiantes Habilitados y No Habilitados";
-  subtitle: string = "Asignatura: TALLER DE SOFTWARE ";
 
 
   selectedSubject: string = "";
+  subtitle: string = `Asignatura: ${this.selectedSubject} `;
 
-  constructor() {
+  ngOnInit() {
+    console.log("ngOnInit")
+  }
+
+
+
+
+  constructor(private studentIndexService: StudentIndexService) {
+    this.studentIndexService.getCarrers().subscribe(
+      (response) => {
+        this.carrers = response.data;
+        console.log(response)
+        // console.log(this.subjects)
+      });
+
     this.chartOptions = {
       series: this.data,
       chart: {
@@ -105,4 +115,19 @@ export class DashboardStudentIndexComponent {
       }
     };
   }
+
+  setSelectedSubject(event: any) {
+    console.log("setSelectedSubject")
+    this.selectedSubject = event.value.name;
+    this.subtitle = `Asignatura: ${this.selectedSubject} `;
+    // // @ts-ignore
+    // this.chartOptions.subtitle.text = this.subtitle;
+    // // @ts-ignore
+    // console.log(this.chartOptions.subtitle.text)
+  }
+
+  getData() {
+    console.log(this.selectedSubject)
+  }
+
 }
