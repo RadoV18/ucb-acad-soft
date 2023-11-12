@@ -46,6 +46,7 @@ import { AdminDateDialogComponent } from './components/admin-date-dialog/admin-d
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import { DashboardStudentIndexComponent } from './pages/dashboard-student-index/dashboard-student-index.component';
+import { NgApexchartsModule } from "ng-apexcharts";
 
 @NgModule({
   declarations: [
@@ -99,6 +100,7 @@ import { DashboardStudentIndexComponent } from './pages/dashboard-student-index/
         MatDatepickerModule,
         MatNativeDateModule,
         FormsModule,
+        NgApexchartsModule,
     ],
   providers: [],
   bootstrap: [AppComponent]
