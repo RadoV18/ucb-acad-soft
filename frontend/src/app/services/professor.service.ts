@@ -3,6 +3,7 @@ import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ResponseDto} from "../dto/response.dto";
+import {ProfessorSubjectDto} from "../dto/professor-subject.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -13,5 +14,9 @@ export class ProfessorService {
   constructor(private http: HttpClient) { }
   public getProfessorSchedulePDF(): Observable<ResponseDto<string>> {
     return this.http.get<ResponseDto<string>>(`${this.baseUrl}/professors/schedule`);
+  }
+
+  public getProfessorSubjectsBySemesterId(semesterId: number): Observable<ResponseDto<ProfessorSubjectDto[]>> {
+    return this.http.get<ResponseDto<ProfessorSubjectDto[]>>(`${this.baseUrl}/professors/subjects?semesterId=${semesterId}`);
   }
 }

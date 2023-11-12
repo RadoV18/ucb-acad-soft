@@ -1,4 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
+import {Component, OnInit, ViewChild} from "@angular/core";
 import { ChartComponent } from "ng-apexcharts";
 
 import {
@@ -7,6 +7,8 @@ import {
   ApexChart,
   ApexTitleSubtitle,
 } from "ng-apexcharts";
+import {ProfessorService} from "../../services/professor.service";
+import {ProfessorSubjectDto} from "../../dto/professor-subject.dto";
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -21,34 +23,43 @@ export type ChartOptions = {
   templateUrl: './academic-performance-dashboard.component.html',
   styleUrls: ['./academic-performance-dashboard.component.sass']
 })
-export class AcademicPerformanceDashboardComponent {
+export class AcademicPerformanceDashboardComponent implements OnInit {
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
+
 
   labels: string[] = ["0-40%", "41-60%", "61-90%", "91-100%"];
   // TODO INJECT DATA FROM API
   data: number[] = [5, 10, 30, 5];
-  professors =  [
-    { value: "FIGUEROA DOMEJEAN OSWALDO JUAN"},
-    { value: "CAMPOHERMOSO ALCON ERNESTO OMAR"},
-    { value: "TANCARA AGUILAR JORGE"}
-  ];
+  professors: any[] = [];
 
-  subjects  = [
-    { value: "TODAS LAS MATERIAS"},
-    { value: "BASE DE DATOS I"},
-    { value: "BASE DE DATOS II"},
-    { value: "SISTEMAS DE INFORMACIÓN I"},
-    { value: "TALLER DE GRADO I"},
-    { value: "TALLER DE GRADO II"}
-  ];
+  // professors =  [
+  //   { value: "FIGUEROA DOMEJEAN OSWALDO JUAN"},
+  //   { value: "CAMPOHERMOSO ALCON ERNESTO OMAR"},
+  //   { value: "TANCARA AGUILAR JORGE"}
+  // ];
+  subjects: any[] = [];
+
+  // subjects  = [
+  //   { value: "TODAS LAS MATERIAS"},
+  //   { value: "BASE DE DATOS I"},
+  //   { value: "BASE DE DATOS II"},
+  //   { value: "SISTEMAS DE INFORMACIÓN I"},
+  //   { value: "TALLER DE GRADO I"},
+  //   { value: "TALLER DE GRADO II"}
+  // ];
   title: string = "Rendimento Académico - Semestre 2-2023";
   subtitle: string = "Profesor: FIGUEROA DOMEJEAN OSWALDO JUAN";
 
   selectedProfessor: string = "";
   selectedSubject: string = "";
 
-  constructor() {
+  semesterId: number = 4;
+
+  professorSubject: ProfessorSubjectDto[] = [];
+
+
+  constructor(private professorService: ProfessorService) {
     this.chartOptions = {
       series: this.data,
       chart: {
@@ -100,5 +111,52 @@ export class AcademicPerformanceDashboardComponent {
         }
       }
     };
+  }
+
+  ngOnInit() {
+    this.professorService.getProfessorSubjectsBySemesterId(this.semesterId).subscribe({
+      next: (data) => {
+        this.professors = data.data.map((professorSubject) => {
+            return {
+              code: professorSubject.professor.professorId,
+              value: `${professorSubject.professor.firstName} ${professorSubject.professor.lastName}`
+            };
+          }
+        );
+        this.subjects = data.data[0].subjects.map((subject) => {
+            return {
+              code: subject.subjectId,
+              value: subject.description
+            };
+          }
+        );
+        this.professorSubject = data.data;
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
+  }
+  onProfessorChange(event: any) {
+    // console.log(event);
+    var professorName = event.value;
+    var subjects = this.professorSubject.filter((professorSubject) => {
+
+    // get the array number where the professor name is equal to the selected professor
+    var professorIndex = this.professorSubject.findIndex((professorSubject) => {
+      return `${professorSubject.professor.firstName} ${professorSubject.professor.lastName}` === professorName;
+    });
+      this.subjects = this.professorSubject[0].subjects.map((subject) => {
+          return {
+            code: subject.subjectId,
+            value: subject.description
+          };
+        }
+      );
+  });
+  }
+
+  onSubjectChange(event: any) {
+    console.log(event);
   }
 }
