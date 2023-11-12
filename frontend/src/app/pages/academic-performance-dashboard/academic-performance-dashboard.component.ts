@@ -123,13 +123,13 @@ export class AcademicPerformanceDashboardComponent implements OnInit {
             };
           }
         );
-        this.subjects = data.data[0].subjects.map((subject) => {
-            return {
-              code: subject.subjectId,
-              value: subject.description
-            };
-          }
-        );
+        // this.subjects = data.data[0].subjects.map((subject) => {
+        //     return {
+        //       code: subject.subjectId,
+        //       value: subject.description
+        //     };
+        //   }
+        // );
         this.professorSubject = data.data;
       },
       error: (error) => {
@@ -138,25 +138,20 @@ export class AcademicPerformanceDashboardComponent implements OnInit {
     });
   }
   onProfessorChange(event: any) {
-    // console.log(event);
-    var professorName = event.value;
-    var subjects = this.professorSubject.filter((professorSubject) => {
-
-    // get the array number where the professor name is equal to the selected professor
-    var professorIndex = this.professorSubject.findIndex((professorSubject) => {
-      return `${professorSubject.professor.firstName} ${professorSubject.professor.lastName}` === professorName;
+    console.log(event);
+    const professorId = event.value;
+    const professorIndex = this.professorSubject.findIndex((professorSubject) => {
+      return professorSubject.professor.professorId === professorId;
     });
-      this.subjects = this.professorSubject[0].subjects.map((subject) => {
-          return {
-            code: subject.subjectId,
-            value: subject.description
-          };
-        }
-      );
-  });
+    this.subjects = [ { code: 0, value: "TODAS LAS MATERIAS" }, ...this.professorSubject[professorIndex].subjects.map((subject) => {
+      return {
+        code: subject.subjectId,
+        value: subject.description
+      };
+    })];
   }
-
   onSubjectChange(event: any) {
     console.log(event);
+    console.log(this.selectedSubject);
   }
 }

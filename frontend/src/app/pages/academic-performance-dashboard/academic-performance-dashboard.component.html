@@ -5,8 +5,8 @@
   <div class="input-wrapper">
     <mat-form-field>
       <mat-label>Docente</mat-label>
-      <mat-select [(ngModel)]="selectedProfessor"(selectionChange)="onProfessorChange($event)">
-        <mat-option *ngFor="let option of professors" [value]="option.value">
+      <mat-select [(ngModel)]="selectedProfessor" (selectionChange)="onProfessorChange($event)">
+        <mat-option *ngFor="let option of professors" [value]="option.code">
           {{option.value}}
         </mat-option>
       </mat-select>
@@ -17,7 +17,7 @@
     <mat-form-field>
       <mat-label>Materia</mat-label>
       <mat-select [(ngModel)]="selectedSubject" (selectionChange)="onSubjectChange($event)">
-        <mat-option *ngFor="let option of subjects" [value]="option.value">
+        <mat-option *ngFor="let option of subjects" [value]="option.code">
           {{option.value}}
         </mat-option>
       </mat-select>

@@ -79,7 +79,12 @@ public class ProfessorController : ControllerBase
             {
                 var subjects = await _subjectAndSemesterGradeService.GetSubjectsByProfessorIdAndSemesterId(professor.professorId,
                     semesterId);
-                var professorSubject = new ProfessorSubjectDTO(professor, subjects);
+                var simpleSubjects = subjects.Select(subject => new SimpleSubjectDTO
+                {
+                    SubjectId = subject.subjectId,
+                    Description = $"{subject.subjectCode} {subject.subjectName} [Par. {subject.parallel}]"
+                }).ToList();
+                var professorSubject = new ProfessorSubjectDTO(professor, simpleSubjects);
                 professorSubjects.Add(professorSubject);
             }
             return Ok(new ResponseDTO<List<ProfessorSubjectDTO>>

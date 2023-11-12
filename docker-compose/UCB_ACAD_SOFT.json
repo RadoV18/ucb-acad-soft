@@ -38,6 +38,10 @@
         },
         {
           "type": "route",
+          "uuid": "65fea4e0-268a-4a9e-b140-55f5d7ad1798"
+        },
+        {
+          "type": "route",
           "uuid": "412e4736-43ea-44a1-af5f-08a1a8155afb"
         }
       ]
@@ -61,6 +65,10 @@
         },
         {
           "type": "route",
+          "uuid": "f95470a8-c220-42e0-8fae-25f9b2159d92"
+        },
+        {
+          "type": "route",
           "uuid": "ce777b2f-51bb-4361-b962-0c985e3f1128"
         }
       ]
@@ -72,7 +80,7 @@
       "type": "http",
       "documentation": "Get the list of subjects taught by a professor by it's id, and semester id (Gestión de Materias y Calificaciones por semestre)",
       "method": "get",
-      "endpoint": "api/v1/subjects/professors/:profesorId",
+      "endpoint": "api/v1/subjects/professors/:professorId",
       "responses": [
         {
           "uuid": "21ea15c9-281e-4360-b779-2f41d93df8c2",
@@ -92,9 +100,16 @@
               "value": "1",
               "invert": false,
               "operator": "equals"
+            },
+            {
+              "target": "params",
+              "modifier": "professorId",
+              "value": "1",
+              "invert": false,
+              "operator": "equals"
             }
           ],
-          "rulesOperator": "OR",
+          "rulesOperator": "AND",
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": true,
@@ -118,9 +133,16 @@
               "value": "2",
               "invert": false,
               "operator": "equals"
+            },
+            {
+              "target": "params",
+              "modifier": "professorId",
+              "value": "1",
+              "invert": false,
+              "operator": "equals"
             }
           ],
-          "rulesOperator": "OR",
+          "rulesOperator": "AND",
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": false,
@@ -144,9 +166,16 @@
               "value": "3",
               "invert": false,
               "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "professorId",
+              "value": "1",
+              "invert": false,
+              "operator": "equals"
             }
           ],
-          "rulesOperator": "OR",
+          "rulesOperator": "AND",
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": false,
@@ -157,7 +186,7 @@
           "body": "{\n  \"successful\": true,\n  \"message\": null,\n  \"data\": [\n    {\n      \"subjectId\": 1,\n      \"subjectCode\": \"SIS-122\",\n      \"subjectName\": \"BASE DE DATOS I\",\n      \"parallel\": 1,\n      \"credits\": 5,\n      \"schedule\": [\n        {\n          \"scheduleId\": 1,\n          \"start\": \"14:15\",\n          \"end\": \"16:45\",\n          \"day\": \"Miércoles\",\n          \"classroom\": \"C105\"\n        },\n        {\n          \"scheduleId\": 1,\n          \"start\": \"09:00\",\n          \"end\": \"10:30\",\n          \"day\": \"Jueves\",\n          \"classroom\": \"D17\"\n        }\n      ]\n    },\n    {\n      \"subjectId\": 2,\n      \"subjectCode\": \"SIS-221\",\n      \"subjectName\": \"BASE DE DATOS II\",\n      \"parallel\": 1,\n      \"credits\": 6,\n      \"schedule\": [\n        {\n          \"scheduleId\": 1,\n          \"start\": \"09:00\",\n          \"end\": \"11:30\",\n          \"day\": \"Lunes\",\n          \"classroom\": \"LB7\"\n        },\n        {\n          \"scheduleId\": 2,\n          \"start\": \"14:15\",\n          \"end\": \"15:45\",\n          \"day\": \"Jueves\",\n          \"classroom\": \"D17\"\n        }\n      ]\n    },\n    {\n      \"subjectId\": 4,\n      \"subjectCode\": \"SIS-353\",\n      \"subjectName\": \"TALLER DE GRADO I \",\n      \"parallel\": 1,\n      \"credits\": 15,\n      \"schedule\": [\n        {\n          \"scheduleId\": 1,\n          \"start\": \"09:00\",\n          \"end\": \"10:30\",\n          \"day\": \"Martes\",\n          \"classroom\": \"D17\"\n        },\n        {\n          \"scheduleId\": 2,\n          \"start\": \"10:45\",\n          \"end\": \"12:15\",\n          \"day\": \"Jueves\",\n          \"classroom\": \"F7A\"\n        }\n      ]\n    }\n  ]\n}\n",
           "latency": 0,
           "statusCode": 200,
-          "label": "Semestre II-2023",
+          "label": "Semestre II-2023 Figueroa",
           "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
@@ -170,9 +199,82 @@
               "value": "4",
               "invert": false,
               "operator": "equals"
+            },
+            {
+              "target": "params",
+              "modifier": "professorId",
+              "value": "1",
+              "invert": false,
+              "operator": "equals"
             }
           ],
-          "rulesOperator": "OR",
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "9f62ee6e-bb82-4059-92d9-98422dc30cc2",
+          "body": "{\n  \"successful\": true,\n  \"message\": null,\n  \"data\": [\n    {\n      \"subjectId\": 5,\n      \"subjectCode\": \"SIS-121\",\n      \"subjectName\": \"INGENIERIA DE SISTEMAS I\",\n      \"parallel\": 1,\n      \"credits\": 5,\n      \"schedule\": [\n        {\n          \"scheduleId\": 1,\n          \"start\": \"09:00\",\n          \"end\": \"10:30\",\n          \"day\": \"Miércoles\",\n          \"classroom\": \"C003\"\n        },\n        {\n          \"scheduleId\": 1,\n          \"start\": \"09:00\",\n          \"end\": \"10:30\",\n          \"day\": \"Viernes\",\n          \"classroom\": \"D17\"\n        }\n      ]\n    },\n    {\n      \"subjectId\": 6,\n      \"subjectCode\": \"SIS-112\",\n      \"subjectName\": \"PROGRAMACIÓN I\",\n      \"parallel\": 2,\n      \"credits\": 6,\n      \"schedule\": [\n        {\n          \"scheduleId\": 1,\n          \"start\": \"10:45\",\n          \"end\": \"13:15\",\n          \"day\": \"Lunes\",\n          \"classroom\": \"C104\"\n        },\n        {\n          \"scheduleId\": 2,\n          \"start\": \"14:15\",\n          \"end\": \"15:45\",\n          \"day\": \"Jueves\",\n          \"classroom\": \"C104\"\n        }\n      ]\n    },\n    {\n      \"subjectId\": 7,\n      \"subjectCode\": \"SIS-323\",\n      \"subjectName\": \"TALLER DE SISTEMAS DE INFORMACION\",\n      \"parallel\": 1,\n      \"credits\": 5,\n      \"schedule\": [\n        {\n          \"scheduleId\": 1,\n          \"start\": \"12:30\",\n          \"end\": \"14:00\",\n          \"day\": \"Martes\",\n          \"classroom\": \"C105\"\n        },\n        {\n          \"scheduleId\": 2,\n          \"start\": \"12:30\",\n          \"end\": \"14:00\",\n          \"day\": \"Jueves\",\n          \"classroom\": \"C105\"\n        }\n      ]\n    }\n  ]\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Semestre II-2023 Avila",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "semesterId",
+              "value": "4",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "params",
+              "modifier": "professorId",
+              "value": "2",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "ac9ce5fa-8337-443a-9b00-8b2107b590d9",
+          "body": "{\n  \"successful\": true,\n  \"message\": null,\n  \"data\": [\n    {\n      \"subjectId\": 8,\n      \"subjectCode\": \"SIS-324\",\n      \"subjectName\": \"AUDITORÍA DE SISTEMAS\",\n      \"parallel\": 1,\n      \"credits\": 5,\n      \"schedule\": [\n        {\n          \"scheduleId\": 1,\n          \"start\": \"09:00\",\n          \"end\": \"10:30\",\n          \"day\": \"Miércoles\",\n          \"classroom\": \"D11\"\n        },\n        {\n          \"scheduleId\": 1,\n          \"start\": \"09:00\",\n          \"end\": \"10:30\",\n          \"day\": \"Viernes\",\n          \"classroom\": \"C003\"\n        }\n      ]\n    },\n    {\n      \"subjectId\": 9,\n      \"subjectCode\": \"SIS-211\",\n      \"subjectName\": \"ESTRUCTURAS DE DATOS\",\n      \"parallel\": 1,\n      \"credits\": 6,\n      \"schedule\": [\n        {\n          \"scheduleId\": 1,\n          \"start\": \"12:30\",\n          \"end\": \"14:00\",\n          \"day\": \"Lunes\",\n          \"classroom\": \"G3\"\n        },\n        {\n          \"scheduleId\": 2,\n          \"start\": \"12:30\",\n          \"end\": \"15:00\",\n          \"day\": \"Miércoles\",\n          \"classroom\": \"LBPOS\"\n        }\n      ]\n    },\n    {\n      \"subjectId\": 10,\n      \"subjectCode\": \"SIS-111\",\n      \"subjectName\": \"INTRODUCCION A LA PROGRAMACION\",\n      \"parallel\": 1,\n      \"credits\": 6,\n      \"schedule\": [\n        {\n          \"scheduleId\": 1,\n          \"start\": \"09:00\",\n          \"end\": \"10:30\",\n          \"day\": \"Lunes\",\n          \"classroom\": \"C003\"\n        },\n        {\n          \"scheduleId\": 2,\n          \"start\": \"09:45\",\n          \"end\": \"12:15\",\n          \"day\": \"Jueves\",\n          \"classroom\": \"C105\"\n        }\n      ]\n    }\n  ]\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Semestre II-2023 Yañez",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "semesterId",
+              "value": "4",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "params",
+              "modifier": "professorId",
+              "value": "3",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": false,
@@ -561,7 +663,7 @@
       "responses": [
         {
           "uuid": "0886ef13-ec51-4622-a560-601f83c31bb4",
-          "body": "{\n  \"successful\": true,\n  \"message\": null,\n  \"data\": {\n    \"ci\": \"1234567\",\n    \"firstName\": \"Oswaldo\",\n    \"lastName\": \"Figueroa Domejean\",\n    \"email\": \"ofigueroa@ucb.edu.bo\",\n    \"phone\": \"76205685\"\n  }\n}\n",
+          "body": "{\n  \"successful\": true,\n  \"message\": null,\n  \"data\": {\n    \"professorId\": 1,\n    \"ci\": \"1234567\",\n    \"firstName\": \"Oswaldo\",\n    \"lastName\": \"Figueroa Domejean\",\n    \"email\": \"ofigueroa@ucb.edu.bo\",\n    \"phone\": \"76205685\"\n  }\n}\n",
           "latency": 0,
           "statusCode": 200,
           "label": "Get professor Info",
@@ -790,6 +892,72 @@
           "databucketID": "",
           "sendFileAsBody": false,
           "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "65fea4e0-268a-4a9e-b140-55f5d7ad1798",
+      "type": "http",
+      "documentation": "Get by subject ID and semester Id",
+      "method": "get",
+      "endpoint": "api/v1/subjects/:subjectId/final-evaluation",
+      "responses": [
+        {
+          "uuid": "97347bd3-3a46-4795-b694-ba16603a0d3c",
+          "body": "{\n  \"successful\": true,\n  \"message\": null,\n  \"data\": {\n    \"subject\": {\n      \"name\": \"Gestión de Calidad\",\n      \"professor\": \"Gustavo Palabral\",\n      \"section\": 1,\n      \"period\": \"2-2023\"\n    },\n    \"scores\": [\n      {\n        \"scoreId\": 1,\n        \"name\": \"Evaluación Continua\",\n        \"weight\": 50.0\n      },\n      {\n        \"scoreId\": 2,\n        \"name\": \"Evaluación Final\",\n        \"weight\": 50.0\n      }\n    ],\n  \"students\": [\n      {\n        \"studentId\": 1,\n        \"firstName\": \"Radomir Luis\",\n        \"lastName\": \"Vladislavic Nolasco\",\n        \"scores\": [\n          {\n            \"scoreId\": 1,\n            \"value\": 50.0\n          },\n          {\n            \"scoreId\": 2,\n            \"value\": 48.0\n          }\n        ]\n      },\n      {\n        \"studentId\": 2,\n        \"firstName\": \"Elena\",\n        \"lastName\": \"Gonzalez\",\n        \"scores\": [\n          {\n            \"scoreId\": 1,\n            \"value\": 45.5\n          },\n          {\n            \"scoreId\": 2,\n            \"value\": 47.0\n          }\n        ]\n      },\n      {\n        \"studentId\": 3,\n        \"firstName\": \"Javier\",\n        \"lastName\": \"Ramirez\",\n        \"scores\": [\n          {\n            \"scoreId\": 1,\n            \"value\": 30.0\n          },\n          {\n            \"scoreId\": 2,\n            \"value\": 20\n          }\n        ]\n      },\n      {\n        \"studentId\": 4,\n        \"firstName\": \"Ana\",\n        \"lastName\": \"Martinez\",\n        \"scores\": [\n          {\n            \"scoreId\": 1,\n            \"value\": 30.0\n          },\n          {\n            \"scoreId\": 2,\n            \"value\": 15.0\n          }\n        ]\n      },\n      {\n        \"studentId\": 5,\n        \"firstName\": \"Carlos\",\n        \"lastName\": \"Lopez\",\n        \"scores\": [\n          {\n            \"scoreId\": 1,\n            \"value\": 49.0\n          },\n          {\n            \"scoreId\": 2,\n            \"value\": 47.5\n          }\n        ]\n      },\n      {\n        \"studentId\": 6,\n        \"firstName\": \"Isabella\",\n        \"lastName\": \"Gomez\",\n        \"scores\": [\n          {\n            \"scoreId\": 1,\n            \"value\": 47.0\n          },\n          {\n            \"scoreId\": 2,\n            \"value\": 46.0\n          }\n        ]\n      },\n      {\n        \"studentId\": 7,\n        \"firstName\": \"Miguel\",\n        \"lastName\": \"Hernandez\",\n        \"scores\": [\n          {\n            \"scoreId\": 1,\n            \"value\": 45.0\n          },\n          {\n            \"scoreId\": 2,\n            \"value\": 44.5\n          }\n        ]\n      },\n      {\n        \"studentId\": 8,\n        \"firstName\": \"Laura\",\n        \"lastName\": \"Sanchez\",\n        \"scores\": [\n          {\n            \"scoreId\": 1,\n            \"value\": 48.5\n          },\n          {\n            \"scoreId\": 2,\n            \"value\": 50.0\n          }\n        ]\n      },\n      {\n        \"studentId\": 9,\n        \"firstName\": \"Ricardo\",\n        \"lastName\": \"Castillo\",\n        \"scores\": [\n          {\n            \"scoreId\": 1,\n            \"value\": 46.0\n          },\n          {\n            \"scoreId\": 2,\n            \"value\": 47.0\n          }\n        ]\n      },\n      {\n        \"studentId\": 10,\n        \"firstName\": \"Maria\",\n        \"lastName\": \"Fernandez\",\n        \"scores\": [\n          {\n            \"scoreId\": 1,\n            \"value\": 49.5\n          },\n          {\n            \"scoreId\": 2,\n            \"value\": 48.5\n          }\n        ]\n      },\n      {\n        \"studentId\": 11,\n        \"firstName\": \"Juan\",\n        \"lastName\": \"Perez\",\n        \"scores\": [\n          {\n            \"scoreId\": 1,\n            \"value\": 27.5\n          },\n          {\n            \"scoreId\": 2,\n            \"value\": 29.0\n          }\n        ]\n      }\n    ]\n  }\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "f95470a8-c220-42e0-8fae-25f9b2159d92",
+      "type": "http",
+      "documentation": "Get a professors info by its id",
+      "method": "get",
+      "endpoint": "api/v1/professors",
+      "responses": [
+        {
+          "uuid": "489e0949-a979-4ca6-86e2-d72f8a95ed15",
+          "body": "{\n  \"successful\": true,\n  \"message\": null,\n  \"data\": [\n    {\n      \"professorId\": 1,\n      \"ci\": \"1234567\",\n      \"firstName\": \"Oswaldo\",\n      \"lastName\": \"Figueroa Domejean\",\n      \"email\": \"ofigueroa@ucb.edu.bo\",\n      \"phone\": \"76205685\"    \n    },\n    {\n      \"professorId\": 2,\n      \"ci\": \"7654321\",\n      \"firstName\": \"Juan Angel\",\n      \"lastName\": \"Avila Maceda\",\n      \"email\": \"javila@ucb.edu.bo\",\n      \"phone\": \"72034144\"    \n    },\n    {\n      \"professorId\": 3,\n      \"ci\": \"1231231\",\n      \"firstName\": \"Maria Lucero\",\n      \"lastName\": \"Yañez Guzman\",\n      \"email\": \"myañez@ucb.edu.bo\",\n      \"phone\": \"76205685\"    \n    }\n  ]\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Get professor Info",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "professorId",
+              "value": "1",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
           "rulesOperator": "OR",
           "disableTemplating": false,
           "fallbackTo404": false,

@@ -36,7 +36,6 @@ public class SubjectAndSemesterGradeService
 
     public async Task<List<SubjectPartialDTO>> GetSubjectsByProfessorIdAndSemesterId(int professorId, int semesterId)
     {
-        Console.WriteLine($"professorId: {professorId}, semesterId: {semesterId}");
         var request = new RestRequest($"subjects/professors/{professorId}");
         request.AddHeader("Accept", "application/json");
         request.AddHeader("Content-Type", "application/json");
