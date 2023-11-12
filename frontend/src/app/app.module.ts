@@ -45,6 +45,7 @@ import { AdminDialogComponent } from './components/admin-dialog/admin-dialog.com
 import { AdminDateDialogComponent } from './components/admin-date-dialog/admin-date-dialog.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import { DashboardStudentIndexComponent } from './pages/dashboard-student-index/dashboard-student-index.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import {MatNativeDateModule} from "@angular/material/core";
     SecondTermEvaluationComponent,
     AdminPageComponent,
     AdminDialogComponent,
-    AdminDateDialogComponent
+    AdminDateDialogComponent,
+    DashboardStudentIndexComponent
   ],
     imports: [
         BrowserModule,
