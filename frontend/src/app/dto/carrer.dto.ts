@@ -15,3 +15,17 @@ export interface ParallelDto {
     parallelNumber: number;
     professor: string;
 }
+
+
+export interface DashboardDto {
+  data: [
+    {
+      x: string;
+      y: number;
+    },
+    {
+      x: string;
+      y: number;
+    }
+  ];
+}

@@ -8,7 +8,7 @@ import {
   ApexTitleSubtitle,
 } from "ng-apexcharts";
 import {StudentIndexService} from "../../services/dashboards/student-index/student-index.service";
-import {CarrerDto, ParallelDto, SubjectDto} from "../../dto/carrer.dto";
+import {CarrerDto, DashboardDto, ParallelDto, SubjectDto} from "../../dto/carrer.dto";
 import {DashboardRepository} from "../../repositories/dashboardRepository";
 
 
@@ -31,17 +31,32 @@ export class DashboardStudentIndexComponent {
   public chartOptions: Partial<ChartOptions>;
 
   labels: string[] = ["Habilitados", "No Habilitados"];
-  data: any[] = [{
-    data: [{
-      x: 'category A',
-      y: 100
-    }, {
-      x: 'category B',
-      y: 18
-    }]
-  }];
+  data: any = [
+    {
+      data: [{
+        x: "category A",
+        y: 100
+      }, {
+        x: "category B",
+        y: 18
+      }]
+    }
+  ];
 
-   carrers: CarrerDto[]  = [
+  data1: any = [
+    {
+      data: [{
+        x: "category A",
+        y: 1
+      }, {
+        x: "category B",
+        y: 18
+      }]
+    }
+  ];
+
+
+  carrers: CarrerDto[]  = [
 
   ];
 
@@ -148,6 +163,19 @@ export class DashboardStudentIndexComponent {
     console.log(this.selectedCarrerId)
     console.log(this.selectedSubjectId)
     console.log(this.selectedParallelId)
+
+    this.studentIndexService.sendFilter(this.selectedCarrerId, this.selectedSubjectId, this.selectedParallelId).subscribe(
+      (data) => {
+        console.log("data")
+        console.log(data)
+        console.log("this.data")
+        this.data = data;
+         this.buildDashboard();
+
+      }
+    );
+
+
   }
 
   onSelectedCarrer(event: any) {
@@ -168,6 +196,61 @@ export class DashboardStudentIndexComponent {
     console.log("onSelectedParallel")
     console.log(event)
     this.selectedParallelId = event.id;
+  }
+
+  buildDashboard() {
+    console.log("buildDashboard")
+    console.log(this.data.data)
+    this.chartOptions = {
+      series: JSON.parse(`[{"data": ${JSON.stringify(this.data.data)}}]`),
+      chart: {
+        width: 700,
+        type: "bar",
+        foreColor: '#fff',
+      },
+      labels: this.labels,
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 300,
+            },
+            legend: {
+              position: "bottom"
+            }
+          }
+        }
+      ],
+      title: {
+        text: this.title,
+        align: "center",
+        margin: 40,
+        offsetX: 0,
+        offsetY: 10,
+        floating: false,
+        style: {
+          fontSize: "20px",
+          fontWeight: "bold",
+          fontFamily: undefined,
+          color: "white"
+        }
+      },
+      subtitle: {
+        text: this.subtitle,
+        align: "center",
+        margin: 10,
+        offsetX: 0,
+        offsetY: 0,
+        floating: false,
+        style: {
+          fontSize: "15px",
+          fontWeight: "bold",
+          fontFamily: undefined,
+          color: "white"
+        }
+      }
+    };
   }
 
 }

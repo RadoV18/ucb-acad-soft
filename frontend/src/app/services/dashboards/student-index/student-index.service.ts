@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable, tap} from "rxjs";
 import {ResponseDto} from "../../../dto/response.dto";
 import {HttpClient} from "@angular/common/http";
-import {CarrerDto} from "../../../dto/carrer.dto";
+import {CarrerDto, DashboardDto} from "../../../dto/carrer.dto";
 import {DashboardRepository} from "../../../repositories/dashboardRepository";
 
 @Injectable({
@@ -40,6 +40,10 @@ export class StudentIndexService {
         }
       })
     );
+  }
+
+  sendFilter(carrerId: number, subjectId: number, parallelId: number) {
+    return this.http.get<DashboardDto[]>(`http://localhost:8080/api/v1/dashboards/qualified/1/100/200`).pipe();
   }
 
 }
