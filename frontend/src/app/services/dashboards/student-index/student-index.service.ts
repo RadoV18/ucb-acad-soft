@@ -20,6 +20,7 @@ export class StudentIndexService {
         if (response.data && response.data.length > 0) {
           const firstCarrer = response.data[0];
           this.dashboardRepository.setCarrers(response.data);
+          this.dashboardRepository.setCarrerDto(response.data);
 
           if (firstCarrer.subjects && firstCarrer.subjects.length > 0) {
             const firstSubject = firstCarrer.subjects[0];

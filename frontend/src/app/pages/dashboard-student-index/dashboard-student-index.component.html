@@ -9,14 +9,14 @@
 
     <mat-form-field>
       <mat-label>Asignatura</mat-label>
-      <mat-select [(ngModel)]="selectedSubjectId">
+      <mat-select [(ngModel)]="selectedSubjectId" (ngModelChange)="onSelectedSubject($event)">
         <mat-option *ngFor="let subject of subjects" [value]="subject">{{subject.name}}</mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Paralelo</mat-label>
-      <mat-select [(ngModel)]="selectedParallelId">
+      <mat-select [(ngModel)]="selectedParallelId" (ngModelChange)="onSelectedParallel($event)">
                 <mat-option *ngFor="let parallel of parallels" [value]="parallel">{{parallel.parallelNumber}}</mat-option>
       </mat-select>
     </mat-form-field>

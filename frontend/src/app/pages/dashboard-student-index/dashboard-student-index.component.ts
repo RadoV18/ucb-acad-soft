@@ -70,7 +70,6 @@ export class DashboardStudentIndexComponent {
 
   constructor(private studentIndexService: StudentIndexService, private dashboardRepository: DashboardRepository) {
     this.studentIndexService.getCarrers().subscribe();
-    this.dashboardRepository.setSelectedCarrerId(1);
     this.dashboardRepository.carrers$.subscribe((carrers) => {
       this.carrers=carrers;
     });
@@ -142,10 +141,6 @@ export class DashboardStudentIndexComponent {
     console.log("setSelectedSubject")
     this.selectedSubject = event.value.name;
     this.subtitle = `Asignatura: ${this.selectedSubject} `;
-    // // @ts-ignore
-    // this.chartOptions.subtitle.text = this.subtitle;
-    // // @ts-ignore
-    // console.log(this.chartOptions.subtitle.text)
   }
 
   getData() {
@@ -159,6 +154,20 @@ export class DashboardStudentIndexComponent {
     console.log("onSelectedCarrer")
     console.log(event)
     this.dashboardRepository.setSelectedCarrerId(event.id);
+    this.selectedCarrerId = event.id;
+  }
+
+  onSelectedSubject(event: any) {
+    console.log("onSelectedSubject")
+    console.log(this.selectedCarrerId)
+    this.dashboardRepository.setSelectedSubjectId(this.selectedCarrerId, event.id);
+    this.selectedSubjectId = event.id;
+  }
+
+  onSelectedParallel(event: any) {
+    console.log("onSelectedParallel")
+    console.log(event)
+    this.selectedParallelId = event.id;
   }
 
 }

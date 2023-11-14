@@ -52,9 +52,9 @@ export class DashboardRepository{
 
   setSelectedCarrerId(id: number) {
       carrersStore.update(setProp('selectedCarrerId', id));
-      const carrer = this.carrerDto.find(
-        x => x.id === id
-      );
+      console.log("GETT")
+      console.log(this.getSelectedCarrerId())
+      const carrer = this.carrerDto.find(x => x.id === id);
       if (carrer) {
           this.setSubjects(carrer.subjects);
       }
@@ -70,6 +70,7 @@ export class DashboardRepository{
   }
 
   setSelectedSubjectId(carrerId: number, subjectId: number) {
+      console.log("setSelectedSubjectId", carrerId)
       subjectsStore.update(setProp('selectedSubjectId', subjectId));
       const carrer  = this.carrerDto.find(
         x => x.id === carrerId);
@@ -83,6 +84,10 @@ export class DashboardRepository{
 
   setParallels(parallels: ParallelDto[]) {
       parallelsStore.update(setEntities(parallels));
+  }
+
+  setCarrerDto(carrerDto: CarrerDto[]) {
+      this.carrerDto = carrerDto;
   }
 
 
