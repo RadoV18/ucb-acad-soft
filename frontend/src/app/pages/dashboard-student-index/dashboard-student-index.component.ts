@@ -8,7 +8,8 @@ import {
   ApexTitleSubtitle,
 } from "ng-apexcharts";
 import {StudentIndexService} from "../../services/dashboards/student-index/student-index.service";
-import {CarrerDto} from "../../dto/carrer.dto";
+import {CarrerDto, ParallelDto, SubjectDto} from "../../dto/carrer.dto";
+import {DashboardRepository} from "../../repositories/dashboardRepository";
 
 
 export type ChartOptions = {
@@ -40,13 +41,24 @@ export class DashboardStudentIndexComponent {
     }]
   }];
 
-  carrers: CarrerDto[]  = [
+   carrers: CarrerDto[]  = [
 
   ];
+
+  subjects: SubjectDto[] = [];
+
+  parallels: ParallelDto[] = [];
+
   title: string = "Estudiantes Habilitados y No Habilitados";
 
 
   selectedSubject: string = "";
+
+
+  selectedCarrerId: number = 0;
+  selectedSubjectId: number = 0;
+  selectedParallelId: number = 0;
+
   subtitle: string = `Asignatura: ${this.selectedSubject} `;
 
   ngOnInit() {
@@ -56,13 +68,23 @@ export class DashboardStudentIndexComponent {
 
 
 
-  constructor(private studentIndexService: StudentIndexService) {
-    this.studentIndexService.getCarrers().subscribe(
-      (response) => {
-        this.carrers = response.data;
-        console.log(response)
-        // console.log(this.subjects)
-      });
+  constructor(private studentIndexService: StudentIndexService, private dashboardRepository: DashboardRepository) {
+    this.studentIndexService.getCarrers().subscribe();
+    this.dashboardRepository.setSelectedCarrerId(1);
+    this.dashboardRepository.carrers$.subscribe((carrers) => {
+      this.carrers=carrers;
+    });
+    this.dashboardRepository.subjects$.subscribe((subjects) => {
+      this.subjects=subjects;
+    });
+
+    this.dashboardRepository.parallels$.subscribe((parallels) => {
+      this.parallels = parallels;
+    });
+
+    this.selectedCarrerId = this.dashboardRepository.getSelectedCarrerId();
+    this.selectedSubjectId = this.dashboardRepository.getSelectedSubjectId();
+
 
     this.chartOptions = {
       series: this.data,
@@ -127,7 +149,16 @@ export class DashboardStudentIndexComponent {
   }
 
   getData() {
-    console.log(this.selectedSubject)
+    console.log("getData")
+    console.log(this.selectedCarrerId)
+    console.log(this.selectedSubjectId)
+    console.log(this.selectedParallelId)
+  }
+
+  onSelectedCarrer(event: any) {
+    console.log("onSelectedCarrer")
+    console.log(event)
+    this.dashboardRepository.setSelectedCarrerId(event.id);
   }
 
 }
