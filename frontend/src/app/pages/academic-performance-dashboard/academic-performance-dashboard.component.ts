@@ -9,6 +9,7 @@ import {
 } from "ng-apexcharts";
 import {ProfessorService} from "../../services/professor.service";
 import {ProfessorSubjectDto} from "../../dto/professor-subject.dto";
+import {DashboardServiceService} from "../../services/dashboard-service/dashboard-service.service";
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -29,8 +30,7 @@ export class AcademicPerformanceDashboardComponent implements OnInit {
 
 
   labels: string[] = ["0-40%", "41-60%", "61-90%", "91-100%"];
-  // TODO INJECT DATA FROM API
-  data: number[] = [5, 10, 30, 5];
+  data: number[] = [0, 0, 0, 0];
   professors: any[] = [];
 
   // professors =  [
@@ -57,9 +57,10 @@ export class AcademicPerformanceDashboardComponent implements OnInit {
   semesterId: number = 4;
 
   professorSubject: ProfessorSubjectDto[] = [];
+  subjectIds: number[] = [];
 
 
-  constructor(private professorService: ProfessorService) {
+  constructor(private professorService: ProfessorService, private dashboardService: DashboardServiceService) {
     this.updateChart();
   }
 
@@ -74,11 +75,19 @@ export class AcademicPerformanceDashboardComponent implements OnInit {
           }
         )];
         this.professorSubject = data.data;
+        this.subjectIds = this.professorSubject.map((professorSubject) => {
+          return professorSubject.subjects.map((subject) => {
+            return subject.subjectId;
+          });
+        }).flat();
+        // console.log(this.subjectIds);
+        this.getData();
       },
       error: (error) => {
         console.log(error);
-      }
+      },
     });
+
   }
 
   onProfessorChange(event: any) {
@@ -98,24 +107,50 @@ export class AcademicPerformanceDashboardComponent implements OnInit {
         };
       })];
       this.subtitle = `Docente: ${this.professorSubject[professorIndex].professor.firstName} ${this.professorSubject[professorIndex].professor.lastName}`;
+      this.subjectIds = this.professorSubject[professorIndex].subjects.map((subject) => {
+        return subject.subjectId;
+      });
     } else {
       this.subjects = [{
         code: 0,
         value: "TODAS LAS MATERIAS"
       }];
       this.subtitle = "Docente: TODOS LOS DOCENTES";
+      this.subjectIds = this.professorSubject.map((professorSubject) => {
+        return professorSubject.subjects.map((subject) => {
+          return subject.subjectId;
+        });
+      }).flat();
     }
-    console.log(this.subtitle);
-    this.updateChart();
+    // console.log(this.subtitle);
+    this.getData();
   }
 
   onSubjectChange(event: any) {
     // console.log(event);
     this.selectedSubject = event.value;
-    console.log(this.selectedSubject);
+    if (this.selectedSubject === 0) {
+        this.subjectIds = this.subjects.map((subject) => {
+          return subject.code;
+        });
+        this.subjectIds.shift();
+    } else {
+      this.subjectIds = [this.selectedSubject];
+    }
+    if (this.subjectIds.length === 0) {
+      this.subjectIds = this.professorSubject.map((professorSubject) => {
+        return professorSubject.subjects.map((subject) => {
+          return subject.subjectId;
+        });
+      }).flat();
+    }
+    console.log(this.subjectIds);
+    this.getData();
+    // console.log(this.selectedSubject);
   }
 
   updateChart() {
+    // console.log("updateChart");
     this.chartOptions = {
       series: this.data,
       chart: {
@@ -167,5 +202,23 @@ export class AcademicPerformanceDashboardComponent implements OnInit {
         }
       }
     };
+  }
+
+  getData() {
+    this.dashboardService.getAcademicPerformance(this.subjectIds, this.semesterId).subscribe({
+      next: (data) => {
+        this.data = [
+          data.data.totalStudentsWithScoresFrom0to40,
+          data.data.totalStudentsWithScoresFrom41to60,
+          data.data.totalStudentsWithScoresFrom61to90,
+          data.data.totalStudentsWithScoresFrom91to100
+        ];
+        this.title = `Rendimento Académico - Total \n ${data.data.totalStudents} estudiantes`;
+        this.updateChart();
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
   }
 }
