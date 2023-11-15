@@ -76,4 +76,26 @@ public class SubjectController: ControllerBase
             return BadRequest(e.Message);
         }
     }
+
+    [HttpGet("approved")]
+    public Task<ActionResult<ApprovedRateDto>> GetApprovedBySubjects(
+        [FromQuery(Name = "semesterId")] int? semesterId,
+        [FromQuery(Name = "careerId")] int? careerId,
+        [FromQuery(Name = "subjectId")] int? subjectId,
+        [FromQuery(Name = "parallelId")] int? parallelId
+    )
+    {   
+        if(semesterId == null)
+        {
+            return Task.FromResult<ActionResult<ApprovedRateDto>>(BadRequest("semesterId is required."));
+        }
+        return Task.FromResult<ActionResult<ApprovedRateDto>>(Ok(new ApprovedRateDto
+        {
+            Data = new List<CoordDto>
+            {
+                new CoordDto {x = "Habilitados", y = 50},
+                new CoordDto {x = "No Habilitados", y = 60},
+            }
+        }));
+    }
 }
