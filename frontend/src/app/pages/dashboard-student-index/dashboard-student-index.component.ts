@@ -82,7 +82,6 @@ export class DashboardStudentIndexComponent {
   subtitle: string = `Asignatura: ${this.selectedSubject} `;
 
   ngOnInit() {
-    console.log("ngOnInit")
   }
 
 
@@ -158,35 +157,19 @@ export class DashboardStudentIndexComponent {
 
    this.studentIndexService.gerSemeters().subscribe(
       (data) => {
-        console.log("data")
-        console.log(data)
-        console.log("this.data")
         this.semesters = data.data;
       }
     );
   }
 
   setSelectedSubject(event: any) {
-    console.log("setSelectedSubject")
     this.selectedSubject = event.value.name;
     this.subtitle = `Asignatura: ${this.selectedSubject} `;
   }
 
   getData() {
-    console.log("getData")
-    console.log("SELECTED CARRER")
-    console.log(this.selectedCarrerId.id)
-    console.log("SELECTED SUBJECT")
-    console.log(this.selectedSubjectId.id)
-    console.log("SELECTED PARALLEL")
-    console.log(this.selectedParallelId.id)
-    console.log("SELECTED SEMESTER")
-    console.log(this.selectedSemesterId.semesterId)
     this.studentIndexService.sendFilter(this.selectedCarrerId, this.selectedSubjectId, this.selectedParallelId, this.selectedSemesterId).subscribe(
       (data) => {
-        console.log("data")
-        console.log(data)
-        console.log("this.data")
         this.data = data;
          this.buildDashboard();
 
@@ -216,8 +199,6 @@ export class DashboardStudentIndexComponent {
 
 
   buildDashboard() {
-    console.log("buildDashboard")
-    console.log(this.data.data)
     this.chartOptions = {
       series: JSON.parse(`[{"data": ${JSON.stringify(this.data.data)}}]`),
       chart: {
