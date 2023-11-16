@@ -4,6 +4,7 @@ import {ResponseDto} from "../../../dto/response.dto";
 import {HttpClient} from "@angular/common/http";
 import {CarrerDto, DashboardDto} from "../../../dto/carrer.dto";
 import {DashboardRepository} from "../../../repositories/dashboardRepository";
+import {SemesterDto} from "../../../dto/semester.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -42,8 +43,12 @@ export class StudentIndexService {
     );
   }
 
-  sendFilter(carrerId: number, subjectId: number, parallelId: number) {
-    return this.http.get<DashboardDto[]>(`http://localhost:8080/api/v1/dashboards/qualified/1/100/200`).pipe();
+  public gerSemeters() {
+    return this.http.get<ResponseDto<SemesterDto[]>>('http://localhost:8080/api/v1/semester');
+  }
+
+  sendFilter(carrerId: number, subjectId: number, parallelId: number, semesterId: number): Observable<DashboardDto[]> {
+    return this.http.get<DashboardDto[]>(`http://localhost:8080/api/v1/dashboards/qualified/1/100/200`);
   }
 
 }
