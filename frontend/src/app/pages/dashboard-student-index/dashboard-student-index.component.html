@@ -16,10 +16,18 @@
 
     <mat-form-field>
       <mat-label>Paralelo</mat-label>
-      <mat-select [(ngModel)]="selectedParallelId" (ngModelChange)="onSelectedParallel($event)">
+      <mat-select  [(ngModel)]="selectedParallelId" (ngModelChange)="onSelectedParallel($event)">
                 <mat-option *ngFor="let parallel of parallels" [value]="parallel">{{parallel.parallelNumber}}</mat-option>
       </mat-select>
     </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Semestre</mat-label>
+      <mat-select [(ngModel)]="selectedSemesterId" (ngModelChange)="onSelectedSemester($event)">
+        <mat-option *ngFor="let semester of semesters " [value]="semester"  >{{semester.semesterName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
     <button mat-raised-button color="primary" (click)="getData()">Filtrar</button>
   </div>
   <div id="chart">

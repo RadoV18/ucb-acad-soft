@@ -10,6 +10,7 @@ import {
 import {StudentIndexService} from "../../services/dashboards/student-index/student-index.service";
 import {CarrerDto, DashboardDto, ParallelDto, SubjectDto} from "../../dto/carrer.dto";
 import {DashboardRepository} from "../../repositories/dashboardRepository";
+import {SemesterDto} from "../../dto/semester.dto";
 
 
 export type ChartOptions = {
@@ -64,20 +65,23 @@ export class DashboardStudentIndexComponent {
 
   parallels: ParallelDto[] = [];
 
+  semesters: SemesterDto[] = []
+
   title: string = "Estudiantes Habilitados y No Habilitados";
 
 
   selectedSubject: string = "";
 
 
-  selectedCarrerId: number = 0;
-  selectedSubjectId: number = 0;
-  selectedParallelId: number = 0;
+  selectedCarrerId: any;
+  selectedSubjectId: any;
+  selectedParallelId: any;
+  selectedSemesterId: any;
+
 
   subtitle: string = `Asignatura: ${this.selectedSubject} `;
 
   ngOnInit() {
-    console.log("ngOnInit")
   }
 
 
@@ -150,25 +154,22 @@ export class DashboardStudentIndexComponent {
         }
       }
     };
+
+   this.studentIndexService.gerSemeters().subscribe(
+      (data) => {
+        this.semesters = data.data;
+      }
+    );
   }
 
   setSelectedSubject(event: any) {
-    console.log("setSelectedSubject")
     this.selectedSubject = event.value.name;
     this.subtitle = `Asignatura: ${this.selectedSubject} `;
   }
 
   getData() {
-    console.log("getData")
-    console.log(this.selectedCarrerId)
-    console.log(this.selectedSubjectId)
-    console.log(this.selectedParallelId)
-
-    this.studentIndexService.sendFilter(this.selectedCarrerId, this.selectedSubjectId, this.selectedParallelId).subscribe(
+    this.studentIndexService.sendFilter(this.selectedCarrerId, this.selectedSubjectId, this.selectedParallelId, this.selectedSemesterId).subscribe(
       (data) => {
-        console.log("data")
-        console.log(data)
-        console.log("this.data")
         this.data = data;
          this.buildDashboard();
 
@@ -178,29 +179,26 @@ export class DashboardStudentIndexComponent {
 
   }
 
+
+// Functions to handle dropdown changes
   onSelectedCarrer(event: any) {
-    console.log("onSelectedCarrer")
-    console.log(event)
-    this.dashboardRepository.setSelectedCarrerId(event.id);
-    this.selectedCarrerId = event.id;
+    this.selectedCarrerId = event;
   }
 
   onSelectedSubject(event: any) {
-    console.log("onSelectedSubject")
-    console.log(this.selectedCarrerId)
-    this.dashboardRepository.setSelectedSubjectId(this.selectedCarrerId, event.id);
-    this.selectedSubjectId = event.id;
+    this.selectedSubjectId = event;
   }
 
   onSelectedParallel(event: any) {
-    console.log("onSelectedParallel")
-    console.log(event)
-    this.selectedParallelId = event.id;
+    this.selectedParallelId = event;
   }
 
+  onSelectedSemester(event: any) {
+    this.selectedSemesterId = event;
+  }
+
+
   buildDashboard() {
-    console.log("buildDashboard")
-    console.log(this.data.data)
     this.chartOptions = {
       series: JSON.parse(`[{"data": ${JSON.stringify(this.data.data)}}]`),
       chart: {
