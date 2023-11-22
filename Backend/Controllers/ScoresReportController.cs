@@ -20,12 +20,13 @@ public class ScoresReportController : ControllerBase
             // loop through semesters
             for(int i = 0; i < semesters.Count; i++)
             {
+                var careers = await _subjectAndSemesterGradeService.GetCareersBySemesterId(semesters[i].SemesterId);
                 response.Add(
                     new SemesterSubjectDetailsDTO
                     {
                         SemesterId = semesters[i].SemesterId,
                         Name = semesters[i].SemesterName,
-                        Careers = null!
+                        Careers = careers.Data
                     }
                 );
             }

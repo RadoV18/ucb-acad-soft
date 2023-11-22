@@ -8,7 +8,7 @@ namespace Backend.Services;
 public class SubjectAndSemesterGradeService
 {
     private readonly RestClient _client = new RestClient(
-        Environment.GetEnvironmentVariable("MOCKOON_ENDPOINT") ??
+        // Environment.GetEnvironmentVariable("MOCKOON_ENDPOINT") ??
         "http://localhost:8080/api/v1"
     );
 
@@ -154,6 +154,26 @@ public class SubjectAndSemesterGradeService
         else
         {
             throw new Exception("Error while fetching semesters");
+        }
+    }
+
+    public async Task<ResponseDTO<List<CareerSubjectDetailsDTO>>> GetCareersBySemesterId(int semesterId)
+    {
+        var request = new RestRequest($"careers/details");
+        request.AddHeader("Accept", "application/json");
+        request.AddQueryParameter("semesterId", semesterId.ToString());
+
+        var response = await _client.GetAsync(request);
+
+        if (response.StatusCode == HttpStatusCode.OK && response.Content != null)
+        {
+            var responseDto =
+                JsonConvert.DeserializeObject<ResponseDTO<List<CareerSubjectDetailsDTO>>>(response.Content);
+            return responseDto!;
+        }
+        else
+        {
+            throw new Exception("Error while fetching careers");
         }
     }
 }
