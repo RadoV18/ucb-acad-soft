@@ -1,7 +1,12 @@
 import {createStore, setProp, withProps} from "@ngneat/elf";
 import {selectAllEntities, setEntities, withEntities} from "@ngneat/elf-entities";
-import {CarrerDto, ParallelDto, SubjectDto} from "../dto/carrer.dto";
+import {DashboardCareerDto, CareerDto, ParallelDto, SubjectDto} from "../dto/carrer.dto";
 import {Injectable} from "@angular/core";
+
+export interface SemesterProps {
+  selectedSemesterId: number;
+}
+
 
 export interface CarrerProps {
     selectedCarrerId: number;
@@ -15,11 +20,18 @@ export interface ParallelProps {
     selectedParallelId: number;
 }
 
+const semestersStore = createStore({
+    name: 'semesters'
+  },
+  withProps<SemesterProps>({ selectedSemesterId: 1}),
+  withEntities<DashboardCareerDto>()
+);
+
 const carrersStore = createStore({
     name: 'carrers'
   },
   withProps<CarrerProps>({ selectedCarrerId: 1}),
-  withEntities<CarrerDto>()
+  withEntities<CareerDto>()
 );
 
 const subjectsStore = createStore({
@@ -38,11 +50,30 @@ const parallelsStore = createStore({
 
 @Injectable({ providedIn: 'root' })
 export class DashboardRepository{
-  carrerDto: CarrerDto[] = [];
+  semesters: DashboardCareerDto[] = [];
+  semesters$ = semestersStore.pipe(selectAllEntities());
   carrers$ = carrersStore.pipe(selectAllEntities());
   subjects$ = subjectsStore.pipe(selectAllEntities());
   parallels$ = parallelsStore.pipe(selectAllEntities());
-  setCarrers(carrers: CarrerDto[]) {
+
+  setSemesters(semesters: DashboardCareerDto[]){
+    semestersStore.update(setEntities(semesters))
+  }
+
+  getSelectedSemesterId(){
+    return semestersStore.getValue().selectedSemesterId;
+  }
+
+  setSelectedSemesterId(id: number){
+    semestersStore.update(setProp('selectedSemesterId', id));
+    console.log("id", this.semesters)
+    const semester = this.semesters.find(x => x.id === id);
+    if (semester){
+      this.setCarrers(semester.careers)
+    }
+  }
+
+  setCarrers(carrers: CareerDto[]) {
       carrersStore.update(setEntities(carrers));
   }
 
@@ -52,11 +83,10 @@ export class DashboardRepository{
 
   setSelectedCarrerId(id: number) {
       carrersStore.update(setProp('selectedCarrerId', id));
-      console.log("GETT")
-      console.log(this.getSelectedCarrerId())
-      const carrer = this.carrerDto.find(x => x.id === id);
-      if (carrer) {
-          this.setSubjects(carrer.subjects);
+      const semester = this.semesters.find(x => x.id === this.getSelectedSemesterId());
+      const career = semester?.careers.find(x => x.id === id)
+      if (career) {
+          this.setSubjects(career.subjects);
       }
   }
 
@@ -69,13 +99,18 @@ export class DashboardRepository{
       return subjectsStore.getValue().selectedSubjectId;
   }
 
-  setSelectedSubjectId(carrerId: number, subjectId: number) {
-      console.log("setSelectedSubjectId", carrerId)
+  setSelectedSubjectId(subjectId: number) {
       subjectsStore.update(setProp('selectedSubjectId', subjectId));
-      const carrer  = this.carrerDto.find(
-        x => x.id === carrerId);
+      const semester = this.semesters.find(
+        x => x.id === this.getSelectedSemesterId()
+      )
+      const carrer  = semester?.careers.find(
+        x => x.id === this.getSelectedCarrerId()
+      );
+
       const subject = carrer?.subjects.find(
         x => x.id === subjectId
+
       );
       if (subject) {
           this.setParallels(subject.parallels);
@@ -86,9 +121,20 @@ export class DashboardRepository{
       parallelsStore.update(setEntities(parallels));
   }
 
-  setCarrerDto(carrerDto: CarrerDto[]) {
-      this.carrerDto = carrerDto;
+  setSelectedParallelId(id: number) {
+    parallelsStore.update(setProp('selectedParallelId', id));
   }
+
+  getSelectedParallelId(){
+    return parallelsStore.getValue().selectedParallelId;
+
+  }
+
+  setSemesterDto(semeseter: DashboardCareerDto[]) {
+      this.semesters = semeseter;
+  }
+
+
 
 
 

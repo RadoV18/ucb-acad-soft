@@ -1,4 +1,11 @@
-export interface CarrerDto {
+
+export interface DashboardCareerDto{
+  id: number,
+  name: string,
+  careers: CareerDto[];
+
+}
+export interface CareerDto {
     id: number;
     name: string;
     subjects: SubjectDto[];

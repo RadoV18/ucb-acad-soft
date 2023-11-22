@@ -1,9 +1,17 @@
 <div class="dashboard">
   <div class="filters">
+
+    <mat-form-field>
+      <mat-label>Semestre</mat-label>
+      <mat-select [(ngModel)]="selectedSemesterId" (ngModelChange)="onSelectedSemester($event)">
+        <mat-option *ngFor="let semester of semesters " [value]="semester"  >{{semester.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
     <mat-form-field>
       <mat-label>Carrera</mat-label>
       <mat-select [(ngModel)]="selectedCarrerId" (ngModelChange)="onSelectedCarrer($event)">
-        <mat-option *ngFor="let carrer of carrers " [value]="carrer"  >{{carrer.name}}</mat-option>
+        <mat-option *ngFor="let carrer of careers " [value]="carrer"  >{{carrer.name}}</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -21,12 +29,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Semestre</mat-label>
-      <mat-select [(ngModel)]="selectedSemesterId" (ngModelChange)="onSelectedSemester($event)">
-        <mat-option *ngFor="let semester of semesters " [value]="semester"  >{{semester.semesterName}}</mat-option>
-      </mat-select>
-    </mat-form-field>
+
 
     <button mat-raised-button color="primary" (click)="getData()">Filtrar</button>
   </div>

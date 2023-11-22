@@ -8,7 +8,7 @@ import {
   ApexTitleSubtitle,
 } from "ng-apexcharts";
 import {StudentIndexService} from "../../services/dashboards/student-index/student-index.service";
-import {CarrerDto, DashboardDto, ParallelDto, SubjectDto} from "../../dto/carrer.dto";
+import {CareerDto, DashboardCareerDto, DashboardDto, ParallelDto, SubjectDto} from "../../dto/carrer.dto";
 import {DashboardRepository} from "../../repositories/dashboardRepository";
 import {SemesterDto} from "../../dto/semester.dto";
 
@@ -57,15 +57,16 @@ export class DashboardStudentIndexComponent {
   ];
 
 
-  carrers: CarrerDto[]  = [
+  semesters: DashboardCareerDto[]  = [
 
   ];
+
+  careers: CareerDto[] = [];
 
   subjects: SubjectDto[] = [];
 
   parallels: ParallelDto[] = [];
 
-  semesters: SemesterDto[] = []
 
   title: string = "Estudiantes Habilitados y No Habilitados";
 
@@ -89,8 +90,12 @@ export class DashboardStudentIndexComponent {
 
   constructor(private studentIndexService: StudentIndexService, private dashboardRepository: DashboardRepository) {
     this.studentIndexService.getCarrers().subscribe();
+    this.dashboardRepository.semesters$.subscribe( (semesters) => {
+        this.semesters = semesters
+      }
+    )
     this.dashboardRepository.carrers$.subscribe((carrers) => {
-      this.carrers=carrers;
+      this.careers=carrers;
     });
     this.dashboardRepository.subjects$.subscribe((subjects) => {
       this.subjects=subjects;
@@ -99,6 +104,8 @@ export class DashboardStudentIndexComponent {
     this.dashboardRepository.parallels$.subscribe((parallels) => {
       this.parallels = parallels;
     });
+
+
 
     this.selectedCarrerId = this.dashboardRepository.getSelectedCarrerId();
     this.selectedSubjectId = this.dashboardRepository.getSelectedSubjectId();
@@ -155,11 +162,6 @@ export class DashboardStudentIndexComponent {
       }
     };
 
-   this.studentIndexService.gerSemeters().subscribe(
-      (data) => {
-        this.semesters = data.data;
-      }
-    );
   }
 
   setSelectedSubject(event: any) {
@@ -168,7 +170,7 @@ export class DashboardStudentIndexComponent {
   }
 
   getData() {
-    this.studentIndexService.sendFilter(this.selectedCarrerId, this.selectedSubjectId, this.selectedParallelId, this.selectedSemesterId).subscribe(
+    this.studentIndexService.sendFilter(this.dashboardRepository.getSelectedCarrerId(), this.dashboardRepository.getSelectedSubjectId(), this.dashboardRepository.getSelectedParallelId(), this.dashboardRepository.getSelectedSemesterId()).subscribe(
       (data) => {
         this.data = data;
          this.buildDashboard();
@@ -181,21 +183,23 @@ export class DashboardStudentIndexComponent {
 
 
 // Functions to handle dropdown changes
+
+  onSelectedSemester(event: any) {
+    this.dashboardRepository.setSelectedSemesterId(event.id);
+  }
+
   onSelectedCarrer(event: any) {
-    this.selectedCarrerId = event;
+    this.dashboardRepository.setSelectedCarrerId(event.id);
   }
 
   onSelectedSubject(event: any) {
-    this.selectedSubjectId = event;
+    this.dashboardRepository.setSelectedSubjectId(event.id);
   }
 
   onSelectedParallel(event: any) {
-    this.selectedParallelId = event;
+    this.dashboardRepository.setSelectedParallelId(event.id);
   }
 
-  onSelectedSemester(event: any) {
-    this.selectedSemesterId = event;
-  }
 
 
   buildDashboard() {
