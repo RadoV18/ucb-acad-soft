@@ -47,6 +47,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import { AcademicPerformanceDashboardComponent } from './pages/academic-performance-dashboard/academic-performance-dashboard.component';
 import {NgApexchartsModule} from "ng-apexcharts";
+import { AbandonRatesComponent } from './pages/abandon-rates/abandon-rates.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import {NgApexchartsModule} from "ng-apexcharts";
     AdminPageComponent,
     AdminDialogComponent,
     AdminDateDialogComponent,
-    AcademicPerformanceDashboardComponent
+    AcademicPerformanceDashboardComponent,
+    AbandonRatesComponent
   ],
     imports: [
         BrowserModule,

@@ -44,6 +44,17 @@
     </a>
 
     <mat-menu #menuDashboard="matMenu">
+      <a routerLink="/director/abandon-rates" mat-button class="navbar-option">
+        <mat-icon>fact_check</mat-icon>
+        Indices de deserción
+      </a>
+    </mat-menu>
+    <a [matMenuTriggerFor]="menuDashboard" mat-button class="navbar-option">
+      <mat-icon>fact_check</mat-icon>
+      Director de carrera
+    </a>
+
+    <mat-menu #menuDashboard="matMenu">
       <a routerLink="/professor/continuous-evaluation" mat-button class="navbar-option">
         <mat-icon>fact_check</mat-icon>
         Evaluacion continua

@@ -14,6 +14,7 @@ import {AdminPageComponent} from "./pages/admin-page/admin-page.component";
 import {
   AcademicPerformanceDashboardComponent
 } from "./pages/academic-performance-dashboard/academic-performance-dashboard.component";
+import { AbandonRatesComponent } from './pages/abandon-rates/abandon-rates.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,12 @@ const routes: Routes = [
       { path: 'academic-performance', component: AcademicPerformanceDashboardComponent },
     ],
   },
+  {
+    path: 'director',
+    children: [
+      { path: 'abandon-rates', component: AbandonRatesComponent },
+    ],
+  }
 ];
 
 @NgModule({
