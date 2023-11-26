@@ -8,7 +8,7 @@ namespace Backend.Services;
 public class SubjectAndSemesterGradeService
 {
     private readonly RestClient _client = new RestClient(
-        // Environment.GetEnvironmentVariable("MOCKOON_ENDPOINT") ??
+        Environment.GetEnvironmentVariable("MOCKOON_ENDPOINT") ??
         "http://localhost:8080/api/v1"
     );
 
