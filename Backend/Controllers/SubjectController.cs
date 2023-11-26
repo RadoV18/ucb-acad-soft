@@ -79,47 +79,4 @@ public class SubjectController: ControllerBase
         }
     }
 
-    [HttpGet("approved")]
-    public async Task<ActionResult<ApprovedRateDto>> GetApprovedBySubjects(
-        [FromQuery(Name = "semesterId")] int? semesterId,
-        [FromQuery(Name = "careerId")] int? careerId,
-        [FromQuery(Name = "subjectId")] int? subjectId,
-        [FromQuery(Name = "parallelId")] int? parallelId
-    )
-    {   
-        if(semesterId == null || careerId == null)
-        {
-            return await Task.FromResult<ActionResult<ApprovedRateDto>>(BadRequest("semesterId and careerId are required."));
-        }
-
-        var response = await _scoreService.GetScoresByCareerIdAndSemesterId(careerId.GetValueOrDefault(), semesterId.GetValueOrDefault());
-        int approved = 0;
-        int failed = 0;
-
-        foreach (var subject in response.Data)
-        {
-            if (
-                (subjectId != null && subject.SubjectId != subjectId) ||
-                (parallelId != null && subject.ParallelId != parallelId)
-            )
-            {
-                continue;
-            }
-
-            if(subject.Scores != null)
-            {
-                approved += subject.Scores.Approved.GetValueOrDefault();
-                failed += subject.Scores.Failed.GetValueOrDefault();
-            }
-        }
-
-        return await Task.FromResult<ActionResult<ApprovedRateDto>>(Ok(new ApprovedRateDto
-        {
-            Data = new List<CoordDto>
-            {
-                new CoordDto {x = "Habilitados", y = approved},
-                new CoordDto {x = "No Habilitados", y = failed},
-            }
-        }));
-    }
 }

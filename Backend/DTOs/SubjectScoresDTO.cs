@@ -6,5 +6,5 @@ public class SubjectScoresDTO
     public int? ParallelId { get; set; }
     public string? SubjectName { get; set; }
     public string? SubjectCode { get; set; }
-    public ScoresApprovalRateDTO? Scores { get; set; }
+    public List<int>? Scores { get; set; }
 }
