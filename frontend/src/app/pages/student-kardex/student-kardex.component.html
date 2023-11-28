@@ -87,3 +87,14 @@
     <mat-row *matRowDef="let row; columns: displayedColumnsBrief;"></mat-row>
   </mat-table>
 </div>
+
+<div>
+  <apx-chart
+    [series]="chartOptions.series!"
+    [chart]="chartOptions.chart!"
+    [xaxis]="chartOptions.xaxis!"
+    [dataLabels]="chartOptions.dataLabels!"
+    [grid]="chartOptions.grid!"
+    [stroke]="chartOptions.stroke!"
+    [title]="chartOptions.title!"></apx-chart>
+</div>
