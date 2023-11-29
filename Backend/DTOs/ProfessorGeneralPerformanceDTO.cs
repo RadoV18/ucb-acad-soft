@@ -1,8 +1,7 @@
 namespace Backend.DTOs;
 
-public class ProfessorPerformanceDTO
+public class ProfessorGeneralPerformanceDTO
 {
-    public List<SubjectInfolDTO> Subjects { get; set; } = default!;
     public int TotalProfessors { get; set;}
     public int TotalProfessorsWithScoresFrom0To20 { get; set; }
     public int TotalProfessorsWithScoresFrom21To40 { get; set; }

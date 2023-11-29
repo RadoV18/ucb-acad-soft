@@ -11,6 +11,7 @@ public class DashboardController : ControllerBase
 {
     private readonly SubjectAndSemesterGradeService _subjectAndSemesterGradeService =
         new SubjectAndSemesterGradeService();
+
     private readonly ProfessorEvaluationService _professorEvaluationService = new ProfessorEvaluationService();
 
     [HttpGet("academic-performance")]
@@ -79,8 +80,8 @@ public class DashboardController : ControllerBase
         }
     }
 
-    [HttpGet("professor-performance")]
-    public async Task<ActionResult<ProfessorPerformanceDTO>> GetProfessorPerformance(
+    [HttpGet("professor-general-performance")]
+    public async Task<ActionResult<ProfessorGeneralPerformanceDTO>> GetProfessorGeneralPerformance(
         [FromQuery] int semesterId
     )
     {
@@ -118,11 +119,10 @@ public class DashboardController : ControllerBase
                         totalProfessorsWithScoresFrom81To100++;
                     }
                 });
-                
             });
-            
-            return Ok(new ResponseDTO<ProfessorPerformanceDTO>(
-                new ProfessorPerformanceDTO
+
+            return Ok(new ResponseDTO<ProfessorGeneralPerformanceDTO>(
+                new ProfessorGeneralPerformanceDTO
                 {
                     TotalProfessors = professors.Count,
                     TotalProfessorsWithScoresFrom0To20 = totalProfessorsWithScoresFrom0To20,
@@ -140,4 +140,64 @@ public class DashboardController : ControllerBase
             return BadRequest(e.Message);
         }
     }
+
+    [HttpGet("professor-individual-performance")]
+    public async Task<ActionResult<ProfessorIndividualPerformanceDTO>> GetProfessorIndividualPerformance(
+        [FromQuery] List<int> semesterIds,
+        [FromQuery] int professorId
+    )
+    {
+        try
+        {
+            var semesters = await _subjectAndSemesterGradeService.GetSemestersByProfessorId(professorId);
+            var tasks = semesterIds.Select(async semesterId =>
+            {
+                var professor = await _professorEvaluationService.GetProfessorScoresBySemesterId(
+                    semesterId
+                );
+                // Filtering professor by professorId
+                var professorFiltered = professor.Where(p => p.professorId == professorId).ToList();
+                var firstProfessor = professorFiltered.FirstOrDefault();
+                if (firstProfessor != null)
+                {
+                    firstProfessor.semester = semesters.FirstOrDefault(semester => semester.SemesterId == semesterId) ?? throw new InvalidOperationException();
+                }
+                // Return first professor
+                return professorFiltered.FirstOrDefault();
+            });
+            
+            var professors = await Task.WhenAll(tasks);
+            var professorIndividualPerformance = professors.Select(professor =>
+            {
+                return new ProfessorIndividualPerformanceDTO
+                {
+                    Professor = new ProfessorInfoDTO()
+                    {
+                        professorId = professor!.professorId,
+                        ci = professor.ci,
+                        firstName = professor.firstName,
+                        lastName = professor.lastName,
+                        email = professor.email,
+                        phone = professor.phone
+                    },
+                    Performance = new ProfessorIndividualPerformanceDetailDTO()
+                    {
+                        Semester = professor.semester,
+                        Subjects = professor.subjects,
+                    }
+                };
+            }).ToList();
+            return Ok(new ResponseDTO<List<ProfessorIndividualPerformanceDTO>>(
+                professorIndividualPerformance,
+                null,
+                true
+            ));
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 }
+    
+            
