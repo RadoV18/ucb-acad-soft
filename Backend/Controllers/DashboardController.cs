@@ -167,27 +167,34 @@ public class DashboardController : ControllerBase
             });
             
             var professors = await Task.WhenAll(tasks);
-            var professorIndividualPerformance = professors.Select(professor =>
+            var professorsPerformance = professors.Select(professor =>
             {
-                return new ProfessorIndividualPerformanceDTO
-                {
-                    Professor = new ProfessorInfoDTO()
+                return new ProfessorIndividualPerformanceDetailDTO()
+                
                     {
-                        professorId = professor!.professorId,
-                        ci = professor.ci,
-                        firstName = professor.firstName,
-                        lastName = professor.lastName,
-                        email = professor.email,
-                        phone = professor.phone
-                    },
-                    Performance = new ProfessorIndividualPerformanceDetailDTO()
-                    {
-                        Semester = professor.semester,
+                        Semester = new SimpleSemesterDTO()
+                        {
+                            SemesterId = professor!.semester.SemesterId,
+                            SemesterName = professor.semester.SemesterName
+                        },
                         Subjects = professor.subjects,
-                    }
-                };
+                    };
             }).ToList();
-            return Ok(new ResponseDTO<List<ProfessorIndividualPerformanceDTO>>(
+            var professorInfo = new ProfessorInfoDTO()
+            {
+                professorId = professors.FirstOrDefault()!.professorId,
+                ci = professors.FirstOrDefault()!.ci,
+                firstName = professors.FirstOrDefault()!.firstName,
+                lastName = professors.FirstOrDefault()!.lastName,
+                email = professors.FirstOrDefault()!.email,
+                phone = professors.FirstOrDefault()!.phone,
+            };
+            var professorIndividualPerformance = new ProfessorIndividualPerformanceDTO()
+            {
+                Professor = professorInfo,
+                Performance = professorsPerformance
+            };
+return Ok(new ResponseDTO<ProfessorIndividualPerformanceDTO>(
                 professorIndividualPerformance,
                 null,
                 true

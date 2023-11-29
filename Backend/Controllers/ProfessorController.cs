@@ -99,4 +99,29 @@ public class ProfessorController : ControllerBase
             return BadRequest(e.Message);
         }
     }
+    [HttpGet]
+    public async Task<ActionResult<ResponseDTO<List<ProfessorInfoDTO>>>> GetProfessorsBySemesterId([FromQuery] int semesterId)
+    {
+        try
+        {
+            // Get professors sorted by last name and first name
+            var professors = await _studentAndProfessorService.GetProfessorsInfoBySemesterId(semesterId);
+            professors.Sort((professor1, professor2) =>
+            {
+                var lastNameComparison = string.Compare(professor1.lastName, professor2.lastName, StringComparison.Ordinal);
+                if (lastNameComparison != 0) return lastNameComparison;
+                return string.Compare(professor1.firstName, professor2.firstName, StringComparison.Ordinal);
+            });
+            return Ok(new ResponseDTO<List<ProfessorInfoDTO>>
+            (
+                professors,
+                null,
+                true
+            ));
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 }
