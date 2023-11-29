@@ -80,7 +80,7 @@ export class StudentKardexComponent implements OnInit {
         curve: "straight"
       },
       title: {
-        text: "Product Trends by Month",
+        text: "Kardex del Estudiante",
         align: "left"
       },
       grid: {

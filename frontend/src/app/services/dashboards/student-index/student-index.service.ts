@@ -16,7 +16,7 @@ export class StudentIndexService {
 
   ];
   public getCarrers(): Observable<ResponseDto<DashboardCareerDto[]>> {
-    return this.http.get<ResponseDto<DashboardCareerDto[]>>('http://localhost:8080/api/v1/dashboards/qualified-students').pipe(
+    return this.http.get<ResponseDto<DashboardCareerDto[]>>('http://localhost:5260/api/v1/reports/scores/filters').pipe(
       tap((response: ResponseDto<DashboardCareerDto[]>) => {
         if (response.data && response.data.length > 0) {
           const firstSemester = response.data[0];
@@ -73,7 +73,7 @@ export class StudentIndexService {
 
   sendFilter(carrerId: number, subjectId: number, parallelId: number, semesterId: number): Observable<DashboardDto[]> {
     console.log("sendFilter", semesterId, carrerId, subjectId, parallelId)
-    return this.http.get<DashboardDto[]>(`http://localhost:8080/api/v1/dashboards/qualified/1/100/200`);
+    return this.http.get<DashboardDto[]>(`http://localhost:5260/api/v1/reports/scores/count?semesterId=${semesterId}&careerId=${carrerId}&subjectId=${subjectId}&parallelId=${parallelId}`);
   }
 
 }

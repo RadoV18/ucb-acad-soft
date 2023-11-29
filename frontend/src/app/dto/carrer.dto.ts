@@ -23,16 +23,13 @@ export interface ParallelDto {
     professor: string;
 }
 
+export interface DataDto {
+    x: string;
+    y: number;
+}
 
 export interface DashboardDto {
   data: [
-    {
-      x: string;
-      y: number;
-    },
-    {
-      x: string;
-      y: number;
-    }
+    DataDto
   ];
 }
