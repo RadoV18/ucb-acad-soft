@@ -15,6 +15,8 @@ import {
   AcademicPerformanceDashboardComponent
 } from "./pages/academic-performance-dashboard/academic-performance-dashboard.component";
 import { AbandonRatesComponent } from './pages/abandon-rates/abandon-rates.component';
+import { StudentsAveragesComponent } from './pages/students-averages/students-averages.component';
+import { ProfessorsEvaluationsComponent } from './pages/professors-evaluations/professors-evaluations.component';
 
 const routes: Routes = [
   {
@@ -52,6 +54,8 @@ const routes: Routes = [
     path: 'director',
     children: [
       { path: 'abandon-rates', component: AbandonRatesComponent },
+      { path: 'students-averages', component: StudentsAveragesComponent },
+      { path: 'professors-evaluations', component: ProfessorsEvaluationsComponent }
     ],
   }
 ];
