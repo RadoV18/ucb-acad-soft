@@ -1,5 +1,5 @@
 <div class="title">
-  Dashboard de Rendimiento Académico Semestre 2-2023
+  Dashboard de Rendimiento Académico - Semestre 2-2023
 </div>
 <div class="filter-row">
   <div class="input-wrapper">
@@ -26,7 +26,7 @@
 </div>
 
 <div class="dashboard">
-  <div id="chart">
+  <div id="chart" class="chart-container">
     <apx-chart
       [series]="chartOptions.series!"
       [chart]="chartOptions.chart!"
@@ -35,5 +35,20 @@
       [title]="chartOptions.title!"
       [subtitle]="chartOptions.subtitle!"
     ></apx-chart>
+    <apx-chart
+      [series]="barChartOptions.series!"
+      [chart]="barChartOptions.chart!"
+      [dataLabels]="barChartOptions.dataLabels!"
+      [plotOptions]="barChartOptions.plotOptions!"
+      [yaxis]="barChartOptions.yaxis!"
+      [xaxis]="barChartOptions.xaxis!"
+      [legend]="barChartOptions.legend!"
+      [colors]="barChartOptions.colors!"
+      [grid]="barChartOptions.grid!"
+      [title]="barChartOptions.title!"
+      [subtitle]="barChartOptions.subtitle!"
+    ></apx-chart>
   </div>
 </div>
+
+

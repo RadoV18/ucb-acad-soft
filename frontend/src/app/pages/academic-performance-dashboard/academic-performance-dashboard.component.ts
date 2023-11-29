@@ -6,6 +6,13 @@ import {
   ApexResponsive,
   ApexChart,
   ApexTitleSubtitle,
+  ApexAxisChartSeries,
+  ApexDataLabels,
+  ApexPlotOptions,
+  ApexXAxis,
+  ApexYAxis,
+  ApexLegend,
+  ApexGrid
 } from "ng-apexcharts";
 import {ProfessorService} from "../../services/professor.service";
 import {ProfessorSubjectDto} from "../../dto/professor-subject.dto";
@@ -19,6 +26,21 @@ export type ChartOptions = {
   title: ApexTitleSubtitle;
   subtitle: ApexTitleSubtitle;
 };
+
+export type BarChartOptions = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  dataLabels: ApexDataLabels;
+  plotOptions: ApexPlotOptions;
+  yaxis: ApexYAxis;
+  xaxis: ApexXAxis;
+  grid: ApexGrid;
+  colors: string[];
+  legend: ApexLegend;
+  title: ApexTitleSubtitle;
+  subtitle: ApexTitleSubtitle;
+};
+
 @Component({
   selector: 'app-academic-performance-dashboard',
   templateUrl: './academic-performance-dashboard.component.html',
@@ -27,6 +49,7 @@ export type ChartOptions = {
 export class AcademicPerformanceDashboardComponent implements OnInit {
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions!: Partial<ChartOptions>;
+  public barChartOptions!: Partial<BarChartOptions>;
 
 
   labels: string[] = ["0-40%", "41-60%", "61-90%", "91-100%"];
@@ -202,7 +225,101 @@ export class AcademicPerformanceDashboardComponent implements OnInit {
         }
       }
     };
+
+    this.barChartOptions = {
+      series: [
+        {
+          name: "Total de estudiantes",
+          data: this.data
+        }
+      ],
+      chart: {
+        type: "bar",
+        height: 350,
+        foreColor: '#fff',
+        toolbar: {
+          show: false
+        }
+      },
+      colors: [
+        "#008FFB",
+        "#00E396",
+        "#FEB019",
+        "#FF4560",
+        "#775DD0",
+        "#546E7A",
+        "#26a69a",
+        "#D10CE8"
+      ],
+      plotOptions: {
+        bar: {
+          columnWidth: "45%",
+          distributed: true
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      legend: {
+        show: false
+      },
+      grid: {
+        show: false
+      },
+      yaxis: {
+        title: {
+          text: "Total de estudiantes"
+        }
+      },
+      xaxis: {
+        categories: this.labels,
+        labels: {
+          style: {
+            colors: [
+              "#008FFB",
+              "#00E396",
+              "#FEB019",
+              "#FF4560",
+              "#775DD0",
+              "#546E7A",
+              "#26a69a",
+              "#D10CE8"
+            ],
+            fontSize: "12px"
+          },
+        }
+      },
+      title: {
+        text: this.title,
+        align: "center",
+        margin: 40,
+        offsetX: 0,
+        offsetY: 10,
+        floating: false,
+        style: {
+          fontSize: "20px",
+          fontWeight: "bold",
+          fontFamily: undefined,
+          color: "white"
+        }
+      },
+      subtitle: {
+        text: this.subtitle,
+        align: "center",
+        margin: 10,
+        offsetX: 0,
+        offsetY: 0,
+        floating: false,
+        style: {
+          fontSize: "15px",
+          fontWeight: "bold",
+          fontFamily: undefined,
+          color: "white"
+        }
+      }
+    };
   }
+
 
   getData() {
     this.dashboardService.getAcademicPerformance(this.subjectIds, this.semesterId).subscribe({

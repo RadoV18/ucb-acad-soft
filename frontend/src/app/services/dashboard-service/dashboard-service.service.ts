@@ -23,4 +23,19 @@ export class DashboardServiceService {
     }).join("&");
     return this.http.get<ResponseDto<AcademicPerformanceDto>>(`${this.baseUrl}/academic-performance?${subjectIdsString}&semesterId=${semesterId}`)
   }
+
+  public getProfessorGeneralPerformanceBySemesterId(semesterId: number): Observable<ResponseDto<AcademicPerformanceDto>> {
+    return this.http.get<ResponseDto<AcademicPerformanceDto>>(`${this.baseUrl}/professor-general-performance?semesterId=${semesterId}`)
+  }
+
+  public getProfessorIndividualPerformanceBySemesterIdsAndProfessorId(
+    semesterIds: number[],
+    professorId: number
+  ): Observable<ResponseDto<AcademicPerformanceDto>> {
+    const semesterIdsString = semesterIds.map((semesterId) => {
+      return `semesterIds=${semesterId}`
+    }).join("&");
+    return this.http.get<ResponseDto<AcademicPerformanceDto>>(`${this.baseUrl}/professor-individual-performance?${semesterIdsString}&professorId=${professorId}`)
+  }
+
 }
