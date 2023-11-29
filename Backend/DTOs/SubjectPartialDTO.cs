@@ -7,5 +7,6 @@ public class SubjectPartialDTO
     public string subjectName { get; set; } = default!;
     public int parallel { get; set; }
     public int credits { get; set; }
-    public List<ScheduleDTO> schedule { get; set; } = default!;
+    public List<ScheduleDTO>? schedule { get; set; } = default!;
+    public double? score { get; set; }
 }

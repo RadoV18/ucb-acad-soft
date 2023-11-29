@@ -4,8 +4,9 @@ public class ProfessorPerformanceDTO
 {
     public List<SubjectInfolDTO> Subjects { get; set; } = default!;
     public int TotalProfessors { get; set;}
-    public int TotalProfessorsWithScoresFrom0to40 { get; set; }
-    public int TotalProfessorsWithScoresFrom41to60 { get; set; }
-    public int TotalProfessorsWithScoresFrom61to90 { get; set; }
-    public int TotalProfessorsWithScoresFrom91to100 { get; set; }
+    public int TotalProfessorsWithScoresFrom0To20 { get; set; }
+    public int TotalProfessorsWithScoresFrom21To40 { get; set; }
+    public int TotalProfessorsWithScoresFrom41To60 { get; set; }
+    public int TotalProfessorsWithScoresFrom61To80 { get; set; }
+    public int TotalProfessorsWithScoresFrom81To100 { get; set; }
 }
