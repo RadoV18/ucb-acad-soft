@@ -50,6 +50,7 @@ import {NgApexchartsModule} from "ng-apexcharts";
 import { AbandonRatesComponent } from './pages/abandon-rates/abandon-rates.component';
 import { ProfessorsEvaluationsComponent } from './pages/professors-evaluations/professors-evaluations.component';
 import { StudentsAveragesComponent } from './pages/students-averages/students-averages.component';
+import { ProfessorPerformanceDashboardComponent } from './pages/professor-performance-dashboard/professor-performance-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { StudentsAveragesComponent } from './pages/students-averages/students-av
     AcademicPerformanceDashboardComponent,
     AbandonRatesComponent,
     ProfessorsEvaluationsComponent,
-    StudentsAveragesComponent
+    StudentsAveragesComponent,
+    ProfessorPerformanceDashboardComponent
   ],
     imports: [
         BrowserModule,

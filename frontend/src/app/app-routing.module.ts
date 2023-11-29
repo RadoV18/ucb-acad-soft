@@ -17,6 +17,9 @@ import {
 import { AbandonRatesComponent } from './pages/abandon-rates/abandon-rates.component';
 import { StudentsAveragesComponent } from './pages/students-averages/students-averages.component';
 import { ProfessorsEvaluationsComponent } from './pages/professors-evaluations/professors-evaluations.component';
+import {
+  ProfessorPerformanceDashboardComponent
+} from "./pages/professor-performance-dashboard/professor-performance-dashboard.component";
 
 const routes: Routes = [
   {
@@ -45,17 +48,13 @@ const routes: Routes = [
     component: AdminPageComponent
   },
   {
-    path: 'dashboard',
-    children: [
-      { path: 'academic-performance', component: AcademicPerformanceDashboardComponent },
-    ],
-  },
-  {
     path: 'director',
     children: [
       { path: 'abandon-rates', component: AbandonRatesComponent },
       { path: 'students-averages', component: StudentsAveragesComponent },
-      { path: 'professors-evaluations', component: ProfessorsEvaluationsComponent }
+      { path: 'professors-evaluations', component: ProfessorsEvaluationsComponent },
+      { path: 'academic-performance', component: AcademicPerformanceDashboardComponent },
+      { path: 'professor-performance', component: ProfessorPerformanceDashboardComponent },
     ],
   }
 ];

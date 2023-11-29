@@ -56,6 +56,14 @@
         <mat-icon>fact_check</mat-icon>
         Mejores estudiantes
       </a>
+      <a routerLink="/director/academic-performance" mat-button class="navbar-option">
+        <mat-icon>fact_check</mat-icon>
+        Rendimiento Academico
+      </a>
+      <a routerLink="/director/professor-performance" mat-button class="navbar-option">
+        <mat-icon>fact_check</mat-icon>
+        Evaluacion Docente
+      </a>
     </mat-menu>
     <a [matMenuTriggerFor]="menuDashboard" mat-button class="navbar-option">
       <mat-icon>fact_check</mat-icon>
@@ -79,17 +87,6 @@
     <a [matMenuTriggerFor]="menuDashboard" mat-button class="navbar-option">
       <mat-icon>fact_check</mat-icon>
       Evaluaciones
-    </a>
-
-    <mat-menu #menu="matMenu">
-      <a routerLink="/dashboard/academic-performance" mat-button class="navbar-option">
-        <mat-icon>fact_check</mat-icon>
-        Rendimiento Academico
-      </a>
-    </mat-menu>
-    <a [matMenuTriggerFor]="menu" mat-button class="navbar-option">
-      <mat-icon>fact_check</mat-icon>
-      Dashboard
     </a>
 
     <a routerLink="/admin" mat-button class="navbar-option">
