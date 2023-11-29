@@ -164,11 +164,12 @@ public class SubjectAndSemesterGradeService
         request.AddQueryParameter("semesterId", semesterId.ToString());
 
         var response = await _client.GetAsync(request);
-
+        Console.WriteLine(response.Content);
         if (response.StatusCode == HttpStatusCode.OK && response.Content != null)
         {
             var responseDto =
                 JsonConvert.DeserializeObject<ResponseDTO<List<CareerSubjectDetailsDTO>>>(response.Content);
+           
             return responseDto!;
         }
         else

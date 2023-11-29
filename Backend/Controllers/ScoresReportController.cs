@@ -25,7 +25,7 @@ public class ScoresReportController : ControllerBase
                 response.Add(
                     new SemesterSubjectDetailsDTO
                     {
-                        SemesterId = semesters[i].SemesterId,
+                        Id = semesters[i].SemesterId,
                         Name = semesters[i].SemesterName,
                         Careers = careers.Data
                     }

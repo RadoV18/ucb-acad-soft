@@ -2,7 +2,7 @@ namespace Backend.DTOs;
 
 public class ParallelDTO
 {
-    public int ParallelId { get; set; }
-    public string Name { get; set; } = null!;
+    public int Id { get; set; }
+    public int Number { get; set; }
     public string Professor { get; set; } = null!;
 }
