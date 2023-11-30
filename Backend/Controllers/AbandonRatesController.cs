@@ -2,18 +2,25 @@
 
 using Backend.DTOs;
 using Backend.Models;
+using Backend.Services;
 using Microsoft.AspNetCore.Mvc;
 
 [Route("api/[controller]")]
 [ApiController]
 public class AbandonRatesController : ControllerBase
 {
+    private readonly AbandonRatesService _studentAndProfessorService = new AbandonRatesService();
     [HttpGet]
     public async Task<ActionResult<AbandonRatesResponseDTO>> GetAbandonRates()
     {
         try
         {
-            AbandonRatesResponseDTO abandonRates = new(GetAbandonRatesByGrades(), GetAbandonRatesByMonths(), GetAbandonRatesBySubjects());
+            AbandonRatesResponseDTO abandonRates = new(
+                await GetAbandonRatesByGrades(), 
+                await GetAbandonRatesByMonths(), 
+                await GetAbandonRatesBySubjects()
+            );
+
             return Ok(abandonRates);
         }
         catch (Exception e)
@@ -22,47 +29,18 @@ public class AbandonRatesController : ControllerBase
         }
     }
 
-    private List<GraphValues> GetAbandonRatesByGrades()
+    private async Task<List<GraphValues>> GetAbandonRatesByGrades()
     {
-        List<GraphValues> list = new();
-        for (int i = 0; i < 10; i++)
-        {
-            Random rnd = new();
-            var evaluation = new GraphValues(((10 * i) + 10) + "%", rnd.Next(1, 10));
-            list.Add(evaluation);
-        }
-        return list;
+        return await _studentAndProfessorService.GetAbandonRatesByGrades();
     }
 
-    private List<GraphValues> GetAbandonRatesByMonths()
+    private async Task<List<GraphValues>> GetAbandonRatesByMonths()
     {
-        List<GraphValues> list = new();
-
-        Random rnd = new();
-        var evaluation = new GraphValues("Agosto", rnd.Next(1, 10));
-        list.Add(evaluation);
-
-        evaluation = new GraphValues("Septiembre", rnd.Next(1, 10));
-        list.Add(evaluation);
-
-        evaluation = new GraphValues("Octubre", rnd.Next(1, 10));
-        list.Add(evaluation);
-
-        evaluation = new GraphValues("Noviembre", rnd.Next(1, 10));
-        list.Add(evaluation);
-
-        return list;
+        return await _studentAndProfessorService.GetAbandonRatesByMonth();
     }
 
-    private List<GraphValues> GetAbandonRatesBySubjects()
+    private async Task<List<GraphValues>> GetAbandonRatesBySubjects()
     {
-        List<GraphValues> list = new();
-        for (int i = 0; i < 11; i++)
-        {
-            Random rnd = new();
-            var evaluation = new GraphValues("Materia " + i, rnd.Next(1, 10));
-            list.Add(evaluation);
-        }
-        return list;
+        return await _studentAndProfessorService.GetAbandonRatesBySubjects();
     }
 }
