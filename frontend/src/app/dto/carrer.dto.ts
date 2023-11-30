@@ -19,7 +19,7 @@ export interface SubjectDto {
 
 export interface ParallelDto {
     id: number;
-    parallelNumber: number;
+    number: number;
     professor: string;
 }
 

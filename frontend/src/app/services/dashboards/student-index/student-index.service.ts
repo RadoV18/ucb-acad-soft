@@ -22,48 +22,24 @@ export class StudentIndexService {
           const firstSemester = response.data[0];
           this.dashboardRepository.setSemesterDto(response.data);
           this.dashboardRepository.setSemesters(response.data);
-
           console.log(response.data)
-
           if (firstSemester.careers && firstSemester.careers.length > 0) {
             const firstCarrer = firstSemester.careers[0];
             console.log("firstCarrer", firstCarrer)
             this.dashboardRepository.setCarrers(firstSemester.careers);
-
             if (firstCarrer.subjects && firstCarrer.subjects.length > 0) {
               const firstSubject = firstCarrer.subjects[0];
               console.log("firstSubject", firstSubject)
               this.dashboardRepository.setSubjects(firstCarrer.subjects);
-
                if (firstSubject.parallels && firstSubject.parallels.length > 0) {
                  this.dashboardRepository.setParallels(firstSubject.parallels);
                }
-
                this.dashboardRepository.setSelectedCarrerId(firstCarrer.id);
                this.dashboardRepository.setSelectedSubjectId(
                  firstSubject.id
                );
             }
           }
-
-
-
-
-          // if (firstCarrer.subjects && firstCarrer.subjects.length > 0) {
-          //   const firstSubject = firstCarrer.subjects[0];
-          //   console.log("firstSubject", firstSubject)
-          //   this.dashboardRepository.setSubjects(firstCarrer.subjects);
-          //
-          //    if (firstSubject.parallels && firstSubject.parallels.length > 0) {
-          //      this.dashboardRepository.setParallels(firstSubject.parallels);
-          //    }
-          //
-          //    this.dashboardRepository.setSelectedCarrerId(firstCarrer.id);
-          //    this.dashboardRepository.setSelectedSubjectId(
-          //      firstCarrer.id,
-          //      firstSubject.id
-          //    );
-          // }
         }
       })
     );
@@ -71,9 +47,9 @@ export class StudentIndexService {
 
 
 
-  sendFilter(carrerId: number, subjectId: number, parallelId: number, semesterId: number): Observable<DashboardDto[]> {
+  sendFilter(carrerId: number, subjectId: number, parallelId: number, semesterId: number): Observable<DashboardDto> {
     console.log("sendFilter", semesterId, carrerId, subjectId, parallelId)
-    return this.http.get<DashboardDto[]>(`http://localhost:5260/api/v1/reports/scores/count?semesterId=${semesterId}&careerId=${carrerId}&subjectId=${subjectId}&parallelId=${parallelId}`);
+    return this.http.get<DashboardDto>(`http://localhost:5260/api/v1/reports/scores/count?semesterId=${semesterId}&careerId=${carrerId}&subjectId=${subjectId}&parallelId=${parallelId}`);
   }
 
 }

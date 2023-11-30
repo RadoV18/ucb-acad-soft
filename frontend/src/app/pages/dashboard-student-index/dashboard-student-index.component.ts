@@ -4,13 +4,24 @@ import {ChartComponent} from "ng-apexcharts";
 import {
   ApexNonAxisChartSeries,
   ApexResponsive,
-  ApexChart,
   ApexTitleSubtitle,
+  ApexAxisChartSeries,
+  ApexChart,
+  ApexDataLabels,
+  ApexPlotOptions,
+  ApexYAxis,
+  ApexLegend,
+  ApexStroke,
+  ApexXAxis,
+  ApexFill,
+  ApexTooltip
 } from "ng-apexcharts";
 import {StudentIndexService} from "../../services/dashboards/student-index/student-index.service";
 import {CareerDto, DashboardCareerDto, DashboardDto, ParallelDto, SubjectDto} from "../../dto/carrer.dto";
 import {DashboardRepository} from "../../repositories/dashboardRepository";
 import {SemesterDto} from "../../dto/semester.dto";
+import {style} from "@angular/animations";
+import {colors} from "@angular/cli/src/utilities/color";
 
 
 export type ChartOptions = {
@@ -22,6 +33,19 @@ export type ChartOptions = {
   subtitle: ApexTitleSubtitle;
 };
 
+export type ChartOptions2 = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  dataLabels: ApexDataLabels;
+  plotOptions: ApexPlotOptions;
+  yaxis: ApexYAxis;
+  xaxis: ApexXAxis;
+  fill: ApexFill;
+  tooltip: ApexTooltip;
+  stroke: ApexStroke;
+  legend: ApexLegend;
+};
+
 @Component({
   selector: 'app-dashboard-student-index',
   templateUrl: './dashboard-student-index.component.html',
@@ -31,15 +55,23 @@ export class DashboardStudentIndexComponent {
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
+  @ViewChild("chart2") chart2!: ChartComponent;
+  public chartOptions2: Partial<ChartOptions2>;
+
   labels: string[] = ["Habilitados", "No Habilitados"];
+
+  notas: number[] = [];
+  habilitado: number = 80;
+  noHabilitado: number = 10;
+
   data: any = [
     {
       data: [{
         x: "category A",
-        y: 100
+        y: this.habilitado
       }, {
         x: "category B",
-        y: 18
+        y: this.noHabilitado
       }]
     }
   ];
@@ -72,6 +104,9 @@ export class DashboardStudentIndexComponent {
 
 
   selectedSubject: string = "";
+
+  xAxis: String[] = [];
+
 
 
   selectedCarrerId: any;
@@ -162,6 +197,77 @@ export class DashboardStudentIndexComponent {
       }
     };
 
+    this.chartOptions2 = {
+      series:
+        [
+          {
+
+            name: "Habilitados",
+            data: []
+          },
+          {
+            name: "No Habilitados",
+            data: [13, 23, 20, 8, 13, 27, 33, 12, 19]
+          }
+        ],
+
+      chart: {
+        type: "bar",
+        height: 350
+      },
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "55%",
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        show: true,
+        width: 2,
+        colors: ["transparent"]
+      },
+      xaxis: {
+        categories: [
+
+        ],
+        labels: {
+          style: {
+            colors: "#ffffff"
+          }
+        }
+      },
+      yaxis: {
+        title: {
+          text: "$ (thousands)"
+        },
+        labels: {
+          style: {
+            colors: "#ffffff"
+          }
+        }
+      },
+      fill: {
+        opacity: 1
+      },
+      tooltip: {
+        y: {
+          formatter: function(val) {
+            return "$ " + val + " thousands";
+          }
+        }
+      }
+    };
+
+
+
+
+
+
+
+
   }
 
   setSelectedSubject(event: any) {
@@ -170,19 +276,39 @@ export class DashboardStudentIndexComponent {
   }
 
   getData() {
-    this.studentIndexService.sendFilter(this.dashboardRepository.getSelectedCarrerId(), this.dashboardRepository.getSelectedSubjectId(), this.dashboardRepository.getSelectedParallelId(), this.dashboardRepository.getSelectedSemesterId()).subscribe(
-      (data) => {
-        this.data = data;
-         this.buildDashboard();
+    this.habilitado = 0;
+    this.noHabilitado = 0;
+    this.studentIndexService.sendFilter(this.dashboardRepository.getSelectedCarrerId(), this.dashboardRepository.getSelectedSubjectId(), this.dashboardRepository.getSelectedParallelId(), this.dashboardRepository.getSelectedSemesterId()).subscribe({
+      next :
+        (data) => {
+          for(let i = 0; i < data.data.length; i++) {
+            if(parseInt(data.data[i].x) < 60){
+              this.habilitado += data.data[i].y;
+            }
+            else {
+              this.noHabilitado += data.data[i].y;
+            }
 
+          }
+
+          this.data = [
+            {
+              data: [{
+                x: "category A",
+                y: this.habilitado
+              }, {
+                x: "category B",
+                y: this.noHabilitado
+              }]
+            }
+          ];
+          this.buildDashboard();
+        }
       }
     );
-
-
   }
 
 
-// Functions to handle dropdown changes
 
   onSelectedSemester(event: any) {
     this.dashboardRepository.setSelectedSemesterId(event.id);
@@ -204,7 +330,7 @@ export class DashboardStudentIndexComponent {
 
   buildDashboard() {
     this.chartOptions = {
-      series: JSON.parse(`[{"data": ${JSON.stringify(this.data.data)}}]`),
+      series: this.data,
       chart: {
         width: 700,
         type: "bar",
