@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 [ApiController]
 public class AbandonRatesController : ControllerBase
 {
-    private readonly AbandonRatesService _studentAndProfessorService = new AbandonRatesService();
+    private readonly AbandonRatesService _abandonRatesService = new AbandonRatesService();
     [HttpGet]
     public async Task<ActionResult<AbandonRatesResponseDTO>> GetAbandonRates()
     {
@@ -31,16 +31,16 @@ public class AbandonRatesController : ControllerBase
 
     private async Task<List<GraphValues>> GetAbandonRatesByGrades()
     {
-        return await _studentAndProfessorService.GetAbandonRatesByGrades();
+        return await _abandonRatesService.GetAbandonRatesByGrades();
     }
 
     private async Task<List<GraphValues>> GetAbandonRatesByMonths()
     {
-        return await _studentAndProfessorService.GetAbandonRatesByMonth();
+        return await _abandonRatesService.GetAbandonRatesByMonth();
     }
 
     private async Task<List<GraphValues>> GetAbandonRatesBySubjects()
     {
-        return await _studentAndProfessorService.GetAbandonRatesBySubjects();
+        return await _abandonRatesService.GetAbandonRatesBySubjects();
     }
 }

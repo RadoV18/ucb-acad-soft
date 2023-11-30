@@ -1,6 +1,7 @@
 ﻿namespace Backend.Controllers;
 
 using Backend.DTOs;
+using Backend.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -14,13 +15,14 @@ public class ProfessorsEvaluationsController : ControllerBase
     };
     private readonly Services.PdfTurtleService _pdfTurtleService = new();
     private readonly Services.MinioService _minioService = new();
+    private readonly EvaluatedProfessorService _evaluatedProfessorService = new();
 
     [HttpGet]
     public async Task<ActionResult<List<EvaluatedProfessor>>> GetProfessorsEvaluations()
     {
         try
         {
-            return Ok(GetProfessorsEvaluationsList());
+            return Ok(await GetProfessorsEvaluationsList());
         }
         catch (Exception e)
         {
@@ -56,19 +58,8 @@ public class ProfessorsEvaluationsController : ControllerBase
         }
     }
 
-    private List<EvaluatedProfessor> GetProfessorsEvaluationsList()
+    private async Task<List<EvaluatedProfessor>> GetProfessorsEvaluationsList()
     {
-        List<EvaluatedProfessor> list = new ();
-
-        for (int i = 0; i < 10; i++)
-        {
-            Random rnd = new ();
-
-            var evaluation = new EvaluatedProfessor (i+1, "Docente "+i, _departments.OrderBy(x => rnd.Next()).Take(2).ToList(), rnd.Next(1, 5), 87);
-
-            list.Add(evaluation);
-        }
-
-        return list;
+        return await _evaluatedProfessorService.GetEvaluatedProfessors();
     }
 }

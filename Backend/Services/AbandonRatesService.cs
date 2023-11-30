@@ -12,10 +12,6 @@ public class AbandonRatesService
         Environment.GetEnvironmentVariable("MOCKOON_ENDPOINT") + "/abandonrates" ??
         "http://localhost:8080/api/v1/abandonrates"
     );
-/*    private readonly JsonSerializerOptions _options = new JsonSerializerOptions
-    {
-        PropertyNameCaseInsensitive = true
-    };*/
 
     public async Task<List<GraphValues>> GetAbandonRatesByMonth()
     {
