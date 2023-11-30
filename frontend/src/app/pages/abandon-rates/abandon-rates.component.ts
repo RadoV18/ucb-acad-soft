@@ -11,6 +11,8 @@ import {
   ApexLegend,
   ApexGrid
 } from "ng-apexcharts";
+import { AbandonRatesDTO } from 'src/app/dto/abandon-rates.dto';
+import { AbandonRatesService } from 'src/app/services/abandon-rates.service';
 
 type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -58,7 +60,7 @@ export class AbandonRatesComponent {
   @ViewChild("comparison") comparison!: ChartComponent;
   public comparisonOptions: Partial<BarOptions>;
 
-  constructor() {
+  constructor(private abandonRatesService: AbandonRatesService) {
     this.gradeOptions = {
       series: [44, 55, 13, 43, 0],
       chart: {
@@ -174,5 +176,11 @@ export class AbandonRatesComponent {
         ],
       }
     };
+
+    this.abandonRatesService.GetAbandonRates().subscribe((response: AbandonRatesDTO) => {
+      this.gradeOptions = { ...this.gradeOptions, series: response.byGrades.map(x => x.value), labels: response.byGrades.map(x => x.label) };
+      this.monthOptions = { ...this.monthOptions, series: [{ name: "Abandonos", data: response.byMonths.map(x => x.value) }], xaxis: { categories: response.byMonths.map(x => x.label)} };
+      this.comparisonOptions = { ...this.comparisonOptions, series: [{ name: "Abandonos", data: response.bySubjects.map(x => x.value) }], xaxis: { categories: response.bySubjects.map(x => x.label)} };
+    });
   }
 }

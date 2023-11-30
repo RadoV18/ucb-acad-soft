@@ -3,6 +3,7 @@
 </div>
 <div class="dashboard">
     <div id="grade">
+        <h2>Abandonos según nota de Evaluación</h2>
         <apx-chart
             [series]="gradeOptions.series!"
             [chart]="gradeOptions.chart!"
@@ -11,6 +12,7 @@
         ></apx-chart>
     </div>
     <div id="month">
+        <h2>Abandonos por mes</h2>
         <apx-chart
             [series]="monthOptions.series!"
             [chart]="monthOptions.chart!"
@@ -25,6 +27,7 @@
     </div>
 
     <div id="comparison">
+        <h2>Abandonos por materia</h2>
         <apx-chart
             [series]="comparisonOptions.series!"
             [chart]="comparisonOptions.chart!"
