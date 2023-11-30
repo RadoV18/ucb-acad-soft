@@ -14,14 +14,14 @@ import {
   ApexStroke,
   ApexXAxis,
   ApexFill,
-  ApexTooltip
+  ApexTooltip,
+  ApexGrid,
+  ApexMarkers
 } from "ng-apexcharts";
 import {StudentIndexService} from "../../services/dashboards/student-index/student-index.service";
 import {CareerDto, DashboardCareerDto, DashboardDto, ParallelDto, SubjectDto} from "../../dto/carrer.dto";
 import {DashboardRepository} from "../../repositories/dashboardRepository";
-import {SemesterDto} from "../../dto/semester.dto";
-import {style} from "@angular/animations";
-import {colors} from "@angular/cli/src/utilities/color";
+
 
 
 export type ChartOptions = {
@@ -44,6 +44,7 @@ export type ChartOptions2 = {
   tooltip: ApexTooltip;
   stroke: ApexStroke;
   legend: ApexLegend;
+  markers: ApexMarkers
 };
 
 @Component({
@@ -105,7 +106,7 @@ export class DashboardStudentIndexComponent {
 
   selectedSubject: string = "";
 
-  xAxis: String[] = [];
+  xAxis: number[] = [];
 
 
 
@@ -198,76 +199,44 @@ export class DashboardStudentIndexComponent {
     };
 
     this.chartOptions2 = {
-      series:
-        [
-          {
-
-            name: "Habilitados",
-            data: []
-          },
-          {
-            name: "No Habilitados",
-            data: [13, 23, 20, 8, 13, 27, 33, 12, 19]
-          }
-        ],
-
-      chart: {
-        type: "bar",
-        height: 350
-      },
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: "55%",
+      series: [
+        {
+          name: "Notas",
+          data: this.notas
         }
-      },
-      dataLabels: {
-        enabled: false
+      ],
+      chart: {
+        height: 350,
+        type: "line"
       },
       stroke: {
-        show: true,
-        width: 2,
-        colors: ["transparent"]
+        width: 90,
+        curve: "smooth"
       },
       xaxis: {
-        categories: [
-
-        ],
-        labels: {
-          style: {
-            colors: "#ffffff"
-          }
+        type: "numeric",
+        categories: this.xAxis
+      },
+      fill: {
+        type: "gradient",
+        gradient: {
+          shade: "dark",
+          gradientToColors: ["#FDD835"],
+          shadeIntensity: 1,
+          type: "horizontal",
+          opacityFrom: 1,
+          opacityTo: 1,
+          stops: [0, 100, 100, 100]
         }
       },
       yaxis: {
+        min: -10,
+        max: 40,
         title: {
-          text: "$ (thousands)"
-        },
-        labels: {
-          style: {
-            colors: "#ffffff"
-          }
-        }
-      },
-      fill: {
-        opacity: 1
-      },
-      tooltip: {
-        y: {
-          formatter: function(val) {
-            return "$ " + val + " thousands";
-          }
+          text: "Engagement"
         }
       }
     };
-
-
-
-
-
-
-
-
   }
 
   setSelectedSubject(event: any) {
@@ -281,7 +250,11 @@ export class DashboardStudentIndexComponent {
     this.studentIndexService.sendFilter(this.dashboardRepository.getSelectedCarrerId(), this.dashboardRepository.getSelectedSubjectId(), this.dashboardRepository.getSelectedParallelId(), this.dashboardRepository.getSelectedSemesterId()).subscribe({
       next :
         (data) => {
+          console.log(data)
           for(let i = 0; i < data.data.length; i++) {
+            this.notas.push(data.data[i].y)
+            this.xAxis.push(parseInt(data.data[i].x))
+
             if(parseInt(data.data[i].x) < 60){
               this.habilitado += data.data[i].y;
             }
@@ -290,7 +263,6 @@ export class DashboardStudentIndexComponent {
             }
 
           }
-
           this.data = [
             {
               data: [{
@@ -379,6 +351,58 @@ export class DashboardStudentIndexComponent {
         }
       }
     };
+    this.chartOptions2 = {
+      series: [
+        {
+          name: "Notas",
+          data: this.notas
+        }
+      ],
+      chart: {
+        height: 350,
+        type: "line"
+      },
+      stroke: {
+        width: 1,
+        curve: "smooth"
+      },
+      xaxis: {
+        type: "numeric",
+        categories: this.xAxis,
+        min: -10,
+        max: 100
+      },
+      markers: {
+        size: 4,
+        colors: ["#FFA41B"],
+        strokeColors: "#fff",
+        strokeWidth: 2,
+        hover: {
+          size: 7
+        }
+      },
+      fill: {
+        type: "gradient",
+        gradient: {
+          shade: "dark",
+          gradientToColors: ["#FDD835"],
+          shadeIntensity: 1,
+          type: "horizontal",
+          opacityFrom: 1,
+          opacityTo: 1,
+          stops: [100, 100, 100, 100]
+        }
+      },
+      yaxis: {
+        min: -10,
+        max: 100,
+        title: {
+          text: "Engagement"
+        }
+      }
+    };
+
+
   }
 
 }
