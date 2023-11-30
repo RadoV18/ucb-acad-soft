@@ -1,7 +1,9 @@
 <div class="title">
     Evaluación Docente
 </div>
-
+<div class="download-button">
+  <button mat-raised-button color="primary" (click)="onDownloadClick()">Descargar lista de docentes</button>
+</div>
 <div class="card-container">
     <mat-card class="professor-card" *ngFor="let item of list">
         <mat-card-header>

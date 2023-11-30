@@ -17,4 +17,12 @@ export class ProfessorsEvaluationsComponent {
       console.log(this.list);
     });
   }
+
+  onDownloadClick() {
+    this.evaluatedProfessorService.getPdfReport().subscribe((response) => {
+      if (response.successful) {
+        window.open(response.data, '_blank');
+      }
+    });
+  }
 }

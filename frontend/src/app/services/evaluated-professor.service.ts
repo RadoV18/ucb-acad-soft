@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { EvaluatedProfessorDTO } from '../dto/evaluated-professor.dto';
 import { Observable } from 'rxjs';
+import { ResponseDto } from '../dto/response.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -13,5 +14,9 @@ export class EvaluatedProfessorService {
 
   public GetProfessorsEvaluations(): Observable<EvaluatedProfessorDTO[]> {
     return this.http.get<EvaluatedProfessorDTO[]>(`${this.baseUrl}/professorsevaluations`);
+  }
+
+  public getPdfReport(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/professorsevaluations/pdf`);
   }
 }
