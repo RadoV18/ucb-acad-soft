@@ -12,7 +12,11 @@ import {
   ApexXAxis,
   ApexYAxis,
   ApexLegend,
-  ApexGrid
+  ApexGrid,
+  ApexFill,
+  ApexTooltip,
+  ApexStroke
+
 } from "ng-apexcharts";
 import {ProfessorService} from "../../services/professor.service";
 import {ProfessorSubjectDto} from "../../dto/professor-subject.dto";
@@ -38,8 +42,9 @@ export type BarChartOptions = {
   plotOptions: ApexPlotOptions;
   yaxis: ApexYAxis;
   xaxis: ApexXAxis;
-  grid: ApexGrid;
-  colors: string[];
+  fill: ApexFill;
+  tooltip: ApexTooltip;
+  stroke: ApexStroke;
   legend: ApexLegend;
   title: ApexTitleSubtitle;
   subtitle: ApexTitleSubtitle;
@@ -264,30 +269,19 @@ export class ProfessorPerformanceDashboardComponent implements OnInit {
           show: false
         }
       },
-      colors: [
-        "#008FFB",
-        "#00E396",
-        "#FEB019",
-        "#FF4560",
-        "#775DD0",
-        "#546E7A",
-        "#26a69a",
-        "#D10CE8"
-      ],
       plotOptions: {
         bar: {
-          columnWidth: "45%",
-          distributed: true
+          horizontal: false,
+          columnWidth: "55%",
         }
       },
       dataLabels: {
         enabled: false
       },
-      legend: {
-        show: false
-      },
-      grid: {
-        show: false
+      stroke: {
+        show: true,
+        width: 2,
+        colors: ["transparent"]
       },
       yaxis: {
         title: {
@@ -300,6 +294,16 @@ export class ProfessorPerformanceDashboardComponent implements OnInit {
           style: {
             fontSize: "12px"
           },
+        }
+      },
+      fill: {
+        opacity: 1
+      },
+      tooltip: {
+        y: {
+          formatter: function(val) {
+            return "" + val + "%";
+          }
         }
       },
       title: {
