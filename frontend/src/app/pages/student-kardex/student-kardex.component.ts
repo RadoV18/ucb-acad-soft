@@ -63,7 +63,7 @@ export class StudentKardexComponent implements OnInit {
       series: [
         {
           name: "Desktops",
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
+          data: [51, 60, 75, 60, 80, 90, 60, 61],
         }
       ],
       chart: {
@@ -91,15 +91,14 @@ export class StudentKardexComponent implements OnInit {
       },
       xaxis: {
         categories: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep"
+          "1-2020",
+          "2-2020",
+          "1-2021",
+          "2-2021",
+          "1-2022",
+          "2-2022",
+          "1-2023",
+          "2-2023"
         ],
         labels: {
           style: {
