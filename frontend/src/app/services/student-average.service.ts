@@ -14,4 +14,9 @@ export class StudentAverageService {
   public GetStudentsAveragesList(): Observable<StudentAverageDTO[]> {
     return this.http.get<StudentAverageDTO[]>(`${this.baseUrl}/studentaverages`);
   }
+
+  public getPdfReport(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/studentaverages/pdf`);
+  }
+
 }

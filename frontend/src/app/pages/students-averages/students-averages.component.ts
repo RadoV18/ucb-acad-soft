@@ -19,4 +19,12 @@ export class StudentsAveragesComponent {
       this.othersList = response.slice(3);
     });
   }
+
+  onDownloadClick() {
+    this.studentAverageService.getPdfReport().subscribe((response) => {
+      if (response.successful) {
+        window.open(response.data, '_blank');
+      }
+    });
+  }
 }

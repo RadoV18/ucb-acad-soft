@@ -1,7 +1,9 @@
 <div class="title">
     Mejores estudiantes
 </div>
-
+<div class="download-button">
+  <button mat-raised-button color="primary" (click)="onDownloadClick()">Descargar lista de estudiantes</button>
+</div>
 <div class="card-container">
     <mat-card class="professor-card" *ngFor="let item of top3List">
         <mat-card-header>
