@@ -4,7 +4,7 @@
 <div class="filter-row">
   <div class="input-wrapper">
     <mat-form-field>
-      <mat-label>Semestre</mat-label>
+      <mat-label>Seleccione un semestre</mat-label>
       <mat-select [(ngModel)]="selectedSemesterId" (selectionChange)="onSemesterChange($event)">
         <mat-option *ngFor="let option of semesters" [value]="option.code">
           {{option.value}}
@@ -15,7 +15,7 @@
 
   <div class="input-wrapper">
     <mat-form-field>
-      <mat-label>Materia</mat-label>
+      <mat-label>Seleccione un docente</mat-label>
       <mat-select [(ngModel)]="selectedProfessorId" (selectionChange)="onProfessorChange($event)">
         <mat-option *ngFor="let option of professors" [value]="option.code">
           {{option.value}}
@@ -27,7 +27,7 @@
 
 <div class="dashboard">
   <div id="chart" class="chart-container">
-    <apx-chart
+    <apx-chart *ngIf="selectedSemesterId"
       [series]="chartOptions.series!"
       [chart]="chartOptions.chart!"
       [labels]="chartOptions.labels!"
@@ -35,7 +35,7 @@
       [title]="chartOptions.title!"
       [subtitle]="chartOptions.subtitle!"
     ></apx-chart>
-    <apx-chart
+    <apx-chart *ngIf="selectedProfessorId"
       [series]="barChartOptions.series!"
       [chart]="barChartOptions.chart!"
       [dataLabels]="barChartOptions.dataLabels!"

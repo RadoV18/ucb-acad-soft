@@ -20,6 +20,7 @@ import {DashboardServiceService} from "../../services/dashboard-service/dashboar
 import {SemesterDto} from "../../dto/semester.dto";
 import {StudentListService} from "../../services/student-list.service";
 import {ProfessorInfoDto} from "../../dto/professor-info.dto";
+import {ProfessorSubjectScoreDto} from "../../dto/professor-subject-score.dto";
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -54,8 +55,7 @@ export class ProfessorPerformanceDashboardComponent implements OnInit {
   public chartOptions!: Partial<ChartOptions>;
   public barChartOptions!: Partial<BarChartOptions>;
 
-  title: string = "Evalución de desempeño de los docentes";
-
+  generalPerformanceTitle: string = "Evalución de desempeño general de docentes";
   generalPerformanceSubtitle: string = "";
   semestersDto: SemesterDto[] = [];
   semesters: any[] = [];
@@ -64,6 +64,7 @@ export class ProfessorPerformanceDashboardComponent implements OnInit {
   generalPerformanceLabel: string[] = ["0-20%", "21-40%", "41-60%", "61-80%", "81-100%"];
   generalPerformanceData: number[] = [0, 0, 0, 0, 0];
 
+  individualPerformanceTitle: string = "Evalución de desempeño individual de docentes";
   individualPerformanceSubtitle: string = "";
   professorsDto: ProfessorInfoDto[] = [];
   professors: any[] = [];
@@ -146,26 +147,48 @@ export class ProfessorPerformanceDashboardComponent implements OnInit {
     this.dashboardService.getProfessorIndividualPerformanceBySemesterIdsAndProfessorId(this.allSemesterIds, this.selectedProfessorId).subscribe({
       next: (response) => {
         const result: any[] = [];
-        this.semestersDto.forEach((semester) => {
-          response.data.performance.forEach((semesterPerformance) => {
-            if (semester.semesterId === semesterPerformance.semester.semesterId) {
-              semesterPerformance.subjects.forEach((subject: any) => {
-                const existingSubject = result.find((item) => item.code === subject.subjectCode);
-                if (existingSubject) {
-                  existingSubject.data.push(subject.score);
-                } else {
-                  result.push({
-                    code: subject.subjectCode,
-                    name: subject.subjectName,
-                    data: [subject.score]
-                  });
-                }
+
+// First, get all unique subject names that the professor has taught
+        response.data.performance.forEach((semesterPerformance) => {
+          semesterPerformance.subjects.forEach((subject: ProfessorSubjectScoreDto) => {
+            const subjectExists = result.find((subjectResult) => subjectResult.code === subject.subjectCode);
+            if (!subjectExists) {
+              result.push({
+                code: subject.subjectCode,
+                name: subject.subjectName,
+                data: []
               });
             }
-          }
-          );
+          });
         });
-        this.individualPerformanceData = result.reverse();
+        // sort by subject code
+        result.sort((a, b) => {
+          return a.code.localeCompare(b.code);
+        });
+        // Insert 0s for the subjects that the professor has not taught
+        result.forEach((subject) => {
+          for (let i = 0; i < this.allSemesterIds.length; i++) {
+            subject.data.push(0);
+          }
+        });
+
+        // Fill in the data
+        response.data.performance.forEach((semesterPerformance) => {
+          semesterPerformance.subjects.forEach((subject: ProfessorSubjectScoreDto) => {
+            const subjectIndex = result.findIndex((subjectResult) => subjectResult.code === subject.subjectCode);
+            const semesterIndex = this.allSemesterIds.findIndex((semesterId) => semesterId === semesterPerformance.semester.semesterId);
+            result[subjectIndex].data[semesterIndex] = subject.score;
+          });
+        });
+        console.log(JSON.stringify(result));
+
+        this.individualPerformanceData = result.map((subject) => {
+          return {
+            name: subject.name,
+            data: subject.data.reverse()
+          };
+        });
+
         this.individualPerformanceSubtitle = `Docente: ${response.data.professor.firstName} ${response.data.professor.lastName}`;
 
         this.updateChart();
@@ -202,7 +225,7 @@ export class ProfessorPerformanceDashboardComponent implements OnInit {
         }
       ],
       title: {
-        text: this.title,
+        text: this.generalPerformanceTitle,
         align: "center",
         margin: 40,
         offsetX: 0,
@@ -268,29 +291,19 @@ export class ProfessorPerformanceDashboardComponent implements OnInit {
       },
       yaxis: {
         title: {
-          text: "Total de estudiantes"
+          text: "Calificación",
         }
       },
       xaxis: {
         categories: this.individualPerformanceLabel,
         labels: {
           style: {
-            colors: [
-              "#008FFB",
-              "#00E396",
-              "#FEB019",
-              "#FF4560",
-              "#775DD0",
-              "#546E7A",
-              "#26a69a",
-              "#D10CE8"
-            ],
             fontSize: "12px"
           },
         }
       },
       title: {
-        text: this.title,
+        text: this.individualPerformanceTitle,
         align: "center",
         margin: 40,
         offsetX: 0,
