@@ -5,6 +5,21 @@
       <h2>Modulo de Reportes</h2>
     </div>
     <div class="spacer"></div>
+
+
+    <mat-menu #menuDashboards="matMenu">
+      <a routerLink="/dashboard/student-index" mat-button class="navbar-option">
+        <mat-icon>table_view</mat-icon>
+        Indice de Estudiantes Habilitados
+      </a>
+    </mat-menu>
+    <a [matMenuTriggerFor]="menuDashboards" mat-button class="navbar-option">
+      <mat-icon>show_chart</mat-icon>
+      Estudiante
+    </a>
+
+
+
     <mat-menu #menuStudent="matMenu">
       <a routerLink="/student/kardex" mat-button class="navbar-option">
         <mat-icon>table_view</mat-icon>

@@ -138,4 +138,43 @@ public class SubjectAndSemesterGradeService
             throw new Exception("Error while fetching second term evaluation report");
         }
     }
+
+    public async Task<ResponseDTO<List<SemesterDTO>>> GetSemesters()
+    {
+        var request = new RestRequest($"semesters");
+        request.AddHeader("Accept", "application/json");
+
+        var response = await _client.GetAsync(request);
+
+        if (response.StatusCode == HttpStatusCode.OK && response.Content != null)
+        {
+            var responseDto = JsonConvert.DeserializeObject<ResponseDTO<List<SemesterDTO>>>(response.Content);
+            return responseDto!;
+        }
+        else
+        {
+            throw new Exception("Error while fetching semesters");
+        }
+    }
+
+    public async Task<ResponseDTO<List<CareerSubjectDetailsDTO>>> GetCareersBySemesterId(int semesterId)
+    {
+        var request = new RestRequest($"careers/details");
+        request.AddHeader("Accept", "application/json");
+        request.AddQueryParameter("semesterId", semesterId.ToString());
+
+        var response = await _client.GetAsync(request);
+        Console.WriteLine(response.Content);
+        if (response.StatusCode == HttpStatusCode.OK && response.Content != null)
+        {
+            var responseDto =
+                JsonConvert.DeserializeObject<ResponseDTO<List<CareerSubjectDetailsDTO>>>(response.Content);
+           
+            return responseDto!;
+        }
+        else
+        {
+            throw new Exception("Error while fetching careers");
+        }
+    }
 }

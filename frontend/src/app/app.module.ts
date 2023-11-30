@@ -51,6 +51,7 @@ import { AbandonRatesComponent } from './pages/abandon-rates/abandon-rates.compo
 import { ProfessorsEvaluationsComponent } from './pages/professors-evaluations/professors-evaluations.component';
 import { StudentsAveragesComponent } from './pages/students-averages/students-averages.component';
 import { ProfessorPerformanceDashboardComponent } from './pages/professor-performance-dashboard/professor-performance-dashboard.component';
+import { DashboardStudentIndexComponent } from './pages/dashboard-student-index/dashboard-student-index.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { ProfessorPerformanceDashboardComponent } from './pages/professor-perfor
     AbandonRatesComponent,
     ProfessorsEvaluationsComponent,
     StudentsAveragesComponent,
-    ProfessorPerformanceDashboardComponent
+    ProfessorPerformanceDashboardComponent,
+    DashboardStudentIndexComponent
   ],
     imports: [
         BrowserModule,

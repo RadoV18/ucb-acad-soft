@@ -10,6 +10,8 @@ public class SubjectController: ControllerBase
 {
     private readonly Services.SubjectAndSemesterGradeService _subjectAndSemesterGradeService = new Services.SubjectAndSemesterGradeService();
     private readonly Services.StudentAndProfessorService _studentAndProfessorService = new Services.StudentAndProfessorService();
+    private readonly Services.ScoreService _scoreService = new Services.ScoreService();
+
     [HttpGet("professors/{professorId:int}")]
     public async Task<ActionResult<ResponseDTO<List<SimpleSubjectDTO>>>> GetSubjects(int professorId, [FromQuery] int semesterId)
     {
@@ -76,4 +78,5 @@ public class SubjectController: ControllerBase
             return BadRequest(e.Message);
         }
     }
+
 }
