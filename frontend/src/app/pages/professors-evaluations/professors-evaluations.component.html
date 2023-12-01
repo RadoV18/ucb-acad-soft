@@ -1,0 +1,21 @@
+<div class="title">
+    Evaluación Docente
+</div>
+<div class="download-button">
+  <button mat-raised-button color="primary" (click)="onDownloadClick()">Descargar lista de docentes</button>
+</div>
+<div class="card-container">
+    <mat-card class="professor-card" *ngFor="let item of list">
+        <mat-card-header>
+          <mat-card-title>{{item.name}}</mat-card-title>
+          <mat-card-subtitle>Rango: {{item.rank}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="department-title" *ngFor="let department of item.departments"> {{ department }} </div>
+            <p> Cantidad de materias: {{ item.subjectCount}} </p>
+            <p> Calificación promedio: {{ item.average }}</p>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+  

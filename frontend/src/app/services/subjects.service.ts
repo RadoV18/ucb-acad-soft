@@ -7,16 +7,17 @@ import { Subject, SubjectContinuousGrades } from '../interfaces/interfaces';
   providedIn: 'root'
 })
 export class SubjectsService {
-  baseUrl = `${environment.BACKEND_URL}/api/subjects`;
+  baseUrl = `${environment.BACKEND_URL}/api`;
+
 
   constructor(private httpClient : HttpClient) { }
 
   fetchSubjects() {
-    return this.httpClient.get<Subject[]>(`${this.baseUrl}`);
+    return this.httpClient.get<Subject[]>(`${this.baseUrl}/subjects`);
   }
 
   fetchSubjectContinuousEvaluation(subjectCode : string) {
-    return this.httpClient.get<SubjectContinuousGrades>(`http://localhost:5260/api/continuousgrades`)
+    return this.httpClient.get<SubjectContinuousGrades>(`${this.baseUrl}/continuousgrades`)
   }
 
 

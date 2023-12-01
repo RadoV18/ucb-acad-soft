@@ -1,0 +1,54 @@
+<div class="title">
+  Dashboard de Rendimiento Académico - Semestre 2-2023
+</div>
+<div class="filter-row">
+  <div class="input-wrapper">
+    <mat-form-field>
+      <mat-label>Docente</mat-label>
+      <mat-select [(ngModel)]="selectedProfessor" (selectionChange)="onProfessorChange($event)">
+        <mat-option *ngFor="let option of professors" [value]="option.code">
+          {{option.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="input-wrapper">
+    <mat-form-field>
+      <mat-label>Materia</mat-label>
+      <mat-select [(ngModel)]="selectedSubject" (selectionChange)="onSubjectChange($event)">
+        <mat-option *ngFor="let option of subjects" [value]="option.code">
+          {{option.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="dashboard">
+  <div id="chart" class="chart-container">
+    <apx-chart
+      [series]="chartOptions.series!"
+      [chart]="chartOptions.chart!"
+      [labels]="chartOptions.labels!"
+      [responsive]="chartOptions.responsive!"
+      [title]="chartOptions.title!"
+      [subtitle]="chartOptions.subtitle!"
+    ></apx-chart>
+    <apx-chart
+      [series]="barChartOptions.series!"
+      [chart]="barChartOptions.chart!"
+      [dataLabels]="barChartOptions.dataLabels!"
+      [plotOptions]="barChartOptions.plotOptions!"
+      [yaxis]="barChartOptions.yaxis!"
+      [xaxis]="barChartOptions.xaxis!"
+      [legend]="barChartOptions.legend!"
+      [colors]="barChartOptions.colors!"
+      [grid]="barChartOptions.grid!"
+      [title]="barChartOptions.title!"
+      [subtitle]="barChartOptions.subtitle!"
+    ></apx-chart>
+  </div>
+</div>
+
+

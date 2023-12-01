@@ -45,6 +45,13 @@ import { AdminDialogComponent } from './components/admin-dialog/admin-dialog.com
 import { AdminDateDialogComponent } from './components/admin-date-dialog/admin-date-dialog.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import { AcademicPerformanceDashboardComponent } from './pages/academic-performance-dashboard/academic-performance-dashboard.component';
+import {NgApexchartsModule} from "ng-apexcharts";
+import { AbandonRatesComponent } from './pages/abandon-rates/abandon-rates.component';
+import { ProfessorsEvaluationsComponent } from './pages/professors-evaluations/professors-evaluations.component';
+import { StudentsAveragesComponent } from './pages/students-averages/students-averages.component';
+import { ProfessorPerformanceDashboardComponent } from './pages/professor-performance-dashboard/professor-performance-dashboard.component';
+import { DashboardStudentIndexComponent } from './pages/dashboard-student-index/dashboard-student-index.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +76,13 @@ import {MatNativeDateModule} from "@angular/material/core";
     SecondTermEvaluationComponent,
     AdminPageComponent,
     AdminDialogComponent,
-    AdminDateDialogComponent
+    AdminDateDialogComponent,
+    AcademicPerformanceDashboardComponent,
+    AbandonRatesComponent,
+    ProfessorsEvaluationsComponent,
+    StudentsAveragesComponent,
+    ProfessorPerformanceDashboardComponent,
+    DashboardStudentIndexComponent
   ],
     imports: [
         BrowserModule,
@@ -97,6 +110,7 @@ import {MatNativeDateModule} from "@angular/material/core";
         MatDatepickerModule,
         MatNativeDateModule,
         FormsModule,
+        NgApexchartsModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

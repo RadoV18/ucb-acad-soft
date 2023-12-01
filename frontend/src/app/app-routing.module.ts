@@ -11,6 +11,12 @@ import { ContinuousEvaluationComponent } from './pages/continuous-evaluation/con
 import {FinalEvaluationComponent} from "./pages/final-evaluation/final-evaluation.component";
 import {SecondTermEvaluationComponent} from "./pages/second-term-evaluation/second-term-evaluation.component";
 import {AdminPageComponent} from "./pages/admin-page/admin-page.component";
+import { AcademicPerformanceDashboardComponent} from "./pages/academic-performance-dashboard/academic-performance-dashboard.component";
+import { AbandonRatesComponent } from './pages/abandon-rates/abandon-rates.component';
+import { StudentsAveragesComponent } from './pages/students-averages/students-averages.component';
+import { ProfessorsEvaluationsComponent } from './pages/professors-evaluations/professors-evaluations.component';
+import { ProfessorPerformanceDashboardComponent } from "./pages/professor-performance-dashboard/professor-performance-dashboard.component";
+import {DashboardStudentIndexComponent} from "./pages/dashboard-student-index/dashboard-student-index.component";
 
 const routes: Routes = [
   {
@@ -37,6 +43,22 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminPageComponent
+  },
+  {
+    path: 'director',
+    children: [
+      { path: 'abandon-rates', component: AbandonRatesComponent },
+      { path: 'students-averages', component: StudentsAveragesComponent },
+      { path: 'professors-evaluations', component: ProfessorsEvaluationsComponent },
+      { path: 'academic-performance', component: AcademicPerformanceDashboardComponent },
+      { path: 'professor-performance', component: ProfessorPerformanceDashboardComponent },
+    ],
+    },
+    {
+    path: 'dashboard',
+    children: [
+      { path: 'student-index', component: DashboardStudentIndexComponent },
+    ]
   }
 ];
 

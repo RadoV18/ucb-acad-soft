@@ -5,6 +5,21 @@
       <h2>Modulo de Reportes</h2>
     </div>
     <div class="spacer"></div>
+
+
+    <mat-menu #menuDashboards="matMenu">
+      <a routerLink="/dashboard/student-index" mat-button class="navbar-option">
+        <mat-icon>table_view</mat-icon>
+        Indice de Estudiantes Habilitados
+      </a>
+    </mat-menu>
+    <a [matMenuTriggerFor]="menuDashboards" mat-button class="navbar-option">
+      <mat-icon>show_chart</mat-icon>
+      Dashboard
+    </a>
+
+
+
     <mat-menu #menuStudent="matMenu">
       <a routerLink="/student/kardex" mat-button class="navbar-option">
         <mat-icon>table_view</mat-icon>
@@ -43,7 +58,34 @@
       Profesor
     </a>
 
-    <mat-menu #menu="matMenu">
+    <mat-menu #menuDashboard="matMenu">
+      <a routerLink="/director/abandon-rates" mat-button class="navbar-option">
+        <mat-icon>fact_check</mat-icon>
+        Indices de deserción
+      </a>
+      <a routerLink="/director/professors-evaluations" mat-button class="navbar-option">
+        <mat-icon>fact_check</mat-icon>
+        Resumen Evaluacion Docente
+      </a>
+      <a routerLink="/director/students-averages" mat-button class="navbar-option">
+        <mat-icon>fact_check</mat-icon>
+        Mejores estudiantes
+      </a>
+      <a routerLink="/director/academic-performance" mat-button class="navbar-option">
+        <mat-icon>fact_check</mat-icon>
+        Rendimiento Academico
+      </a>
+      <a routerLink="/director/professor-performance" mat-button class="navbar-option">
+        <mat-icon>fact_check</mat-icon>
+        Evaluacion Docente
+      </a>
+    </mat-menu>
+    <a [matMenuTriggerFor]="menuDashboard" mat-button class="navbar-option">
+      <mat-icon>fact_check</mat-icon>
+      Director de carrera
+    </a>
+
+    <mat-menu #menuDashboard="matMenu">
       <a routerLink="/professor/continuous-evaluation" mat-button class="navbar-option">
         <mat-icon>fact_check</mat-icon>
         Evaluacion continua
@@ -57,7 +99,7 @@
         Evaluacion segundo turno
       </a>
     </mat-menu>
-    <a [matMenuTriggerFor]="menu" mat-button class="navbar-option">
+    <a [matMenuTriggerFor]="menuDashboard" mat-button class="navbar-option">
       <mat-icon>fact_check</mat-icon>
       Evaluaciones
     </a>

@@ -1,3 +1,3 @@
 export const environment = {
-  BACKEND_URL: 'http://104.248.232.102:5260',
+  BACKEND_URL: 'http://167.99.144.135:5260',
 };

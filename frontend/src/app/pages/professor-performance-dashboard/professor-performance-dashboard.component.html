@@ -1,0 +1,53 @@
+<div class="title">
+  Dashboard de Evaluación Docente
+</div>
+<div class="filter-row">
+  <div class="input-wrapper">
+    <mat-form-field>
+      <mat-label>Seleccione un semestre</mat-label>
+      <mat-select [(ngModel)]="selectedSemesterId" (selectionChange)="onSemesterChange($event)">
+        <mat-option *ngFor="let option of semesters" [value]="option.code">
+          {{option.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="input-wrapper">
+    <mat-form-field>
+      <mat-label>Seleccione un docente</mat-label>
+      <mat-select [(ngModel)]="selectedProfessorId" (selectionChange)="onProfessorChange($event)">
+        <mat-option *ngFor="let option of professors" [value]="option.code">
+          {{option.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="dashboard">
+  <div id="chart" class="chart-container">
+    <apx-chart *ngIf="selectedSemesterId"
+      [series]="chartOptions.series!"
+      [chart]="chartOptions.chart!"
+      [labels]="chartOptions.labels!"
+      [responsive]="chartOptions.responsive!"
+      [title]="chartOptions.title!"
+      [subtitle]="chartOptions.subtitle!"
+    ></apx-chart>
+    <apx-chart *ngIf="selectedProfessorId"
+      [series]="barChartOptions.series!"
+      [chart]="barChartOptions.chart!"
+      [dataLabels]="barChartOptions.dataLabels!"
+      [plotOptions]="barChartOptions.plotOptions!"
+      [yaxis]="barChartOptions.yaxis!"
+      [legend]="barChartOptions.legend!"
+      [fill]="barChartOptions.fill!"
+      [stroke]="barChartOptions.stroke!"
+      [tooltip]="barChartOptions.tooltip!"
+      [xaxis]="barChartOptions.xaxis!"
+      [title]="barChartOptions.title!"
+      [subtitle]="barChartOptions.subtitle!"
+    ></apx-chart>
+  </div>
+</div>
