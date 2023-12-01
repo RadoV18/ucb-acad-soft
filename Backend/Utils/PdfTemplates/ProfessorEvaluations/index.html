@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+
+<style>
+
+		table {
+			border-collapse: collapse;
+		}
+
+		td {
+			padding: 4px;
+			height: 16px;
+		}
+
+		tr:nth-child(even) {
+			background-color: #e1e1e1;
+		}
+
+		#tbody td:nth-child(2),
+		#tbody td:nth-child(3) {
+			width: 35%;
+		}
+
+		#tbody td:nth-child(3) {
+			font-size: 12px;
+		}
+
+	.header {
+			text-align: center;
+			margin-top: 16px;
+			background-color: #0d2845;
+			color: white;
+			font-weight: bold;
+			padding: 4px 0;
+	}
+
+	.department-tag {
+		display: inline-block;
+		border: 1px solid #37987b;
+		background-color: #37937b;
+		color: white;
+		padding: 0px 4px;
+		border-radius: 16px;
+		margin: 2px 0;
+	}
+</style>
+
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th class="header">#</th>
+				<th class="header">Nombre</th>
+				<th class="header">Departamentos</th>
+				<th class="header">Materias Impartidas</th>
+				<th class="header">Calificación Promedio</th>
+			</tr>
+		</thead>
+		<tbody id="tbody">
+		</tbody>
+	</table>
+
+	<script>
+		const data = {{ .data }}
+		data.sort((a, b) => a.rank - b.rank);
+		const tbody = document.getElementById("tbody");
+		for(let i = 0; i < data.length; i++) {
+			const obj = data[i];
+			let departmentString = '';
+			obj.departments.forEach((dep) => {
+				departmentString += `
+					<div class="department-tag">${dep}</div>
+				`;
+			})
+			tbody.innerHTML += `
+				<tr>
+					<td>
+						${obj.rank}
+					</td>
+					<td>${obj.name}</td>
+					<td>${departmentString}</td>
+					<td>${obj.subjectCount}</td>
+					<td>${obj.average}</td>
+				</tr>
+			`;
+		}
+	</script>
+</body>
+
+</html>

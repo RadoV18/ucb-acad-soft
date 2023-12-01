@@ -1,0 +1,37 @@
+<div class="main-container">
+    <h1><strong>Horario</strong></h1>
+    <div style="display: flex; justify-content: end; width: 100%">
+      <button mat-raised-button color="primary" (click)="downloadReport()">Descargar PDF</button>
+    </div>
+    <div class="information">
+        <h2><strong>Estudiante:</strong> Name </h2>
+        <h2><strong>Semestre:</strong> 2-2023 </h2>
+    </div>
+    <app-schedule [subjects]="subjects" [style.width.%]="100"></app-schedule>
+    <h1><strong>Detalle asignaturas</strong></h1>
+
+    <table mat-table [dataSource]="subjects" class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Asignatura </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="code">
+          <th mat-header-cell *matHeaderCellDef> Código </th>
+          <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="parallel">
+          <th mat-header-cell *matHeaderCellDef> Paralelo </th>
+          <td mat-cell *matCellDef="let element"> {{element.parallel}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="instructor">
+            <th mat-header-cell *matHeaderCellDef> Docente </th>
+            <td mat-cell *matCellDef="let element"> {{element.instructor}} </td>
+          </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+</div>

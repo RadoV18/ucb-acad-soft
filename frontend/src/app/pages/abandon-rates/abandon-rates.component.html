@@ -1,0 +1,43 @@
+<div class="title">
+    Índices de deserción
+</div>
+<div class="dashboard">
+    <div id="grade">
+        <h2>Abandonos según nota de Evaluación</h2>
+        <apx-chart
+            [series]="gradeOptions.series!"
+            [chart]="gradeOptions.chart!"
+            [labels]="gradeOptions.labels!"
+            [responsive]="gradeOptions.responsive!"
+        ></apx-chart>
+    </div>
+    <div id="month">
+        <h2>Abandonos por mes</h2>
+        <apx-chart
+            [series]="monthOptions.series!"
+            [chart]="monthOptions.chart!"
+            [dataLabels]="monthOptions.dataLabels!"
+            [plotOptions]="monthOptions.plotOptions!"
+            [yaxis]="monthOptions.yaxis!"
+            [xaxis]="monthOptions.xaxis!"
+            [legend]="monthOptions.legend!"
+            [colors]="monthOptions.colors!"
+            [grid]="monthOptions.grid!"
+        ></apx-chart>
+    </div>
+
+    <div id="comparison">
+        <h2>Abandonos por materia</h2>
+        <apx-chart
+            [series]="comparisonOptions.series!"
+            [chart]="comparisonOptions.chart!"
+            [dataLabels]="comparisonOptions.dataLabels!"
+            [plotOptions]="comparisonOptions.plotOptions!"
+            [yaxis]="comparisonOptions.yaxis!"
+            [xaxis]="comparisonOptions.xaxis!"
+            [legend]="comparisonOptions.legend!"
+            [colors]="comparisonOptions.colors!"
+            [grid]="comparisonOptions.grid!"
+        ></apx-chart>
+    </div>
+  </div>

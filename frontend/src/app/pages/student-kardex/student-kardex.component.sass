@@ -1,0 +1,68 @@
+.info-container
+  background-color: #102743
+  color: white
+  padding: 10px
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+
+  p
+    margin: 0
+// Define global variables
+$background-color: #333
+$text-color: #fff
+$table-border-color: #555
+
+// Apply styles to the first table
+.mat-elevation-z8
+  background-color: $background-color
+  color: $text-color
+  width: 100%
+  border-collapse: collapse
+  margin-bottom: 20px
+
+  th, td
+    border: 1px solid $table-border-color
+    padding: 10px
+    text-align: center
+
+  th
+    background-color: darken($background-color, 10%)
+
+  tr.mat-header-row
+    background-color: darken($background-color, 20%)
+
+  tr.mat-row
+    background-color: darken($background-color, 5%)
+
+// Apply styles to the second table
+.mat-elevation-z8
+  background-color: $background-color
+  color: $text-color
+  width: 100%
+  border-collapse: collapse
+
+  th, td
+    border: 1px solid $table-border-color
+    padding: 5px
+    text-align: center
+
+  th
+    background-color: darken($background-color, 10%)
+
+  tr.mat-header-row
+    background-color: darken($background-color, 20%)
+
+  tr.mat-row
+    background-color: darken($background-color, 5%)
+
+.kardex-container
+  width: 95%
+  margin: 0 auto
+
+.download-button
+  margin: 16px auto
+  display: flex
+  justify-content: flex-end
+  width: 100%

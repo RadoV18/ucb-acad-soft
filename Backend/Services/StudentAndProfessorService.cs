@@ -1,0 +1,125 @@
+using System.Net;
+using Backend.DTOs;
+using Newtonsoft.Json;
+using RestSharp;
+
+namespace Backend.Services;
+
+public class StudentAndProfessorService {
+    
+    private readonly RestClient _client = new RestClient(
+        Environment.GetEnvironmentVariable("MOCKOON_ENDPOINT") ??
+        "http://localhost:8080/api/v1"
+    );
+    
+    public async Task<ProfessorInfoDTO> GetProfessorInfoByProfessorId(int professorId)
+    {
+        var request = new RestRequest($"professors/{professorId}");
+        // Add headers
+        request.AddHeader("Accept", "application/json");
+        // request.AddHeader("Content-Type", "application/json");
+        request.AddUrlSegment("professorId", professorId.ToString());
+        
+        var response = await _client.GetAsync(request);
+        
+        // Check response
+        if (response.StatusCode == HttpStatusCode.OK && response.Content != null)
+        {
+            var responseDto = JsonConvert.DeserializeObject<ResponseDTO<ProfessorInfoDTO>>(response.Content);
+            return responseDto!.Data!;
+        }
+        else
+        {
+            throw new Exception("Error while fetching professors");
+        }
+    }
+    
+    public async Task<List<StudentInfoDTO>> GetStudentsInfoBySubjectIdAndSemesterId(int subjectId, int semesterId)
+    {
+        var request = new RestRequest($"students/subjects/{subjectId}");
+        // Add headers
+        request.AddHeader("Accept", "application/json");
+        // request.AddHeader("Content-Type", "application/json");
+        request.AddUrlSegment("subjectId", subjectId.ToString());
+        request.AddQueryParameter("semesterId", semesterId.ToString());
+        
+        var response = await _client.GetAsync(request);
+        
+        // Check response
+        if (response.StatusCode == HttpStatusCode.OK && response.Content != null)
+        {
+            var responseDto = JsonConvert.DeserializeObject<ResponseDTO<List<StudentInfoDTO>>>(response.Content);
+            return responseDto!.Data!;
+        }
+        else
+        {
+            throw new Exception("Error while fetching students");
+        }
+    }
+    
+    public async Task<List<StudentAttendanceDTO>> GetStudentAttendanceBySubjectIdAndSemesterId(int subjectId, int semesterId)
+    {
+        var request = new RestRequest($"students/subjects/{subjectId}/attendances");
+        // Add headers
+        request.AddHeader("Accept", "application/json");
+        // request.AddHeader("Content-Type", "application/json");
+        request.AddUrlSegment("subjectId", subjectId.ToString());
+        request.AddQueryParameter("semesterId", semesterId.ToString());
+        
+        var response = await _client.GetAsync(request);
+        
+        // Check response
+        if (response.StatusCode == HttpStatusCode.OK && response.Content != null)
+        {
+            var responseDto = JsonConvert.DeserializeObject<ResponseDTO<List<StudentAttendanceDTO>>>(response.Content);
+            return responseDto!.Data!;
+        }
+        else
+        {
+            throw new Exception("Error while fetching students");
+        }
+    }
+
+    public async Task<StudentDTO> GetStudentById(int studentId)
+    {
+        var request = new RestRequest($"students/{studentId}");
+        // Add headers
+        request.AddHeader("Accept", "application/json");
+        // request.AddHeader("Content-Type", "application/json");
+        
+        var response = await _client.GetAsync(request);
+
+        // Check response
+        if (response.StatusCode == HttpStatusCode.OK && response.Content != null)
+        {
+            var responseDto = JsonConvert.DeserializeObject<ResponseDTO<StudentDTO>>(response.Content);
+            return responseDto!.Data;
+        }
+        else
+        {
+            throw new Exception("Error while fetching student");
+        }
+    }
+    
+    public async Task<List<ProfessorInfoDTO>> GetProfessorsInfoBySemesterId(int semesterId)
+    {
+        var request = new RestRequest($"professors");
+        // Add headers
+        request.AddHeader("Accept", "application/json");
+        // request.AddHeader("Content-Type", "application/json");
+        request.AddQueryParameter("semesterId", semesterId.ToString());
+        
+        var response = await _client.GetAsync(request);
+        
+        // Check response
+        if (response.StatusCode == HttpStatusCode.OK && response.Content != null)
+        {
+            var responseDto = JsonConvert.DeserializeObject<ResponseDTO<List<ProfessorInfoDTO>>>(response.Content);
+            return responseDto!.Data!;
+        }
+        else
+        {
+            throw new Exception("Error while fetching professors");
+        }
+    }
+}

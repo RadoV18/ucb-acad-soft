@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Fecha de entrega</h1>
+    <div mat-dialog-content>
+      <p>Indique la fecha de Entrega del kardex</p>
+      <mat-form-field>
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate"  (dateChange)="onDateChange($event)">
+        <mat-hint>DD/MM/AAAA</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="acceptKardexRequest()">Guardar</button>
+    </div>
+

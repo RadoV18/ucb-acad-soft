@@ -1,0 +1,98 @@
+// Base styles
+.upload-container
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  height: 300px
+  border: 2px dashed #ccc
+  border-radius: 8px
+  padding: 20px
+  font-family: Arial, sans-serif
+  cursor: pointer
+
+  &.dragging
+    border-color: #007bff
+
+  input[type="file"]
+    display: none
+
+    .drag-drop-area
+      text-align: center
+
+      .drag-drop-text
+        font-size: 18px
+        color: #555
+
+        span
+          color: #007bff
+          text-decoration: underline
+          cursor: pointer
+
+      .image-container
+        display: flex
+        flex-direction: column
+        align-items: center
+        margin-top: 20px
+
+        .delete-button
+          background-color: #ff4c4c
+          border: none
+          border-radius: 50%
+          padding: 8px
+          color: #fff
+          font-size: 16px
+          cursor: pointer
+          transition: background-color 0.3s
+
+          &:hover
+            background-color: #e60000
+
+          i
+            font-size: 20px
+
+        .preview-image
+          margin-top: 10px
+          max-width: 100%
+          max-height: 200px
+          border-radius: 8px
+          box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2)
+
+// Dark mode styles
+@media (prefers-color-scheme: dark)
+  .upload-container
+    background-color: #333
+    border-color: #555
+
+  .drag-drop-text
+    color: #bbb
+
+    span
+      color: #007bff
+
+  .delete-button
+    background-color: #ff4c4c
+
+    &:hover
+      background-color: #e60000
+
+mat-form-field
+  textarea
+    height: 400px
+    width: 400px
+
+img
+  height: 300px
+
+.input
+  display: flex
+  flex-direction: column
+
+.container
+  padding: 10px 20%
+
+.space
+  padding: 10px 0px
+
+textarea
+  height: 100px !important
