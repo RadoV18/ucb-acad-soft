@@ -9,6 +9,7 @@ import {
   ApexAxisChartSeries,
   ApexChart,
   ApexXAxis,
+  ApexYAxis,
   ApexDataLabels,
   ApexTitleSubtitle,
   ApexStroke,
@@ -18,6 +19,7 @@ import {
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
+  yaxis: ApexYAxis;
   xaxis: ApexXAxis;
   dataLabels: ApexDataLabels;
   grid: ApexGrid;
@@ -62,7 +64,7 @@ export class StudentKardexComponent implements OnInit {
     this.chartOptions = {
       series: [
         {
-          name: "Desktops",
+          name: "Notas",
           data: [51, 60, 75, 60, 80, 90, 60, 61],
         }
       ],
@@ -81,13 +83,25 @@ export class StudentKardexComponent implements OnInit {
       },
       title: {
         text: "Kardex del Estudiante",
-        align: "left"
+        align: "left",
+        style:{
+          color: "#ffffff"
+        }
       },
       grid: {
         row: {
           colors: ["#ffffff"],
           opacity: 0.5
         }
+      },
+      yaxis:{
+        labels: {
+          style: {
+            colors: "#ffffff"
+          }
+        },
+        min: 0,
+        max: 100
       },
       xaxis: {
         categories: [

@@ -5,18 +5,21 @@ import {HttpClient} from "@angular/common/http";
 import {DashboardCareerDto, DashboardDto} from "../../../dto/carrer.dto";
 import {DashboardRepository} from "../../../repositories/dashboardRepository";
 import {SemesterDto} from "../../../dto/semester.dto";
+import {environment} from "../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentIndexService {
+  baseUrl = `${environment.BACKEND_URL}/api/v1/reports/scores`;
+
 
   constructor(private http: HttpClient, private dashboardRepository : DashboardRepository) { }
   semesters: DashboardCareerDto[]  = [
 
   ];
   public getCarrers(): Observable<ResponseDto<DashboardCareerDto[]>> {
-    return this.http.get<ResponseDto<DashboardCareerDto[]>>('http://localhost:5260/api/v1/reports/scores/filters').pipe(
+    return this.http.get<ResponseDto<DashboardCareerDto[]>>(`${this.baseUrl}/filters`).pipe(
       tap((response: ResponseDto<DashboardCareerDto[]>) => {
         if (response.data && response.data.length > 0) {
           const firstSemester = response.data[0];
@@ -49,7 +52,7 @@ export class StudentIndexService {
 
   sendFilter(carrerId: number, subjectId: number, parallelId: number, semesterId: number): Observable<DashboardDto> {
     console.log("sendFilter", semesterId, carrerId, subjectId, parallelId)
-    return this.http.get<DashboardDto>(`http://localhost:5260/api/v1/reports/scores/count?semesterId=${semesterId}&careerId=${carrerId}&subjectId=${subjectId}&parallelId=${parallelId}`);
+    return this.http.get<DashboardDto>(`${this.baseUrl}/count?semesterId=${semesterId}&careerId=${carrerId}&subjectId=${subjectId}&parallelId=${parallelId}`);
   }
 
 }

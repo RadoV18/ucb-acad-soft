@@ -41,7 +41,7 @@ public class ProfessorsEvaluationsController : ControllerBase
 
             var model = new
             {
-                data = GetProfessorsEvaluationsList()
+                data = await GetProfessorsEvaluationsList()
             };
 
             byte[] pdf = await _pdfTurtleService.getPdf(footer, header, body, model);

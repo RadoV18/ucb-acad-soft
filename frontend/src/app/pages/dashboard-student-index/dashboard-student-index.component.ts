@@ -207,7 +207,8 @@ export class DashboardStudentIndexComponent {
       ],
       chart: {
         height: 350,
-        type: "line"
+        type: "line",
+        foreColor: '#fff',
       },
       stroke: {
         width: 90,
@@ -215,7 +216,8 @@ export class DashboardStudentIndexComponent {
       },
       xaxis: {
         type: "numeric",
-        categories: this.xAxis
+        categories: this.xAxis,
+
       },
       fill: {
         type: "gradient",
@@ -234,6 +236,11 @@ export class DashboardStudentIndexComponent {
         max: 40,
         title: {
           text: "Engagement"
+        },
+        labels: {
+          style: {
+            colors: "#ffffff"
+          }
         }
       }
     };
@@ -283,18 +290,22 @@ export class DashboardStudentIndexComponent {
 
 
   onSelectedSemester(event: any) {
+    console.log("onSelectedSemester", event)
     this.dashboardRepository.setSelectedSemesterId(event.id);
   }
 
   onSelectedCarrer(event: any) {
+    console.log("onSelectedCarrer", event)
     this.dashboardRepository.setSelectedCarrerId(event.id);
   }
 
   onSelectedSubject(event: any) {
+    console.log("onSelectedSubject", event)
     this.dashboardRepository.setSelectedSubjectId(event.id);
   }
 
   onSelectedParallel(event: any) {
+    console.log("onSelectedParallel", event)
     this.dashboardRepository.setSelectedParallelId(event.id);
   }
 
@@ -360,7 +371,8 @@ export class DashboardStudentIndexComponent {
       ],
       chart: {
         height: 350,
-        type: "line"
+        type: "line",
+        foreColor: '#fff',
       },
       stroke: {
         width: 1,
