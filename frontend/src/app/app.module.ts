@@ -52,6 +52,7 @@ import { ProfessorsEvaluationsComponent } from './pages/professors-evaluations/p
 import { StudentsAveragesComponent } from './pages/students-averages/students-averages.component';
 import { ProfessorPerformanceDashboardComponent } from './pages/professor-performance-dashboard/professor-performance-dashboard.component';
 import { DashboardStudentIndexComponent } from './pages/dashboard-student-index/dashboard-student-index.component';
+import { SubjectPlansComponent } from './pages/subject-plans/subject-plans.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { DashboardStudentIndexComponent } from './pages/dashboard-student-index/
     ProfessorsEvaluationsComponent,
     StudentsAveragesComponent,
     ProfessorPerformanceDashboardComponent,
-    DashboardStudentIndexComponent
+    DashboardStudentIndexComponent,
+    SubjectPlansComponent
   ],
     imports: [
         BrowserModule,
