@@ -1,43 +1,55 @@
-﻿// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+﻿namespace Backend.Controllers;
 
-namespace Backend.Controllers
+using Backend.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
+[Route("api/[controller]")]
+[ApiController]
+public class SubjectPlansController : ControllerBase
 {
-    using Microsoft.AspNetCore.Mvc;
+    private readonly PlansContext _context;
 
-    [Route("api/[controller]")]
-    [ApiController]
-    public class SubjectPlansController : ControllerBase
+    public SubjectPlansController(PlansContext context)
     {
-        // GET: api/<SubjectPlansController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        _context = context;
+    }
+    // GET: api/<SubjectPlansController>
+    [HttpGet]
+    public IEnumerable<SubjectPlan> Get()
+    {
+        return _context.SubjectPlans;
+    }
 
-        // GET api/<SubjectPlansController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+    // GET api/<SubjectPlansController>/5
+    [HttpGet("{id}")]
+    public SubjectPlan Get(int id)
+    {
+        return _context.SubjectPlans.Include(c => c.SubjectPlanClasses).FirstOrDefault(x => x.Id == id);
+    }
 
-        // POST api/<SubjectPlansController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+    // POST api/<SubjectPlansController>
+    [HttpPost]
+    public void Post([FromBody] string value)
+    {
+    }
 
-        // PUT api/<SubjectPlansController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+    // PUT api/<SubjectPlansController>/5
+    [HttpPut("{id}")]
+    public void Put(int id, [FromBody] SubjectPlan body)
+    {
+        var plan = _context.SubjectPlans.Include(c => c.SubjectPlanClasses).FirstOrDefault(x => x.Id == id);
+        plan.Name = body.Name;
+        plan.Code = body.Code;
+        plan.Description = body.Description;
+        plan.Department = body.Department;
+        plan.SubjectPlanClasses = body.SubjectPlanClasses;
+        _context.SaveChanges();
+    }
 
-        // DELETE api/<SubjectPlansController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+    // DELETE api/<SubjectPlansController>/5
+    [HttpDelete("{id}")]
+    public void Delete(int id)
+    {
     }
 }
