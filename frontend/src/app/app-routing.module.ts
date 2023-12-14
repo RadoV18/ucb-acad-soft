@@ -17,6 +17,7 @@ import { StudentsAveragesComponent } from './pages/students-averages/students-av
 import { ProfessorsEvaluationsComponent } from './pages/professors-evaluations/professors-evaluations.component';
 import { ProfessorPerformanceDashboardComponent } from "./pages/professor-performance-dashboard/professor-performance-dashboard.component";
 import {DashboardStudentIndexComponent} from "./pages/dashboard-student-index/dashboard-student-index.component";
+import { SubjectPlansComponent } from './pages/subject-plans/subject-plans.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,7 @@ const routes: Routes = [
       { path: 'professors-evaluations', component: ProfessorsEvaluationsComponent },
       { path: 'academic-performance', component: AcademicPerformanceDashboardComponent },
       { path: 'professor-performance', component: ProfessorPerformanceDashboardComponent },
+      { path: 'subject-plans', component: SubjectPlansComponent }
     ],
     },
     {

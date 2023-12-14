@@ -18,7 +18,7 @@ public class SubjectPlansController : ControllerBase
     [HttpGet]
     public IEnumerable<SubjectPlan> Get()
     {
-        return _context.SubjectPlans;
+        return _context.SubjectPlans.Include(c => c.SubjectPlanClasses);
     }
 
     // GET api/<SubjectPlansController>/5

@@ -40,3 +40,18 @@ export interface SubjectContinuousGrades {
     subject: Subject
     students: StudentContinuousEvaluation[]
 }
+
+export interface SubjectPlanClass {
+    planId: number
+    row: number
+    detail: string
+}
+
+export interface SubjectPlan {
+    id: number
+    name: string
+    code: string
+    description: string
+    department: string
+    subjectPlanClasses: SubjectPlanClass[]
+}
