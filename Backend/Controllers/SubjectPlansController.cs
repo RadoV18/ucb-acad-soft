@@ -1,5 +1,6 @@
 ﻿namespace Backend.Controllers;
 
+using Backend.DTOs;
 using Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 public class SubjectPlansController : ControllerBase
 {
     private readonly PlansContext _context;
+    private readonly Services.MinioService _minioService = new();
+    private readonly Services.PdfTurtleService _pdfTurtleService = new();
 
     public SubjectPlansController(PlansContext context)
     {
@@ -19,6 +22,35 @@ public class SubjectPlansController : ControllerBase
     public IEnumerable<SubjectPlan> Get()
     {
         return _context.SubjectPlans.Include(c => c.SubjectPlanClasses);
+    }
+
+    [HttpGet("pdf/{id}")]
+    public async Task<ActionResult<ResponseDTO<string>>> GetSubjectPlansPDF(int id)
+    {
+        try
+        {
+            var header = System.IO.File.ReadAllText("Utils/PdfTemplates/SubjectPlans/header.html");
+            var footer = System.IO.File.ReadAllText("Utils/PdfTemplates/SubjectPlans/footer.html");
+            var body = System.IO.File.ReadAllText("Utils/PdfTemplates/SubjectPlans/index.html");
+
+            var plan = await _context.SubjectPlans.Include(c => c.SubjectPlanClasses).FirstOrDefaultAsync(x => x.Id == id);
+            var classes = await _context.SubjectPlanClasses.Where(x => x.PlanId == id).ToListAsync();
+            var model = new
+            {
+                plan,
+                classes
+            };
+            byte[] pdf = await _pdfTurtleService.getPdf(footer, header, body, model);
+            // upload pdf to minio
+            Guid guid = Guid.NewGuid();
+            string fileName = $"{guid}.pdf";
+            var newFileDto = await _minioService.UploadFile("pdf", fileName, pdf, "application/pdf");
+            return Ok(new ResponseDTO<string>(newFileDto.DownloadLink, null, true));
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
     }
 
     // GET api/<SubjectPlansController>/5

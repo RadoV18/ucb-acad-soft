@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<style>
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 4px;
+            height: 16px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #e1e1e1;
+        }
+
+        #tbody td:nth-child(1), #thead th:nth-child(1) {
+            width: 15%
+        }
+
+        #tbody td:nth-child(2), #thead th:nth-child(2) {
+            width: 85%;
+        }
+	</style>
+</head>
+
+<body>
+	<h2 class="unbold-heading">Informacion de materia</h2>
+	<div class="info">
+		<p class="unbold-heading"><strong> Facultad: </strong> {{ .plan.department }}</p>
+		<p class="unbold-heading"><strong> Materia: </strong>{{ .plan.name }}</p>
+		<p class="unbold-heading"><strong> Codigo: </strong>{{ .plan.code }}</p>
+		<p class="unbold-heading"><strong> Descripcion: </strong>{{ .plan.description }}</p>
+	</div>
+	<table>
+		<thead>
+			<tr>
+				<th class="header">Clase #</th>
+				<th class="header">Detalle</th>
+			</tr>
+		</thead>
+		<tbody id="tbody">
+		</tbody>
+	</table>
+
+	<script>
+		const classes = {{ .classes }}
+		const tbody = document.getElementById("tbody");
+		for(let i = 0; i < classes.length; i++) {
+			const obj = classes[i];
+			tbody.innerHTML += `
+				<tr>
+					<td>
+						${obj.row}
+					</td>
+					<td>${obj.detail}</td>
+				</tr>
+			`;
+		}
+	</script>
+</body>
+
+</html>

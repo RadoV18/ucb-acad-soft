@@ -18,4 +18,8 @@ export class SubjectPlansService {
   public UpdatePlan(plan: SubjectPlan): Observable<SubjectPlan> {
     return this.http.put<SubjectPlan>(`${this.baseUrl}/SubjectPlans/${plan.id}`, plan);
   }
+
+  public getPdfReport(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/SubjectPlans/pdf/${id}`);
+  }
 }

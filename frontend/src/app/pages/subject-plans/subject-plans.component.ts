@@ -92,4 +92,12 @@ export class SubjectPlansComponent {
       };
     });
   }
+
+  onDownloadClick() {
+    this.subjectPlansService.getPdfReport(this.selectedPlan.id).subscribe((response) => {
+      if (response.successful) {
+        window.open(response.data, '_blank');
+      }
+    });
+  }
 }

@@ -31,6 +31,7 @@
 <button mat-raised-button *ngIf="selected && selected != 0" (click)="addRow()" class="demo-button">
     + Agregar
 </button>
+<button mat-raised-button *ngIf="selected && selected != 0" color="primary" (click)="onDownloadClick()">Descargar</button>
 
 <table mat-table *ngIf="selected && selected != 0" [dataSource]="selectedPlan.subjectPlanClasses" class="mat-elevation-z8 demo-table">
     <ng-container matColumnDef="row">

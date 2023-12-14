@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <style>
+  .header-container {
+		height: 2cm;
+    padding-top: 5mm;
+    display: flex;
+    align-items: center;
+    gap: 4mm;
+  }
+
+	.img-container {
+		height: 100%;
+	}
+
+	.img-container img {
+		max-height: 100%;
+	}
+  </style>
+</head>
+
+<div class="header-container">
+	<div class="img-container">
+		<img src="https://lpz.ucb.edu.bo/wp-content/uploads/2021/04/logo-ucb-colores-nal.png">
+	</div>
+	<h4>Plan de Materia - {{ .plan.name }}</h4>
+</div>
+
+</html>
