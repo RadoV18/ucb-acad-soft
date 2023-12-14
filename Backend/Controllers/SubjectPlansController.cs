@@ -36,7 +36,7 @@ public class SubjectPlansController : ControllerBase
 
     // PUT api/<SubjectPlansController>/5
     [HttpPut("{id}")]
-    public void Put(int id, [FromBody] SubjectPlan body)
+    public SubjectPlan Put(int id, [FromBody] SubjectPlan body)
     {
         var plan = _context.SubjectPlans.Include(c => c.SubjectPlanClasses).FirstOrDefault(x => x.Id == id);
         plan.Name = body.Name;
@@ -45,6 +45,8 @@ public class SubjectPlansController : ControllerBase
         plan.Department = body.Department;
         plan.SubjectPlanClasses = body.SubjectPlanClasses;
         _context.SaveChanges();
+
+        return plan;
     }
 
     // DELETE api/<SubjectPlansController>/5

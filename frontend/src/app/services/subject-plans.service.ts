@@ -14,4 +14,8 @@ export class SubjectPlansService {
   public GetAllPlans(): Observable<SubjectPlan[]> {
     return this.http.get<SubjectPlan[]>(`${this.baseUrl}/SubjectPlans`);
   }
+
+  public UpdatePlan(plan: SubjectPlan): Observable<SubjectPlan> {
+    return this.http.put<SubjectPlan>(`${this.baseUrl}/SubjectPlans/${plan.id}`, plan);
+  }
 }

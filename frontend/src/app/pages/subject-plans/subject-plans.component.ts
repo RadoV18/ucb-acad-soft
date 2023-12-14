@@ -27,7 +27,7 @@ export class SubjectPlansComponent {
   }
 
   onPlanSelectedChange(event: any) {
-    if (event.value === 0) {
+    if (event.value === 0 || event.value === undefined || event.value === null) {
       this.selectedPlan = {
         id: 0,
         name: '',
@@ -43,12 +43,22 @@ export class SubjectPlansComponent {
     this.selectedPlan = this.plans[event.value - 1];
   }
 
-  addData(number: number) {
-    console.log(this.selectedPlan);
+  savePlan() {
+    this.subjectPlansService.UpdatePlan(this.selectedPlan).subscribe((plan) => {
+      this.selectedPlan = plan;
+    });
   }
 
   updateDetail(event : any) {
     this.selectedPlan.subjectPlanClasses[event.target.id - 1].detail = event.target.value;
+  }
+
+  updateDescription(event : any) {
+    this.selectedPlan.description = event.target.value;
+  }
+
+  updateDepartment(event : any) {
+    this.selectedPlan.department = event.target.value;
   }
 
   checkIfRowIsEmpty(row : SubjectPlanClass) {
@@ -67,5 +77,19 @@ export class SubjectPlansComponent {
       row: this.selectedPlan.subjectPlanClasses.length + 1,
       detail: '',
     }];
+  }
+
+  deleteRow(row : number) {
+    this.selectedPlan.subjectPlanClasses = [...this.selectedPlan.subjectPlanClasses.filter((r) => r.row !== row)]
+    this.recalculateRowsId();
+  }
+
+  recalculateRowsId() {
+    this.selectedPlan.subjectPlanClasses = this.selectedPlan.subjectPlanClasses.map((r, index) => {
+      return {
+        ...r,
+        row: index + 1,
+      };
+    });
   }
 }

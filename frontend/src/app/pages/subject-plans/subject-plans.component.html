@@ -11,7 +11,7 @@
     </mat-form-field>
 </div>
 
-<div class="form-main" *ngIf="selected != 0">
+<div class="form-main" *ngIf="selected && selected != 0">
     <mat-form-field>
       <mat-label>Codigo de Materia</mat-label>
       <input matInput value="{{selectedPlan.code}}" disabled>
@@ -19,20 +19,20 @@
 
     <mat-form-field>
         <mat-label>Descripcion</mat-label>
-        <input matInput value="{{selectedPlan.description}}">
+        <input matInput value="{{selectedPlan.description}}" (change)="updateDescription($event)">
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Departamento</mat-label>
-        <input matInput value="{{selectedPlan.department}}">
+        <input matInput value="{{selectedPlan.department}}" (change)="updateDepartment($event)">
     </mat-form-field>
 </div>
 
-<button mat-raised-button *ngIf="selected != 0" (click)="addRow()" class="demo-button">
+<button mat-raised-button *ngIf="selected && selected != 0" (click)="addRow()" class="demo-button">
     + Agregar
 </button>
 
-<table mat-table *ngIf="selected != 0" [dataSource]="selectedPlan.subjectPlanClasses" class="mat-elevation-z8 demo-table">
+<table mat-table *ngIf="selected && selected != 0" [dataSource]="selectedPlan.subjectPlanClasses" class="mat-elevation-z8 demo-table">
     <ng-container matColumnDef="row">
       <th mat-header-cell *matHeaderCellDef>No.</th>
       <td mat-cell *matCellDef="let element">{{element.row}}</td>
@@ -51,20 +51,17 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Acciones</th>
       <td mat-cell *matCellDef="let element">
-        {{element.detail}}
+        <button mat-icon-button color="warn" (click)="deleteRow(element.row)">
+            <mat-icon>delete</mat-icon>
+        </button>
       </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="symbol">
-      <th mat-header-cell *matHeaderCellDef>Symbol</th>
-      <td mat-cell *matCellDef="let element">{{element.symbol}}</td>
     </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
-<button mat-raised-button *ngIf="selected != 0" (click)="addData(1)" class="demo-button">
+<button mat-raised-button *ngIf="selected && selected != 0" (click)="savePlan()" class="demo-button">
     Actualizar
 </button>
   
